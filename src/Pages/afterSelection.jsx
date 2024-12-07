@@ -399,7 +399,7 @@ const AfterSelection = () => {
         </div>
       </div>
 
-        <div className="flex justify-center items-center relative overflow-hidden h-[350px]" >
+        <div className="flex justify-center items-center relative overflow-hidden pt-8" >
         <Carousel />
         </div>
 

@@ -69,8 +69,8 @@ const Carousel = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full px-4 sm:px-6 md:px-10 bg-none">
-      <div className="relative w-5/6 py-2 mx-auto overflow-hidden">
+    <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-10 bg-none">
+      <div className="relative w-5/6 mx-auto overflow-hidden">
         {/* AfterSelection Items */}
         <div
           className="flex transition-transform duration-500"
