@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Background from "../assets/courseSummay.png";
 import clock from "../assets/clock.svg";
 import level from "../assets/level.svg";
@@ -73,6 +74,18 @@ const CourseSummary = () => {
 
   return (
     <div className="mx-10 my-5 regular3">
+      <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
+      <Link to="/afterSelection">AI Interview</Link>
+      </button>
+      
+      <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
+      <Link to="/aiInterview">aiInterview</Link>
+      </button>
+
+      <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
+      <Link to="/aiTechnical">aiTechnical</Link>
+      </button>
+
       <div>
         <img src={Background} alt="" />
       </div>
@@ -101,9 +114,8 @@ const CourseSummary = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: index * 0.5, duration: 0.3 }}
-                  className={`w-5 h-5 border-2 rounded-full ${
-                    hoveredId === item.id ? "bg-red-500" : "bg-white"
-                  } border-red-500 shadow-md`}
+                  className={`w-5 h-5 border-2 rounded-full ${hoveredId === item.id ? "bg-red-500" : "bg-white"
+                    } border-red-500 shadow-md`}
                 ></motion.div>
 
                 {/* Label */}
@@ -113,9 +125,8 @@ const CourseSummary = () => {
                   transition={{ delay: index * 0.5 + 0.3, duration: 0.5 }}
                   onMouseEnter={() => setHoveredId(item.id)}
                   onMouseLeave={() => setHoveredId(null)}
-                  className={`absolute ${
-                    index % 2 === 0 ? "top-8" : "-top-12"
-                  } text-center transform -translate-x-1/2 px-3 py-2 bg-white rounded-full border border-black whitespace-nowrap hover:bg-[#D3D3D3] hover:border-[#D3D3D3]`}
+                  className={`absolute ${index % 2 === 0 ? "top-8" : "-top-12"
+                    } text-center transform -translate-x-1/2 px-3 py-2 bg-white rounded-full border border-black whitespace-nowrap hover:bg-[#D3D3D3] hover:border-[#D3D3D3]`}
                   style={{
                     top: index % 2 === 0 ? "calc(100% + 10px)" : "auto",
                     bottom: index % 2 !== 0 ? "calc(100% + 10px)" : "auto",

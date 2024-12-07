@@ -7,6 +7,7 @@ import image2 from '../assets/Aspireit.png';
 import image3 from '../assets/Ellipse 1872.svg';
 import image4 from '../assets/Type=Layila.svg';
 import image5 from '../assets/Write.svg';
+import Carousel from '../Components/carousel/Carousel';
 
 
 
@@ -78,45 +79,6 @@ const AfterSelection = () => {
     }
   }, [isFocused1]);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const isMouseDown = useRef(false);
-  const startX = useRef(0);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slidesData.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slidesData.length) % slidesData.length);
-  };
-
-  const handleMouseDown = (e) => {
-    isMouseDown.current = true;
-    startX.current = e.clientX;
-  };
-
-  const handleMouseUp = () => {
-    isMouseDown.current = false;
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isMouseDown.current) return;
-    const deltaX = e.clientX - startX.current;
-
-    if (deltaX > 50) {
-      nextSlide();
-      startX.current = e.clientX;
-    } else if (deltaX < -50) {
-      prevSlide();
-      startX.current = e.clientX;
-    }
-  };
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const [openDifficulty, setOpenDifficulty] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState();
@@ -436,52 +398,11 @@ const AfterSelection = () => {
           </div>
         </div>
       </div>
-      <div
-        className="relative w-full max-w-8xl mx-auto"
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
-      >
+
         <div className="flex justify-center items-center relative overflow-hidden h-[350px]" >
-          {slidesData.map((slide, index) => {
-            const isActive = index === currentSlide;
-            const isPrev = index === (currentSlide - 1 + slidesData.length) % slidesData.length;
-            const isNext = index === (currentSlide + 1) % slidesData.length;
-
-            return (
-              <div
-                key={index}
-                className={`max-w-[743px] px-[48px] box-border absolute transition-all duration-500 ease-in-out ${isActive ? 'transform scale-110 z-20 opacity-100'
-                  : isPrev ? 'transform scale-100 -translate-x-20 z-10 '
-                    : isNext ? 'transform scale-100 translate-x-20 z-10 '
-                      : 'opacity-0'
-                  }`}
-              >
-                <div className="p-12 h-[244px] bg-gradient-to-r border-purple-600 border-2 from-blue-950 to-cyan-950 shadow-xl text-white rounded-lg flex justify-center items-center"
-                  style={{ borderRadius: '16px', background: 'linear-gradient(90deg, #2D2D54 19.18%, #0F0F36 76.34%)', boxShadow: '0px 0px 10px 0px #D388FF', }}>
-                  <div className='max-w-[300px]'>
-                    <h2 className="text-xl font-bold mb-2">{slide.title}</h2>
-                    <p>{slide.description}</p>
-                  </div>
-                  <div className="flex items-center mb-4 justify-end">
-                    {slide.icon}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <Carousel />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 flex justify-center space-x-2 p-4">
-          {slidesData.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full ${currentSlide === index ? 'bg-neutral-700' : 'bg-gray-200'}`}
-            />
-          ))}
-        </div>
-      </div>
     {/* ///////////Difficulty Card///////// */}
       <div className='DialogCards w-full flex justify-center gap-8 px-12 my-8'>
         <>
