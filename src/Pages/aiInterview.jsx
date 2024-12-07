@@ -133,7 +133,7 @@ const AiInterview = () => {
     }, [isFocused1]);
 
     return (
-        <div>
+        <div className='bg-[#F1F4F8]'>
             {/*------- Navbar --------- */}
             <div className="NavBar w-full h-full px-10 py-4 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
                 <div className="logo-container w-[130px] h-[46px] relative  bg-[#FFF]">
@@ -252,7 +252,7 @@ const AiInterview = () => {
                                     <div className="absolute inset-0 flex items-center justify-center bg-black">
                                         <button
                                             onClick={handlePlay}
-                                            className="flex items-center justify-center rounded-full w-16 h-16 bg-black border-4 border-gray-300 shadow-lg hover:opacity-80"
+                                            className="flex items-center justify-center rounded-full w-36 h-36 bg-black border-4 border-gray-300 shadow-lg hover:opacity-80"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"

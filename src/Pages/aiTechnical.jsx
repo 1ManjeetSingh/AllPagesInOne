@@ -152,7 +152,7 @@ const AiTechnical = () => {
     }, [isFocused1]);
 
     return (
-        <div>
+        <div className='bg-[#F1F4F8]'>
             {/*------- Navbar --------- */}
             <div className="NavBar w-full h-full px-10 py-4 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
                 <div className="logo-container w-[130px] h-[46px] relative  bg-[#FFF]">
