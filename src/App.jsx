@@ -9,6 +9,7 @@ import Technical from './Pages/technical';
 import CourseSummary from "./Pages/courseSummary";
 import AfterSelection from "./Pages/afterSelection";
 import AiTechnical from "./Pages/aiTechnical";
+import Aftersalection from "./Pages/aftersalection";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/userDashboard" element={<UserDashboard />} />
         <Route path="/technical" element={<Technical />} />
         <Route path="/afterSelection" element={<AfterSelection />} />
+        <Route path="/aftersalection" element={<Aftersalection />} />
         <Route path="/" element={<CourseSummary />} />
       </Routes>
     </BrowserRouter>

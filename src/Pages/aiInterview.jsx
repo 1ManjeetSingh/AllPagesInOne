@@ -185,55 +185,44 @@ const AiInterview = () => {
             </div>
 
             {/*------- Profile Card --------- */}
-            <div className='flex flex-col pt-10 px-[50px]'>
-                <div className="HeaderApplicantResults w-[full] h-[194px] flex-col justify-start items-start gap-4 inline-flex">
-                    <div className="Profile self-stretch p-8 bg-white rounded-3xl shadow border border-[#b9b9b9] justify-start items-center gap-6 inline-flex">
+            <div className='flex flex-col pt-6 px-[50px]'>
+                <div className="HeaderApplicantResults w-[full] flex-col justify-start items-start gap-4 inline-flex">
+                    <div className="Profile self-stretch py-4 px-8 bg-white rounded-3xl shadow border border-[#b9b9b9] justify-start items-center gap-6 inline-flex">
                         <img className="ProfilePicture w-[114px] h-[114px] rounded-full" src={image6} />
                         <div className="Heading grow shrink basis-0 self-stretch flex-col justify-center items-start gap-4 inline-flex">
-                            <div className="Text self-stretch text-[#1e1e1e] text-4xl font-semibold font-['SF UI  Text'] leading-[44px]">Aryan Sharma</div>
-                            <div className='flex w-full justify-between'>
-                                <div className="ButtonsCta max-w-[251px] h-12 rounded-[30px] justify-start items-center gap-4 inline-flex hover:cursor-pointer" style={{ background: 'white' }}>
+                            <div className="Text self-stretch text-[#1e1e1e] text-3xl font-semibold font-['SF UI  Text']">Aryan Sharma</div>
+                            <div className='flex w-full justify-between items-center'>
+                                <div className="ButtonsCta max-w-[200px] rounded-[30px] justify-start items-center gap-4 inline-flex hover:cursor-pointer" style={{ background: 'white' }}>
                                     <img src={image5} alt="" />
                                 </div>
-                                <div className="ButtonsCta h-12 px-9 py-4 bg-[#0071db] rounded-[30px] shadow justify-center max-w-[235px] items-center gap-2 inline-flex cursor-pointer">
-                                    <div className="ButtonLabel text-center text-white text-lg font-semibold font-['SF UI  Text'] leading-[18px]">Finalize Candidate</div>
+                                <div className="ButtonsCta h-16 px-9 bg-[#0071db] rounded-[30px] shadow justify-center max-w-[235px] items-center gap-2 inline-flex cursor-pointer">
+                                    <div className="ButtonLabel text-center text-white text-[18px] font-['SF UI  Text'] leading-[18px]">Finalize Candidate</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr />
+                <hr className='mt-4'/>
             </div>
 
             {/*------- Center Card --------- */}
 
-            <div className='flex justify-between items-center px-[50px] py-[32px]'>
+            <div className='flex justify-between items-center px-[50px] py-6'>
                 <div className="w-full gap-6">
                     <div>
-                        <div className="w-full h-full flex justify-between items-center px-4">
-                            <div className="text-black text-2xl font-bold leading-9 font-[SF UI Text] break-words">
+                        <div className="w-full h-16 flex justify-between items-center px-1 mb-6">
+                            <div className="text-black text-3xl font-bold leading-9 font-[SF UI Text] break-words">
                                 AI Interview
                             </div>
-                            <div className="ButtonsCta max-w-[249px] h-12 px-9 py-4 rounded-[30px] shadow border border-[#0071db] justify-center items-center gap-2 inline-flex">
+                            <div className="ButtonsCta max-w-[249px] h-16 px-9 py-4 rounded-[30px] shadow border border-[#0071db] justify-center items-center gap-2 inline-flex">
                                 {/* Show the icon only when isTranscriptVisible is false */}
 
                                 <div
                                     onClick={toggleTranscript}
-                                    className="flex justify-center items-center ButtonLabel text-center text-[#0071db] text-lg font-semibold font-['SF UI  Text'] leading-[36px] cursor-pointer"
+                                    className="flex justify-center items-center ButtonLabel text-center text-[#0071db] text-[18px] font-semibold font-['SF UI  Text'] leading-[36px] cursor-pointer"
                                 >
-                                    {/* Show the icon only when isTranscriptVisible is false */}
-                                    {!isTranscriptVisible && (
-                                        <svg className="AiIcon w-6 h-6 pl-[3px] mr-1 pt-px pb-[1.08px] justify-center items-center flex" width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g id="Icon">
-                                                <path id="Star 3" d="M9.39635 5.41047C9.57679 4.92282 10.2665 4.92282 10.447 5.41047L11.974 9.53725C12.1442 9.9972 12.5068 10.3598 12.9668 10.53L17.0936 12.0571C17.5812 12.2375 17.5812 12.9273 17.0936 13.1077L12.9668 14.6347C12.5068 14.8049 12.1442 15.1676 11.974 15.6275L10.447 19.7543C10.2665 20.242 9.57679 20.242 9.39635 19.7543L7.8693 15.6275C7.6991 15.1676 7.33646 14.8049 6.87652 14.6347L2.74973 13.1077C2.26208 12.9273 2.26208 12.2375 2.74974 12.0571L6.87652 10.53C7.33646 10.3598 7.6991 9.9972 7.8693 9.53725L9.39635 5.41047Z" fill="#0072DC" />
-                                                <path id="Star 4" d="M16.4871 14.1125C16.5773 13.8687 16.9222 13.8687 17.0124 14.1125L17.3128 14.9244C17.3412 15.001 17.4016 15.0615 17.4783 15.0898L18.2901 15.3903C18.534 15.4805 18.534 15.8253 18.2901 15.9156L17.4783 16.216C17.4016 16.2443 17.3412 16.3048 17.3128 16.3814L17.0124 17.1933C16.9222 17.4371 16.5773 17.4371 16.4871 17.1933L16.1867 16.3814C16.1583 16.3048 16.0979 16.2443 16.0212 16.216L15.2094 15.9156C14.9656 15.8253 14.9656 15.4805 15.2094 15.3902L16.0212 15.0898C16.0979 15.0615 16.1583 15.001 16.1867 14.9244L16.4871 14.1125Z" fill="#0072DC" />
-                                                <path id="Star 6" d="M4.25292 1.41963C4.43337 0.931975 5.12309 0.931977 5.30354 1.41963L5.89955 3.03031C5.95628 3.18362 6.07716 3.3045 6.23047 3.36123L7.84115 3.95724C8.3288 4.13768 8.3288 4.82741 7.84115 5.00786L6.23047 5.60386C6.07716 5.66059 5.95628 5.78147 5.89955 5.93479L5.30354 7.54547C5.12309 8.03312 4.43337 8.03312 4.25292 7.54547L3.65692 5.93479C3.60019 5.78147 3.47931 5.66059 3.32599 5.60386L1.71531 5.00786C1.22766 4.82741 1.22766 4.13768 1.71531 3.95724L3.32599 3.36123C3.47931 3.3045 3.60019 3.18362 3.65692 3.03031L4.25292 1.41963Z" fill="#0072DC" />
-                                                <path id="Star 5" d="M14.4904 3.73544L15.0625 5.2817C15.1476 5.51168 15.329 5.693 15.5589 5.77809L17.1052 6.35026L15.5589 6.92243C15.329 7.00753 15.1476 7.18885 15.0625 7.41882L14.4904 8.96508L13.9182 7.41882C13.8331 7.18885 13.6518 7.00753 13.4218 6.92243L11.8755 6.35026L13.4218 5.77809C13.6518 5.693 13.8331 5.51168 13.9182 5.2817L14.4904 3.73544Z" fill="#0072DC" />
-                                                <path id="Star 7" d="M4.78247 15.9258C4.97957 15.7563 5.28121 15.9234 5.24195 16.1804L5.03431 17.5396C5.02197 17.6204 5.04554 17.7026 5.09884 17.7645L5.99548 18.8069C6.16502 19.004 5.99787 19.3056 5.74087 19.2664L4.38169 19.0587C4.30089 19.0464 4.21873 19.07 4.15676 19.1233L3.11439 20.0199C2.9173 20.1895 2.61565 20.0223 2.65491 19.7653L2.86255 18.4061C2.8749 18.3253 2.85132 18.2432 2.79802 18.1812L1.90139 17.1388C1.73185 16.9417 1.899 16.6401 2.156 16.6793L3.51518 16.887C3.59598 16.8993 3.67814 16.8758 3.7401 16.8225L4.78247 15.9258Z" fill="#0072DC" />
-                                            </g>
-                                        </svg>
-                                    )}
-                                    {isTranscriptVisible ? "Show Transcript" : "Show Transcript"}
+                                    
+                                    {isTranscriptVisible ? "Hide Transcript" : "Show Transcript"}
                                 </div>
                             </div>
                         </div>

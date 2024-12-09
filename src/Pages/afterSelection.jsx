@@ -6,7 +6,7 @@ import image1 from "../assets/image1.png"
 import image2 from '../assets/Aspireit.png';
 import image3 from '../assets/Ellipse 1872.svg';
 import image4 from '../assets/Type=Layila.svg';
-import image5 from '../assets/Write.svg';
+import image5 from '../assets/Group.svg';
 import Carousel from '../Components/carousel/Carousel';
 
 
@@ -752,8 +752,8 @@ const AfterSelection = () => {
         </>
       </div>
       <div className='flex w-full justify-end px-12 pb-12'>
-        <div className=" ButtonsCta max-w-[251px] h-14 px-12 py-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
-          <div className="Text text-center text-white text-lg font-semibold leading-[18px]">Take AI interview</div>
+        <div className=" ButtonsCta max-w-[251px] h-[56px] px-12 py-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
+          <div className="Text text-center text-white text-[18px] font-semibold leading-[18px]">Take interview</div>
         </div>
       </div>
     </div>

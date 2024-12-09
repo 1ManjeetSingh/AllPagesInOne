@@ -204,32 +204,32 @@ const AiTechnical = () => {
             </div>
 
             {/*------- Profile Card --------- */}
-            <div className='flex flex-col pt-10 px-[50px]'>
-                <div className="HeaderApplicantResults w-[full] h-[194px] flex-col justify-start items-start gap-4 inline-flex">
-                    <div className="Profile self-stretch p-8 bg-white rounded-3xl shadow border border-[#b9b9b9] justify-start items-center gap-6 inline-flex">
+            <div className='flex flex-col pt-6 px-[50px]'>
+                <div className="HeaderApplicantResults w-[full] flex-col justify-start items-start gap-4 inline-flex">
+                    <div className="Profile self-stretch py-4 px-8 bg-white rounded-3xl shadow border border-[#b9b9b9] justify-start items-center gap-6 inline-flex">
                         <img className="ProfilePicture w-[114px] h-[114px] rounded-full" src={image6} />
                         <div className="Heading grow shrink basis-0 self-stretch flex-col justify-center items-start gap-4 inline-flex">
-                            <div className="Text self-stretch text-[#1e1e1e] text-4xl font-semibold font-['SF UI  Text'] leading-[44px]">Aryan Sharma</div>
-                            <div className='flex w-full justify-between'>
-                                <div className="ButtonsCta max-w-[251px] h-12 rounded-[30px] justify-start items-center gap-4 inline-flex hover:cursor-pointer" style={{ background: 'white' }}>
+                            <div className="Text self-stretch text-[#1e1e1e] text-3xl font-semibold font-['SF UI  Text']">Aryan Sharma</div>
+                            <div className='flex w-full justify-between items-center'>
+                                <div className="ButtonsCta max-w-[200px] rounded-[30px] justify-start items-center gap-4 inline-flex hover:cursor-pointer" style={{ background: 'white' }}>
                                     <img src={image5} alt="" />
                                 </div>
-                                <div className="ButtonsCta h-12 px-9 py-4 bg-[#0071db] rounded-[30px] shadow justify-center max-w-[235px] items-center gap-2 inline-flex cursor-pointer">
-                                    <div className="ButtonLabel text-center text-white text-lg font-semibold font-['SF UI  Text'] leading-[18px]">Finalize Candidate</div>
+                                <div className="ButtonsCta h-16 px-9 bg-[#0071db] rounded-[30px] shadow justify-center max-w-[235px] items-center gap-2 inline-flex cursor-pointer">
+                                    <div className="ButtonLabel text-center text-white text-lg font-['SF UI  Text'] leading-[18px]">Finalize Candidate</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr />
+                <hr className='mt-4'/>
             </div>
 
             {/*------- Center Card --------- */}
 
-            <div className='flex justify-between items-center px-[50px] py-[32px]'>
+            <div className='flex justify-between items-center px-[50px] py-6'>
                 <div className="w-full gap-6">
                     <div>
-                        <div className="w-full h-full flex justify-start items-center px-4">
+                        <div className="w-full h-full flex justify-start items-center px-1">
                             <div className="text-black text-2xl font-bold leading-9 font-[SF UI Text] break-words">
                                 AI Technical
                             </div>
