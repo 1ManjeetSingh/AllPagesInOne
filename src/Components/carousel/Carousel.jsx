@@ -58,7 +58,7 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 3000); // Change slide every 3 seconds
+    }, 5000); // Change slide every 3 seconds
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -88,7 +88,7 @@ const Carousel = () => {
                 <img
                   src={item.icon} // Using the image URL here
                   alt={item.title}
-                  className="w-[12vh] h-[12vh] pb-[2vh]"
+                  className="w-[15vh] h-[15vh] pb-[2vh]"
                 />
                 <p className=" text-gray-600 text-center text-[1.8vh] leading-[2vh] px-[0.5vw]">{item.title}</p>
                 <h3 className="text-center text-gray-600 mt-2 font-bold text-[1.8vh] max-w-[176px] leading-[2vh] px-[0.5vw]">{item.description}</h3>

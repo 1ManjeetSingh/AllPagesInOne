@@ -655,7 +655,7 @@ const AfterSelection = () => {
                                 />
                             </svg>
                             <div
-                                className="cursor-pointer Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start bg-none"
+                                className="cursor-pointer Content flex-1 h-full pr-1 rounded-[8px] flex flex-col justify-center items-start bg-none"
                             >
                                 <div
                                     className="Heading text-[#5C9AFF] text-[2vh] md:text-[2.5vh] font-semibold break-words bg-none" >
