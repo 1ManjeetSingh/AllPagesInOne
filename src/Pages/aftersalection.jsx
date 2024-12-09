@@ -435,7 +435,7 @@ const Aftersalection = () => {
                             <div
                                 className="Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start" >
                                 <div
-                                    className="Heading text-[#5C9AFF]  lg:text-[18px] md:text-[16px] font-semibold  break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] lg:text-[18px] md:text-[16px] font-semibold  break-words bg-none" >
                                     Difficulty Level
                                 </div>
                                 {/* Display Selected Level */}
@@ -543,7 +543,7 @@ const Aftersalection = () => {
                         </svg>
                             <div className=" cursor-pointer Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start bg-none" >
                                 <div
-                                    className="Heading text-[#5C9AFF]  lg:text-[18px] md:text-[16px] font-semibold break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] lg:text-[18px] md:text-[16px] font-semibold break-words bg-none" >
                                     Duration per question
                                 </div>
                                 <div className='text-[#333232] text-[16px] text-start'

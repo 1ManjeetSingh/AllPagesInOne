@@ -84,11 +84,11 @@ const Carousel = () => {
               className="w-full sm:w-1/2 md:w-1/3 flex-shrink-0 px-4"
               style={{ minWidth: `${100 / cardsPerSlide}%` }} // Adjusting the width based on cardsPerSlide
             >
-              <div className="flex flex-col items-center justify-center bg-white border-[1px] border-[#B9B9B9]  shadow-[0px_0px_8px_#C9FFFC] rounded-3xl min-h-[180px]">
+              <div className="flex flex-col items-center pt-10 bg-white border-[1px] border-[#B9B9B9]  shadow-[0px_0px_8px_#C9FFFC] rounded-3xl min-h-[180px]">
                 <img
                   src={item.icon} // Using the image URL here
                   alt={item.title}
-                  className="w-[80px] h-[80px] object-cover "
+                  className="w-[80px] h-[80px] pb-4"
                 />
                 <p className=" text-gray-600 ">{item.title}</p>
                 <h3 className="text-center text-gray-600 mt-2 font-bold text-lg max-w-[176px] leading-[16px]">{item.description}</h3>
