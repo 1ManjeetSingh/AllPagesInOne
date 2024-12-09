@@ -310,7 +310,7 @@ const AfterSelection = () => {
                     {`Let's get you started with scheduling your AI interview`}
                 </div>
 
-                <div className="YouHaveSelected1024CandidatesForInterview w-[908px] text-center">
+                <div className="YouHaveSelected1024CandidatesForInterview text-center">
                     <span className=" text-[#161616] text-[2.5vh] font-[400] leading-[2.5vh] break-words" >
                         You have selected
                     </span>
