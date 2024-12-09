@@ -215,10 +215,42 @@ const AfterSelection = () => {
         toggleDialogQuestions();
     };
 
+    // <------------ to restrict small size windows ------------>
+
+    const [isScreenTooSmall, setIsScreenTooSmall] = useState(false);
+
+  // Thresholds for height and width
+  const thresholdHeight = 440; // Minimum height
+  const thresholdWidth = 568; // Minimum width
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const isSmall = window.innerHeight < thresholdHeight || window.innerWidth < thresholdWidth;
+      setIsScreenTooSmall(isSmall);
+    };
+
+    // Initial check
+    checkScreenSize();
+
+    // Add resize event listener
+    window.addEventListener('resize', checkScreenSize);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
+
 
 
 
     return (
+        <>
+        {isScreenTooSmall ? (
+        <div className="h-screen flex items-center justify-center bg-gray-200 text-center text-lg font-bold text-red-500">
+          Please open on a larger screen
+        </div>
+      ) : (
         <div className='.main-container min-h-[100vh] bg-[#F1F4F8]'>
             <div className="NavBar w-full h-[9vh] px-8 py-2 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
                 <div className="logo-container w-[130px] h-[6vh] relative  bg-[#FFF]">
@@ -769,7 +801,9 @@ const AfterSelection = () => {
                         Take interview</div>
                 </div>
             </div>
-        </div>
+        </div> )}
+        </>
+        
     )
 }
 
