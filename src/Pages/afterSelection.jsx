@@ -283,16 +283,16 @@ const AfterSelection = () => {
 
                 <div className="Frame1000008205 flex justify-start items-center w-fit gap-[1vw] bg-none" >
                     <div className="Frame1000008204 px-[0.8vw] py-[2px] bg-[#EBEBEB] flex justify-start items-center shadow-[0px_0px_6px_rgba(0,_0,_0,_0.25)] rounded-[40px] backdrop-blur-[4px]">
-                        <div className="ButtonsNotification w-[32px] h-[32px] mr-[0.8vw] relative bg-[#EBEBEB]" >
-                            <div className="Ellipse w-[32px] h-[32px] absolute left-0 top-0 bg-white rounded-full" />
-                            <div className="IconsBell w-[22px] h-[22px] absolute left-[6px] top-[6px] bg-white hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
+                        <div className="ButtonsNotification w-[36px] h-[36px] mr-[0.8vw] relative bg-[#EBEBEB]" >
+                            <div className="Ellipse w-[36px] h-[36px] absolute left-0 top-0 bg-white rounded-full" />
+                            <div className="IconsBell w-[24px] h-[24px] absolute left-[6px] top-[6px] bg-white hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                                     <path d="M21 6.50001C21 8.43001 19.43 10 17.5 10C15.57 10 14 8.43001 14 6.50001C14 4.57001 15.57 3.00001 17.5 3.00001C19.43 3.00001 21 4.57001 21 6.50001ZM19 11.79C18.5 11.92 18 12 17.5 12C16.0421 11.9974 14.6447 11.4171 13.6138 10.3862C12.583 9.3553 12.0026 7.95788 12 6.50001C12 5.03001 12.58 3.70001 13.5 2.71001C13.3185 2.48755 13.0897 2.30838 12.8302 2.18555C12.5707 2.06272 12.2871 1.99934 12 2.00001C10.9 2.00001 10 2.90001 10 4.00001V4.29001C7.03 5.17001 5 7.90001 5 11V17L3 19V20H21V19L19 17V11.79ZM12 23C13.11 23 14 22.11 14 21H10C10 21.5304 10.2107 22.0391 10.5858 22.4142C10.9609 22.7893 11.4696 23 12 23Z" fill="#0072DC" />
                                 </svg>
                             </div>
                         </div>
                         <div className="Profile flex justify-end items-center bg-[#EBEBEB] hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
-                            <img className="AvatarPic w-[5.5vh] min-w-[32px] bg-none rounded-full" src={image3} />
+                            <img className="AvatarPic w-[36px] min-w-[36px] bg-none rounded-full" src={image3} />
                         </div>
                     </div>
                     <div className="Ai w-[4.5vw] min-w-[42px] bg-none" >
