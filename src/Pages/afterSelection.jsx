@@ -109,7 +109,7 @@ const AfterSelection = () => {
             color: '#161616',
             height: '48px',
             width: 'full',
-            minWidth: '520px',
+            minWidth: '330px',
             fontSize: '18px',
             boxShadow: 'none',
             display: 'flex',
@@ -145,7 +145,7 @@ const AfterSelection = () => {
             left: 'auto',
             fontSize: '18px',
             // width: 'full',
-            maxWidth: '520px',
+            maxWidth: '330px',
             maxHeight: '300px',
             overflowY: 'auto',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -219,77 +219,77 @@ const AfterSelection = () => {
 
 
     return (
-        <div className='.main-container h-[100vh] bg-[#F1F4F8]'>
-            <div className="NavBar w-full h-[9vh] px-10 py-2 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
-                <div className="logo-container w-[130px] h-[7vh] relative  bg-[#FFF]">
-                    <div className="Rectangle7391 w-[130px] h-[7vh] relative bg-[#0F0F36] rounded-[15px]" />
-                    <div className="logo w-[100px] h-[5vh] absolute left-[15px] top-[8px] bg-[#0F0F36] rounded-[15px] flex justify-center items-center" >
-                        <img className="Aspireit w-[5vh] h-[5vh] bg-transparent shrink-0" src={image1} />
-                        <img className="Group1000007770 bg-transparent w-[10vh] h-[2.5vh] shrink-0" src={image2} />
+        <div className='.main-container min-h-[100vh] bg-[#F1F4F8]'>
+            <div className="NavBar w-full h-[9vh] px-8 py-2 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
+                <div className="logo-container w-[130px] h-[6vh] relative  bg-[#FFF]">
+                    <div className="Rectangle7391 w-[10vw] h-[6vh] relative bg-[#0F0F36] rounded-[15px]" />
+                    <div className="logo w-[9vw] h-[5vh] absolute left-[4px] top-[4px] bg-none rounded-[15px] flex justify-center items-center gap-[0.3vw]" >
+                        <img className="Aspireit w-[2vw] bg-transparent shrink-0" src={image1} />
+                        <img className="Group1000007770 bg-transparent w-[4vw] h-[2vh] shrink-0" src={image2} />
                     </div>
                 </div>
-                <div className="SearchBarContainer w-full flex grow justify-center items-center gap-4 bg-white">
-                    <div className='InputContainer w-[90%] flex justify-start items-center gap-4 h-[7vh] max-w-[657px] pl-6 pr-6 pt-4 pb-4 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
+                <div className="SearchBarContainer w-full flex grow justify-center items-center gap-4 bg-none">
+                    <div className='InputContainer w-[90%] flex justify-start items-center gap-4 h-[6vh] max-w-[657px] pl-6 pr-6 pt-4 pb-4 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
                         <div className='searchBar inline-flex items-center h-[5vh] w-full max-w-[657px] bg-[#EBEBEB]'>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none" className={`w-[22px] h-[22px] shrink-0 rounded-full mr-[8px] ${isFocused1 ? 'transform scale-105 transition-transform duration-300' : ''}`}   >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="none" className={`w-[3.5vh] h-[3.5vh] shrink-0 rounded-full mr-[8px] ${isFocused1 ? 'transform scale-105 transition-transform duration-300' : ''}`}   >
                                 <path d="M9.49996 2.75C8.16495 2.75 6.85991 3.14588 5.74989 3.88757C4.63986 4.62927 3.7747 5.68347 3.26381 6.91686C2.75292 8.15026 2.61925 9.50745 2.8797 10.8168C3.14015 12.1262 3.78302 13.3289 4.72702 14.2729C5.67102 15.2169 6.87375 15.8598 8.18311 16.1202C9.49248 16.3807 10.8497 16.247 12.0831 15.7361C13.3165 15.2252 14.3707 14.3601 15.1124 13.25C15.854 12.14 16.2499 10.835 16.2499 9.49996C16.2498 7.70979 15.5386 5.99298 14.2728 4.72714C13.0069 3.46131 11.2901 2.75011 9.49996 2.75Z" stroke="#353535" strokeWidth="2" strokeMiterlimit="10" />
                                 <path d="M14.666 14.668L18.3327 18.3346" stroke="#353535" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round" />
                             </svg>
                             <input
-                                className='justify-items-start px-2 w-full max-w-[657px] text-[#353535] py-[1vh] text-[18px] leading-[18px] border-0 bg-[#EBEBEB] focus:outline-none focus:text-[#353535]'
+                                className='justify-start px-2 w-full max-w-[657px] text-[#353535] py-[0.5vh] text-[3vh] leading-[18px] border-0 bg-[#EBEBEB] focus:outline-none focus:text-[#353535]'
                                 onClick={focusInput}
                                 type="text" name='searchBar'
                                 value={isFocused1 ? searchPhrase : ''}
                                 onChange={handleSearch}
                                 onFocus={() => setisFocused1(true)}
                                 onBlur={() => setisFocused1(false)}
-                                placeholder={isFocused1 ? '|' : 'Search'}
+                                placeholder='Search'
                                 ref={inputRef} />
                         </div>
                     </div>
                 </div>
 
-                <div className="Frame1000008205 flex justify-start items-center gap-6 w-fit bg-none" >
-                    <div className="Frame1000008204 px-[16px] py-[2px] bg-[#EBEBEB] flex justify-start items-center shadow-[0px_0px_6px_rgba(0,_0,_0,_0.25)] rounded-[40px] backdrop-blur-[4px]">
-                        <div className="ButtonsNotification w-[36px] h-[36px] mr-[12px] relative bg-[#EBEBEB]" >
-                            <div className="Ellipse w-[36px] h-[36px] absolute left-0 top-0 bg-white rounded-full" />
-                            <div className="IconsBell w-[24px] h-[24px] absolute left-[6px] top-[6px] bg-white hover:transform hover:scale-[1.05] hover:transition-transform hover:duration-300" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <div className="Frame1000008205 flex justify-start items-center w-fit gap-[1vw] bg-none" >
+                    <div className="Frame1000008204 px-[0.8vw] py-[2px] bg-[#EBEBEB] flex justify-start items-center shadow-[0px_0px_6px_rgba(0,_0,_0,_0.25)] rounded-[40px] backdrop-blur-[4px]">
+                        <div className="ButtonsNotification w-[32px] h-[32px] mr-[0.8vw] relative bg-[#EBEBEB]" >
+                            <div className="Ellipse w-[32px] h-[32px] absolute left-0 top-0 bg-white rounded-full" />
+                            <div className="IconsBell w-[22px] h-[22px] absolute left-[6px] top-[6px] bg-white hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                                     <path d="M21 6.50001C21 8.43001 19.43 10 17.5 10C15.57 10 14 8.43001 14 6.50001C14 4.57001 15.57 3.00001 17.5 3.00001C19.43 3.00001 21 4.57001 21 6.50001ZM19 11.79C18.5 11.92 18 12 17.5 12C16.0421 11.9974 14.6447 11.4171 13.6138 10.3862C12.583 9.3553 12.0026 7.95788 12 6.50001C12 5.03001 12.58 3.70001 13.5 2.71001C13.3185 2.48755 13.0897 2.30838 12.8302 2.18555C12.5707 2.06272 12.2871 1.99934 12 2.00001C10.9 2.00001 10 2.90001 10 4.00001V4.29001C7.03 5.17001 5 7.90001 5 11V17L3 19V20H21V19L19 17V11.79ZM12 23C13.11 23 14 22.11 14 21H10C10 21.5304 10.2107 22.0391 10.5858 22.4142C10.9609 22.7893 11.4696 23 12 23Z" fill="#0072DC" />
                                 </svg>
                             </div>
                         </div>
-                        <div className="Profile flex justify-end items-center bg-[#EBEBEB] hover:transform hover:scale-[1.05] hover:transition-transform hover:duration-300" >
-                            <img className="AvatarPic w-[36px] min-w-[36px] h-[6.5vh] bg-none rounded-full" src={image3} />
+                        <div className="Profile flex justify-end items-center bg-[#EBEBEB] hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
+                            <img className="AvatarPic w-[5.5vh] min-w-[32px] bg-none rounded-full" src={image3} />
                         </div>
                     </div>
-                    <div className="Ai w-[56px] bg-none" >
-                        <img className="Layila min-w-[61px] h-[9vh] bg-none rounded-full mt-[-2.5px] hover:transform hover:scale-[1.05] hover:transition-transform hover:duration-300" src={image4} />
+                    <div className="Ai w-[4.5vw] min-w-[42px] bg-none" >
+                        <img className="Layila h-[9vh] bg-none rounded-full hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" src={image4} />
                     </div>
                 </div>
             </div>
 
 
             <div className='flex flex-col justify-center items-center'>
-                <div className="LetsGetYouStarted text-center text-[5vh] font-bold leading-[6vh] 
-      text-[#D388FF] break-words my-[2vh] text-transparent w-[720px]" style={{
+                <div className="LetsGetYouStarted text-center text-[5.5vh] font-bold leading-[6vh] px-2
+      text-[#D388FF] break-words mt-[4vh] mb-[2vh] text-transparent sm:w-[65vw]" style={{
                         background: 'linear-gradient(325deg, #D388FF 21.06%, #4B94F6 83.52%)', backgroundClip: 'text'
                     }}>
                     {`Let's get you started with scheduling your AI interview`}
                 </div>
 
                 <div className="YouHaveSelected1024CandidatesForInterview w-[908px] text-center">
-                    <span className=" text-[#161616] text-[2.5vh] font-[400] leading-[3vh] break-words" >
+                    <span className=" text-[#161616] text-[2.5vh] font-[400] leading-[2.5vh] break-words" >
                         You have selected
                     </span>
-                    <span className="text-[#161616] text-[2.5vh] font-[600] leading-[3vh] break-words">
+                    <span className="text-[#161616] text-[2.5vh] font-[600] leading-[2.5vh] break-words">
                         &nbsp;
                     </span>
-                    <span className="text-[#0072DC] text-[2.5vh] font-[600] leading-[3vh] break-words" >
+                    <span className="text-[#0072DC] text-[2.5vh] font-[600] leading-[2.5vh] break-words" >
                         1024 candidates
                     </span>
                     &nbsp;
-                    <span className=" text-[#161616] text-[2.5vh] font-[400] leading-[3vh] break-words">
+                    <span className=" text-[#161616] text-[2.5vh] font-[400] leading-[2.5vh] break-words">
                         for interview.
                     </span>
                 </div>
@@ -300,20 +300,20 @@ const AfterSelection = () => {
                         {/* Non-Technical Button */}
 
                         <button
-                            className={`w-fit p-[1vh_24px] text-[2vh] flex items-center justify-center rounded-full font-medium transition duration-300 ease-in-out ${selected === "nonTechnical"
+                            className={`w-fit p-[1.2vh_24px] text-[2.5vh] flex items-center justify-center rounded-full font-medium transition duration-300 ease-in-out ${selected === "nonTechnical"
                                 ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white focus:outline-none border-none"
                                 : "bg-white text-gray-700 focus:outline-none border-none"
                                 }`}
                             onClick={() => setSelected("nonTechnical")}
                         >
-                            {selected === "nonTechnical" ? <svg className="toogleIcon w-[20px] h-[22px] mr-[10px] bg-none" width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            {selected === "nonTechnical" ? <svg className="toogleIcon w-[20px] h-[22px] mr-2 bg-none" width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.0233 7.54762C13.2639 6.89742 14.1835 6.89742 14.4241 7.54762L16.4602 13.05C16.6871 13.6633 17.1706 14.1468 17.7839 14.3737L23.2863 16.4098C23.9365 16.6504 23.9365 17.57 23.2863 17.8106L17.7839 19.8467C17.1706 20.0736 16.6871 20.5571 16.4602 21.1704L14.4241 26.6727C14.1835 27.3229 13.2639 27.3229 13.0233 26.6727L10.9872 21.1704C10.7603 20.5571 10.2768 20.0736 9.66352 19.8467L4.16114 17.8106C3.51094 17.57 3.51095 16.6504 4.16115 16.4098L9.66352 14.3737C10.2768 14.1468 10.7603 13.6633 10.9872 13.05L13.0233 7.54762Z" fill="white" />
                                 <path d="M22.4776 19.15C22.5979 18.8249 23.0577 18.8249 23.178 19.15L23.5786 20.2325C23.6164 20.3347 23.697 20.4153 23.7992 20.4531L24.8817 20.8537C25.2068 20.974 25.2068 21.4338 24.8817 21.5541L23.7992 21.9546C23.697 21.9925 23.6164 22.073 23.5786 22.1752L23.178 23.2577C23.0577 23.5828 22.5979 23.5828 22.4776 23.2577L22.0771 22.1752C22.0392 22.073 21.9587 21.9925 21.8564 21.9546L20.774 21.5541C20.4489 21.4338 20.4489 20.974 20.774 20.8537L21.8564 20.4531C21.9587 20.4153 22.0392 20.3347 22.0771 20.2325L22.4776 19.15Z" fill="white" />
                                 <path d="M6.1654 2.22633C6.40599 1.57613 7.32563 1.57613 7.56622 2.22633L8.36089 4.3739C8.43654 4.57832 8.59771 4.7395 8.80213 4.81514L10.9497 5.60981C11.5999 5.85041 11.5999 6.77004 10.9497 7.01064L8.80213 7.80531C8.59771 7.88095 8.43654 8.04213 8.36089 8.24655L7.56622 10.3941C7.32563 11.0443 6.40599 11.0443 6.1654 10.3941L5.37072 8.24655C5.29508 8.04213 5.13391 7.88095 4.92949 7.80531L2.78192 7.01064C2.13172 6.77004 2.13172 5.85041 2.78192 5.60981L4.92949 4.81514C5.13391 4.7395 5.29508 4.57832 5.37072 4.3739L6.1654 2.22633Z" fill="white" />
                                 <path d="M19.8153 5.31396L20.5782 7.37565C20.6916 7.68228 20.9334 7.92404 21.24 8.0375L23.3017 8.80039L21.24 9.56328C20.9334 9.67674 20.6916 9.9185 20.5782 10.2251L19.8153 12.2868L19.0524 10.2251C18.9389 9.9185 18.6972 9.67674 18.3905 9.56328L16.3289 8.80039L18.3905 8.0375C18.6972 7.92404 18.9389 7.68228 19.0524 7.37564L19.8153 5.31396Z" fill="white" />
                                 <path d="M6.87154 21.5679C7.13433 21.3418 7.53653 21.5647 7.48418 21.9074L7.20733 23.7196C7.19087 23.8273 7.2223 23.9369 7.29337 24.0195L8.48888 25.4093C8.71494 25.6721 8.49207 26.0743 8.1494 26.022L6.33716 25.7451C6.22943 25.7287 6.11988 25.7601 6.03726 25.8312L4.64744 27.0267C4.38464 27.2527 3.98245 27.0299 4.0348 26.6872L4.31165 24.875C4.32811 24.7672 4.29668 24.6577 4.22561 24.575L3.03009 23.1852C2.80404 22.9224 3.02691 22.5202 3.36958 22.5726L5.18181 22.8494C5.28955 22.8659 5.3991 22.8345 5.48172 22.7634L6.87154 21.5679Z" fill="white" />
                             </svg>
-                                : <svg className="toogleIcon w-[20px] h-[22px] mr-[10px] bg-none" xmlns="http://www.w3.org/2000/svg" width="23" height="27" viewBox="0 0 23 27" fill="none">
+                                : <svg className="toogleIcon w-[20px] h-[22px] mr-2 bg-none" xmlns="http://www.w3.org/2000/svg" width="23" height="27" viewBox="0 0 23 27" fill="none">
                                     <path d="M19.7981 17.4842C19.9592 17.0489 20.5749 17.0489 20.736 17.4842L20.9226 17.9886C20.9733 18.1255 21.0812 18.2334 21.2181 18.284L21.7225 18.4707C22.1578 18.6318 22.1578 19.2475 21.7225 19.4085L21.2181 19.5952C21.0812 19.6459 20.9733 19.7538 20.9226 19.8906L20.736 20.3951C20.5749 20.8304 19.9592 20.8304 19.7981 20.3951L19.6115 19.8906C19.5608 19.7538 19.4529 19.6459 19.3161 19.5952L18.8116 19.4085C18.3763 19.2475 18.3763 18.6318 18.8116 18.4707L19.3161 18.284C19.4529 18.2334 19.5608 18.1255 19.6115 17.9886L19.7981 17.4842Z" fill="url(#paint0_linear_13_19)" />
                                     <path d="M4.86041 2.18043C5.20448 1.36596 6.35869 1.36596 6.70276 2.18043L7.23437 3.43885C7.33569 3.67869 7.52656 3.86956 7.7664 3.97088L9.02481 4.50248C9.83929 4.84655 9.83929 6.00077 9.02481 6.34484L7.7664 6.87645C7.52656 6.97777 7.33569 7.16863 7.23437 7.40848L6.70276 8.66689C6.35869 9.48136 5.20448 9.48136 4.86041 8.66689L4.3288 7.40848C4.22748 7.16863 4.03661 6.97777 3.79677 6.87645L2.53836 6.34484C1.72389 6.00077 1.72389 4.84655 2.53836 4.50248L3.79677 3.97088C4.03661 3.86956 4.22748 3.67869 4.3288 3.43884L4.86041 2.18043Z" fill="url(#paint1_linear_13_19)" />
                                     <path d="M17.5335 4.51958L17.9093 5.53521C18.2131 6.35636 18.8606 7.0038 19.6817 7.30765L20.6974 7.68347L19.6817 8.05928C18.8606 8.36314 18.2131 9.01057 17.9093 9.83173L17.5335 10.8474L17.1576 9.83173C16.8538 9.01057 16.2064 8.36314 15.3852 8.05928L14.3696 7.68347L15.3852 7.30765C16.2064 7.0038 16.8538 6.35636 17.1576 5.53521L17.5335 4.51958Z" fill="url(#paint2_linear_13_19)" />
@@ -349,20 +349,20 @@ const AfterSelection = () => {
 
                         {/* Technical Button */}
                         <button
-                            className={`w-fit p-[1vh_24px] text-[2vh] flex items-center justify-center rounded-full font-medium transition duration-300 ease-in-out ${selected === "technical"
+                            className={`w-fit p-[1.2vh_24px] text-[2.5vh] flex items-center justify-center rounded-full font-medium transition duration-300 ease-in-out ${selected === "technical"
                                 ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white focus:outline-none border-none"
                                 : "bg-white text-gray-700 focus:outline-none border-none"
                                 }`}
                             onClick={() => setSelected("technical")}
                         >
-                            {selected === "technical" ? <svg className="toogleIcon w-[20px] h-[22px] mr-[10px] bg-none" width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            {selected === "technical" ? <svg className="toogleIcon w-[20px] h-[22px] mr-2 bg-none" width="26" height="30" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.0233 7.54762C13.2639 6.89742 14.1835 6.89742 14.4241 7.54762L16.4602 13.05C16.6871 13.6633 17.1706 14.1468 17.7839 14.3737L23.2863 16.4098C23.9365 16.6504 23.9365 17.57 23.2863 17.8106L17.7839 19.8467C17.1706 20.0736 16.6871 20.5571 16.4602 21.1704L14.4241 26.6727C14.1835 27.3229 13.2639 27.3229 13.0233 26.6727L10.9872 21.1704C10.7603 20.5571 10.2768 20.0736 9.66352 19.8467L4.16114 17.8106C3.51094 17.57 3.51095 16.6504 4.16115 16.4098L9.66352 14.3737C10.2768 14.1468 10.7603 13.6633 10.9872 13.05L13.0233 7.54762Z" fill="white" />
                                 <path d="M22.4776 19.15C22.5979 18.8249 23.0577 18.8249 23.178 19.15L23.5786 20.2325C23.6164 20.3347 23.697 20.4153 23.7992 20.4531L24.8817 20.8537C25.2068 20.974 25.2068 21.4338 24.8817 21.5541L23.7992 21.9546C23.697 21.9925 23.6164 22.073 23.5786 22.1752L23.178 23.2577C23.0577 23.5828 22.5979 23.5828 22.4776 23.2577L22.0771 22.1752C22.0392 22.073 21.9587 21.9925 21.8564 21.9546L20.774 21.5541C20.4489 21.4338 20.4489 20.974 20.774 20.8537L21.8564 20.4531C21.9587 20.4153 22.0392 20.3347 22.0771 20.2325L22.4776 19.15Z" fill="white" />
                                 <path d="M6.1654 2.22633C6.40599 1.57613 7.32563 1.57613 7.56622 2.22633L8.36089 4.3739C8.43654 4.57832 8.59771 4.7395 8.80213 4.81514L10.9497 5.60981C11.5999 5.85041 11.5999 6.77004 10.9497 7.01064L8.80213 7.80531C8.59771 7.88095 8.43654 8.04213 8.36089 8.24655L7.56622 10.3941C7.32563 11.0443 6.40599 11.0443 6.1654 10.3941L5.37072 8.24655C5.29508 8.04213 5.13391 7.88095 4.92949 7.80531L2.78192 7.01064C2.13172 6.77004 2.13172 5.85041 2.78192 5.60981L4.92949 4.81514C5.13391 4.7395 5.29508 4.57832 5.37072 4.3739L6.1654 2.22633Z" fill="white" />
                                 <path d="M19.8153 5.31396L20.5782 7.37565C20.6916 7.68228 20.9334 7.92404 21.24 8.0375L23.3017 8.80039L21.24 9.56328C20.9334 9.67674 20.6916 9.9185 20.5782 10.2251L19.8153 12.2868L19.0524 10.2251C18.9389 9.9185 18.6972 9.67674 18.3905 9.56328L16.3289 8.80039L18.3905 8.0375C18.6972 7.92404 18.9389 7.68228 19.0524 7.37564L19.8153 5.31396Z" fill="white" />
                                 <path d="M6.87154 21.5679C7.13433 21.3418 7.53653 21.5647 7.48418 21.9074L7.20733 23.7196C7.19087 23.8273 7.2223 23.9369 7.29337 24.0195L8.48888 25.4093C8.71494 25.6721 8.49207 26.0743 8.1494 26.022L6.33716 25.7451C6.22943 25.7287 6.11988 25.7601 6.03726 25.8312L4.64744 27.0267C4.38464 27.2527 3.98245 27.0299 4.0348 26.6872L4.31165 24.875C4.32811 24.7672 4.29668 24.6577 4.22561 24.575L3.03009 23.1852C2.80404 22.9224 3.02691 22.5202 3.36958 22.5726L5.18181 22.8494C5.28955 22.8659 5.3991 22.8345 5.48172 22.7634L6.87154 21.5679Z" fill="white" />
                             </svg>
-                                : <svg className="toogleIcon w-[20px] h-[22px] mr-[10px] bg-none" xmlns="http://www.w3.org/2000/svg" width="23" height="27" viewBox="0 0 23 27" fill="none">
+                                : <svg className="toogleIcon w-[20px] h-[22px] mr-2 bg-none" xmlns="http://www.w3.org/2000/svg" width="23" height="27" viewBox="0 0 23 27" fill="none">
                                     <path d="M19.7981 17.4842C19.9592 17.0489 20.5749 17.0489 20.736 17.4842L20.9226 17.9886C20.9733 18.1255 21.0812 18.2334 21.2181 18.284L21.7225 18.4707C22.1578 18.6318 22.1578 19.2475 21.7225 19.4085L21.2181 19.5952C21.0812 19.6459 20.9733 19.7538 20.9226 19.8906L20.736 20.3951C20.5749 20.8304 19.9592 20.8304 19.7981 20.3951L19.6115 19.8906C19.5608 19.7538 19.4529 19.6459 19.3161 19.5952L18.8116 19.4085C18.3763 19.2475 18.3763 18.6318 18.8116 18.4707L19.3161 18.284C19.4529 18.2334 19.5608 18.1255 19.6115 17.9886L19.7981 17.4842Z" fill="url(#paint0_linear_13_19)" />
                                     <path d="M4.86041 2.18043C5.20448 1.36596 6.35869 1.36596 6.70276 2.18043L7.23437 3.43885C7.33569 3.67869 7.52656 3.86956 7.7664 3.97088L9.02481 4.50248C9.83929 4.84655 9.83929 6.00077 9.02481 6.34484L7.7664 6.87645C7.52656 6.97777 7.33569 7.16863 7.23437 7.40848L6.70276 8.66689C6.35869 9.48136 5.20448 9.48136 4.86041 8.66689L4.3288 7.40848C4.22748 7.16863 4.03661 6.97777 3.79677 6.87645L2.53836 6.34484C1.72389 6.00077 1.72389 4.84655 2.53836 4.50248L3.79677 3.97088C4.03661 3.86956 4.22748 3.67869 4.3288 3.43884L4.86041 2.18043Z" fill="url(#paint1_linear_13_19)" />
                                     <path d="M17.5335 4.51958L17.9093 5.53521C18.2131 6.35636 18.8606 7.0038 19.6817 7.30765L20.6974 7.68347L19.6817 8.05928C18.8606 8.36314 18.2131 9.01057 17.9093 9.83173L17.5335 10.8474L17.1576 9.83173C16.8538 9.01057 16.2064 8.36314 15.3852 8.05928L14.3696 7.68347L15.3852 7.30765C16.2064 7.0038 16.8538 6.35636 17.1576 5.53521L17.5335 4.51958Z" fill="url(#paint2_linear_13_19)" />
@@ -404,15 +404,15 @@ const AfterSelection = () => {
             </div>
 
             {/* ///////////Difficulty Card///////// */}
-            <div className='DialogCards w-full flex justify-center gap-10 px-12 my-[4vh]'>
+            <div className='DialogCards w-full flex justify-center gap-10 px-12 my-[3.5vh]'>
                 <>
                     {/* Trigger Button (Selection Panel) */}
                     <div
-                        className="SelectionPanel hover:transform hover:scale-[1.01]  w-1/4 h-[12vh] px-[24px] bg-white rounded-[10px] shadow-[0px_2px_12px_rgba(0,_0,_0,_0.25)] border-[2px] border-[#5C9AFF] inline-flex items-center justify-start gap-[16px] cursor-pointer"
+                        className="SelectionPanel hover:transform hover:scale-[1.01] overflow-hidden w-1/4 h-[11vh] pl-3 md:pl-[24px] bg-white rounded-[10px] shadow-[0px_2px_12px_rgba(0,_0,_0,_0.25)] border border-[#5c99ff] inline-flex items-center justify-start cursor-pointer"
                         onClick={toggleDialogDifficulty}
                     >
                         <div
-                            className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[72px] py-[2vh] justify-start items-center gap-[16px] flex bg-none"
+                            className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[11vh] py-[2vh] justify-start items-center gap-2 md:gap-[16px] flex bg-none"
                         >
                             <svg
                                 className="w-fit bg-none"
@@ -435,11 +435,11 @@ const AfterSelection = () => {
                             <div
                                 className="Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start" >
                                 <div
-                                    className="Heading text-[#5C9AFF] lg:text-[18px] md:text-[16px] font-semibold  break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] text-[2vh] md:text-[2.5vh] font-semibold  break-words bg-none" >
                                     Difficulty Level
                                 </div>
                                 {/* Display Selected Level */}
-                                <div className="text-[#333232] text-[16px] text-start" >
+                                <div className="text-[#333232] text-[1.5vh] md:text-[2.2vh] text-start" >
                                     {selectedLevel}
                                 </div>
                             </div>
@@ -449,7 +449,8 @@ const AfterSelection = () => {
                     <Dialog
                         sx={{
                             "& .MuiDialog-paper": {
-                                width: '707px',
+                                width: '35vw',
+                                minWidth: '350px',
                                 borderRadius: '10px',
                                 border: '1px solid var(--logo-gr-Blue-to-pink, #D388FF)',
                                 background: "#FFF",
@@ -488,7 +489,7 @@ const AfterSelection = () => {
                             style={{
                                 textAlign: 'center',
                                 color: '#333232',
-                                fontSize: 32,
+                                fontSize: 24,
                                 fontWeight: 600,
                                 padding: 0,
                             }}        >
@@ -529,9 +530,9 @@ const AfterSelection = () => {
                     {/* Selection Panel */}
                     <div
                         onClick={toggleDialogDuration}
-                        className="SelectionPanel hover:transform hover:scale-[1.01]  w-1/4 h-[12vh] pl-[24px] pr-[18px] bg-white rounded-[10px] shadow-[0px_2px_12px_rgba(0,_0,_0,_0.25)] border-[2px] border-[#5C9AFF] inline-flex items-center justify-start gap-[16px] cursor-pointer"
+                        className="SelectionPanel hover:transform hover:scale-[1.01] overflow-hidden w-1/4 h-[11vh] pl-3 md:pl-[24px] bg-white rounded-[10px] shadow-[0px_2px_12px_rgba(0,_0,_0,_0.25)] border border-[#5c99ff] inline-flex items-center justify-start cursor-pointer"
                     >
-                        <div className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[72px] py-[2vh] justify-start items-center gap-[16px] flex bg-none" >          <svg className='w-fit bg-none' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
+                        <div className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[11vh] py-[2vh] justify-start items-center gap-2 md:gap-[16px] flex bg-none" >          <svg className='w-fit bg-none' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
                             <g clipPath="url(#clip0_13_56)">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M11.6258 1.62951C11.6258 1.34367 11.7417 1.06953 11.9479 0.867404C12.1541 0.66528 12.4338 0.551727 12.7254 0.551727H18.5896C18.8813 0.551727 19.1609 0.66528 19.3671 0.867404C19.5733 1.06953 19.6892 1.34367 19.6892 1.62951C19.6892 1.91536 19.5733 2.1895 19.3671 2.39162C19.1609 2.59375 18.8813 2.7073 18.5896 2.7073H12.7254C12.4338 2.7073 12.1541 2.59375 11.9479 2.39162C11.7417 2.1895 11.6258 1.91536 11.6258 1.62951ZM15.6575 5.5814C12.4497 5.5814 9.37331 6.83047 7.10505 9.05384C4.8368 11.2772 3.56251 14.2927 3.56251 17.4371C3.56251 20.5814 4.8368 23.5969 7.10505 25.8203C9.37331 28.0436 12.4497 29.2927 15.6575 29.2927C18.8653 29.2927 21.9417 28.0436 24.21 25.8203C26.4782 23.5969 27.7525 20.5814 27.7525 17.4371C27.7525 14.2927 26.4782 11.2772 24.21 9.05384C21.9417 6.83047 18.8653 5.5814 15.6575 5.5814ZM1.36342 17.4371C1.36342 9.69854 7.76277 3.42583 15.6575 3.42583C23.5522 3.42583 29.9516 9.69854 29.9516 17.4371C29.9516 25.1756 23.5522 31.4483 15.6575 31.4483C7.76277 31.4483 1.36342 25.1756 1.36342 17.4371ZM15.6575 10.6111C15.9491 10.6111 16.2288 10.7246 16.435 10.9267C16.6412 11.1289 16.7571 11.403 16.7571 11.6889V17.4371C16.7571 17.7229 16.6412 17.997 16.435 18.1992C16.2288 18.4013 15.9491 18.5148 15.6575 18.5148C15.3659 18.5148 15.0862 18.4013 14.88 18.1992C14.6738 17.997 14.558 17.7229 14.558 17.4371V11.6889C14.558 11.403 14.6738 11.1289 14.88 10.9267C15.0862 10.7246 15.3659 10.6111 15.6575 10.6111Z" fill="#0072DC" />
                             </g>
@@ -543,10 +544,10 @@ const AfterSelection = () => {
                         </svg>
                             <div className=" cursor-pointer Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start bg-none" >
                                 <div
-                                    className="Heading text-[#5C9AFF] lg:text-[18px] md:text-[16px] font-semibold break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] text-[2vh] md:text-[2.5vh] font-semibold break-words bg-none" >
                                     Duration per question
                                 </div>
-                                <div className='text-[#333232] text-[16px] text-start'
+                                <div className='text-[#333232] text-[1.5vh] md:text-[2.2vh] text-start'
                                 >{duration} {duration ? 'sec' : ''}</div>
                             </div>
                         </div>
@@ -558,7 +559,8 @@ const AfterSelection = () => {
                         onClose={toggleDialogDuration}
                         sx={{
                             "& .MuiDialog-paper": {
-                                width: '707px',
+                              width: '35vw',
+                              minWidth: '350px',
                                 borderRadius: '10px',
                                 border: '1px solid var(--logo-gr-Blue-to-pink, #D388FF)',
                                 background: "#FFF",
@@ -594,7 +596,7 @@ const AfterSelection = () => {
                             style={{
                                 textAlign: 'center',
                                 color: '#333232',
-                                fontSize: 32,
+                                fontSize: 24,
                                 fontWeight: 600,
                                 padding: 0,
                             }}
@@ -623,11 +625,11 @@ const AfterSelection = () => {
                 {/* ///////////Questions Card///////// */}
                 <>
                     <div
-                        className="SelectionPanel hover:transform hover:scale-[1.01]  w-1/4 h-[12vh] pl-[24px] pr-[18px] bg-white rounded-[10px] shadow-[0px_2px_12px_rgba(0,_0,_0,_0.25)] border-[2px] border-[#5C9AFF] inline-flex items-center justify-start gap-[16px] cursor-pointer"
+                        className="SelectionPanel hover:transform hover:scale-[1.01] overflow-hidden w-1/4 h-[11vh] pl-3 md:pl-[24px] bg-white rounded-[10px] shadow-[0px_2px_12px_rgba(0,_0,_0,_0.25)] border border-[#5C9AFF] inline-flex items-center justify-start cursor-pointer"
                         onClick={toggleDialogQuestions}
                     >
                         <div
-                            className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[72px] py-[2vh] justify-start items-center gap-[16px] flex bg-none" >
+                            className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[11vh] py-[2vh] justify-start items-center gap-2 md:gap-[16px] flex bg-none" >
                             <svg
                                 className='w-fit bg-none'
                                 xmlns="http://www.w3.org/2000/svg"
@@ -656,10 +658,10 @@ const AfterSelection = () => {
                                 className="cursor-pointer Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start bg-none"
                             >
                                 <div
-                                    className="Heading text-[#5C9AFF] lg:text-[18px] md:text-[16px] font-semibold break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] text-[2vh] md:text-[2.5vh] font-semibold break-words bg-none" >
                                     {questionsList.length ? 'Custom questions' : 'Type custom interview questions'}
                                 </div>
-                                <div className='text-[#333232] text-[16px] text-start'> {questionsList.length ? `${questionsList.length} Question${questionsList.length !== 1 ? 's' : ''} Added` : ''}</div>
+                                <div className='text-[#333232] text-[1.5vh] md:text-[2.2vh] text-start'> {questionsList.length ? `${questionsList.length} Question${questionsList.length !== 1 ? 's' : ''} Added` : ''}</div>
                             </div>
                         </div>
                     </div>
@@ -669,6 +671,8 @@ const AfterSelection = () => {
                         onClose={toggleDialogQuestions}
                         sx={{
                             '& .MuiDialog-paper': {
+                              width: '35vw',
+                                minWidth: '350px',
                                 borderRadius: '10px',
                                 border: '1px solid var(--logo-gr-Blue-to-pink, #D388FF)',
                                 background: "#FFF",
@@ -705,7 +709,7 @@ const AfterSelection = () => {
                             style={{
                                 textAlign: 'center',
                                 color: '#333232',
-                                fontSize: 32,
+                                fontSize: 24,
                                 fontWeight: 600,
                                 padding: 0
                             }}
@@ -725,12 +729,12 @@ const AfterSelection = () => {
                                 >
                                     <input
                                         type="text"
-                                        placeholder={focusedInputs[index] ? "|" : `Question ${index + 1}`}
+                                        placeholder={`Question ${index + 1}`}
                                         value={question}
                                         onFocus={() => handleFocus(index)}
                                         onBlur={() => handleBlur(index)}
                                         onChange={(e) => handleInputChange(index, e)}
-                                        className={`flex w-full h-9 text-[16px] rounded-md outline-none justify-items-start px-2 bg-[#EBEBEB]`}
+                                        className={`flex w-full h-9 text-[16px] rounded-md outline-none justify-start px-2 bg-[#EBEBEB]`}
                                     />
                                     <button
                                         className="searchBar w-fit bg-transparent cursor-pointer flex justify-center outline-none border-none"
@@ -751,7 +755,7 @@ const AfterSelection = () => {
                     </Dialog >
                 </>
             </div>
-            <div className='flex w-full justify-end px-16 pb-8'>
+            <div className='flex w-full justify-end px-[2vw]'>
                 <div className=" ButtonsCta max-w-[251px] h-[6vh] px-8 py-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
                     <div className="flex Text items-center text-center text-white text-sm font-semibold gap-1">
                         <svg width="14" height="14" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
