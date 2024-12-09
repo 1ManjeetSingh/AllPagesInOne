@@ -220,8 +220,8 @@ const AfterSelection = () => {
     const [isScreenTooSmall, setIsScreenTooSmall] = useState(false);
 
   // Thresholds for height and width
-  const thresholdHeight = 440; // Minimum height
-  const thresholdWidth = 568; // Minimum width
+  const thresholdHeight = 468; // Minimum height
+  const thresholdWidth = 768; // Minimum width
 
   useEffect(() => {
     const checkScreenSize = () => {
