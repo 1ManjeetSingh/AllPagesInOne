@@ -103,67 +103,77 @@ const AfterSelection = () => {
 
     const customStyles = {
         control: (provided) => ({
-            ...provided,
-            backgroundColor: '#f9f9f9',
-            borderColor: '#ddd',
-            color: '#161616',
-            height: '48px',
-            width: 'full',
-            minWidth: '330px',
-            fontSize: '18px',
-            boxShadow: 'none',
-            display: 'flex',
-            justifySelf: 'center',
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingRight: '35px',
-            ':hover': {
-                borderColor: '#aaa',
-            },
+          ...provided,
+          backgroundColor: "#EBEBEB",
+          borderColor: "#EBEBEB",
+          color: "#161616",
+          height: "48px",
+          width: "full",
+          minWidth: "389px",
+          fontSize: "18px",
+          fontWeight: "400",
+          boxShadow: "none",
+          display: "flex",
+          justifySelf: "center",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingRight: "35px",
+          ":hover": {
+            borderColor: "#EBEBEB",
+          },
         }),
         dropdownIndicator: (provided) => ({
-            ...provided,
-            width: '20px',
-            height: '20px',
-            position: 'absolute',
-            color: '#0072DC',
-            top: '30%',
-            right: '15px',
-            padding: '0',
+          ...provided,
+          width: "20px",
+          height: "20px",
+          position: "absolute",
+          color: "#0072DC",
+          top: "30%",
+          right: "15px",
+          padding: "0",
         }),
         indicatorSeparator: () => ({
-            display: 'none',
+          display: "none",
         }),
         menu: (provided) => ({
-            ...provided,
-            position: 'fixed',
-            backgroundColor: '#B9B9B9',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-            zIndex: 999,
-            top: 'auto',
-            left: 'auto',
-            fontSize: '18px',
-            // width: 'full',
-            maxWidth: '330px',
-            maxHeight: '300px',
-            overflowY: 'auto',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          ...provided,
+          position: "fixed",
+          backgroundColor: "#D7D7D7",
+          border: "1px solid #EBEBEB",
+          borderRadius: "4px",
+          zIndex: 999,
+          top: "auto",
+          left: "auto",
+          fontSize: "18px",
+          maxWidth: "389px",
+          maxHeight: "300px",
+          overflowY: "auto",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }),
-
+    
         placeholder: (provided) => ({
-            ...provided,
-            color: '#161616',
-            fontWeight: '400',
-            fontSize: '18px',
+          ...provided,
+          color: "#161616",
+          fontWeight: "400",
+          fontSize: "18px",
         }),
         singleValue: (provided) => ({
-            ...provided,
-            color: '#161616',
-            fontSize: '18px',
+          ...provided,
+          color: "#161616",
+          fontSize: "18px",
         }),
-        // overflow: 'hidden',
-    };
+        option: (provided, state) => ({
+          ...provided,
+          backgroundColor: state.isFocused ? "#C3C3EA" : "#D7D7D7",
+          color: "#161616",
+          fontWeight: state.isSelected ? "600" : "400",
+          padding: "10px 20px",
+          cursor: "pointer",
+          ":active": {
+            backgroundColor: "#EBEBEB",
+          },
+        }),
+      };
 
     const toggleDialogDuration = () => {
         setOpenDuration(!openDuration);
@@ -309,35 +319,35 @@ const AfterSelection = () => {
 
                     <div className='flex flex-col justify-center items-center'>
                         <div className="LetsGetYouStarted text-center text-[5.5vh] font-bold leading-[6vh]
-      text-[#D388FF] break-words mt-[4vh] mb-[2vh] text-transparent w-[85vw] lg:w-[72vw] xl:w-[60vw]" style={{
+      text-[#D388FF] break-words mt-[4vh] mb-[2.5vh] text-transparent w-[85vw] lg:w-[65vw] xl:w-[60vw]" style={{
                                 background: 'linear-gradient(325deg, #D388FF 21.06%, #4B94F6 83.52%)', backgroundClip: 'text'
                             }}>
                             {`Let's get you started with scheduling your AI interview`}
                         </div>
 
                         <div className="YouHaveSelected1024CandidatesForInterview text-center">
-                            <span className=" text-[#161616] text-[2.5vh] font-[400] leading-[2.5vh] break-words" >
+                            <span className=" text-[#161616] text-[2.8vh] font-[400] leading-[3vh] break-words" >
                                 You have selected
                             </span>
-                            <span className="text-[#161616] text-[2.5vh] font-[600] leading-[2.5vh] break-words">
+                            <span className="text-[#161616] text-[2.8vh] font-[600] leading-[3vh] break-words">
                                 &nbsp;
                             </span>
-                            <span className="text-[#0072DC] text-[2.5vh] font-[600] leading-[2.5vh] break-words" >
+                            <span className="text-[#0072DC] text-[2.8vh] font-[600] leading-[3vh] break-words" >
                                 1024 candidates
                             </span>
                             &nbsp;
-                            <span className=" text-[#161616] text-[2.5vh] font-[400] leading-[2.5vh] break-words">
+                            <span className=" text-[#161616] text-[2.8vh] font-[400] leading-[3vh] break-words">
                                 for interview.
                             </span>
                         </div>
 
 
                         <div >
-                            <div className="toogleContainer w-fit flex bg-gray-200 rounded-full p-1 space-x-4 mt-[2.5vh]" >
+                            <div className="toogleContainer w-fit flex bg-gray-200 rounded-full p-1 space-x-4 mt-[3vh]" >
                                 {/* Non-Technical Button */}
 
                                 <button
-                                    className={`w-fit p-[1.2vh_24px] text-[2.5vh] flex items-center justify-center rounded-full font-medium transition duration-300 ease-in-out ${selected === "nonTechnical"
+                                    className={`w-fit p-[1vh_24px] text-[2.2vh] flex items-center justify-center rounded-full font-regular transition duration-300 ease-in-out ${selected === "nonTechnical"
                                         ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white focus:outline-none border-none"
                                         : "bg-white text-gray-700 focus:outline-none border-none"
                                         }`}
@@ -386,7 +396,7 @@ const AfterSelection = () => {
 
                                 {/* Technical Button */}
                                 <button
-                                    className={`w-fit p-[1.2vh_24px] text-[2.5vh] flex items-center justify-center rounded-full font-medium transition duration-300 ease-in-out ${selected === "technical"
+                                    className={`w-fit p-[1vh_24px] text-[2.2vh] flex items-center justify-center font-regular rounded-full transition duration-300 ease-in-out ${selected === "technical"
                                         ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white focus:outline-none border-none"
                                         : "bg-white text-gray-700 focus:outline-none border-none"
                                         }`}
@@ -487,7 +497,7 @@ const AfterSelection = () => {
                                 sx={{
                                     "& .MuiDialog-paper": {
                                         width: '35vw',
-                                        minWidth: '350px',
+                                        minWidth: '468px',
                                         borderRadius: '10px',
                                         border: '1px solid var(--logo-gr-Blue-to-pink, #D388FF)',
                                         background: "#FFF",
@@ -597,7 +607,7 @@ const AfterSelection = () => {
                                 sx={{
                                     "& .MuiDialog-paper": {
                                         width: '35vw',
-                                        minWidth: '350px',
+                                        minWidth: '468px',
                                         borderRadius: '10px',
                                         border: '1px solid var(--logo-gr-Blue-to-pink, #D388FF)',
                                         background: "#FFF",
@@ -646,7 +656,7 @@ const AfterSelection = () => {
                                     className="w-full flex flex-col items-center gap-2"
                                 >
 
-                                    <hr className='mt-6 mb-8' />
+                                    <hr className='mt-6 mb-8 w-full' />
 
                                     <Select
                                         defaultValue={options.find((opt) => opt.value === duration)}
@@ -709,7 +719,7 @@ const AfterSelection = () => {
                                 sx={{
                                     '& .MuiDialog-paper': {
                                         width: '35vw',
-                                        minWidth: '350px',
+                                        minWidth: '468px',
                                         borderRadius: '10px',
                                         border: '1px solid var(--logo-gr-Blue-to-pink, #D388FF)',
                                         background: "#FFF",
@@ -794,7 +804,7 @@ const AfterSelection = () => {
                     </div>
                     <div className='flex w-full justify-end px-[2vw] pb-4'>
                         <div className=" ButtonsCta max-w-[251px] h-[6vh] px-8 py-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
-                            <div className="flex Text items-center text-center text-white text-sm font-semibold gap-1">
+                            <div className="flex Text items-center text-center text-white text-sm font-regular gap-1">
                                 <svg width="14" height="14" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.39632 5.41047C9.57676 4.92282 10.2665 4.92282 10.4469 5.41047L11.974 9.53725C12.1442 9.9972 12.5068 10.3598 12.9668 10.53L17.0935 12.0571C17.5812 12.2375 17.5812 12.9273 17.0935 13.1077L12.9668 14.6347C12.5068 14.8049 12.1442 15.1676 11.974 15.6275L10.4469 19.7543C10.2665 20.242 9.57676 20.242 9.39632 19.7543L7.86927 15.6275C7.69907 15.1676 7.33643 14.8049 6.87649 14.6347L2.7497 13.1077C2.26205 12.9273 2.26205 12.2375 2.7497 12.0571L6.87649 10.53C7.33643 10.3598 7.69907 9.9972 7.86927 9.53725L9.39632 5.41047Z" fill="white" />
                                     <path d="M16.4871 14.1125C16.5773 13.8687 16.9222 13.8687 17.0124 14.1125L17.3128 14.9244C17.3412 15.001 17.4016 15.0615 17.4783 15.0898L18.2901 15.3903C18.534 15.4805 18.534 15.8253 18.2901 15.9156L17.4783 16.216C17.4016 16.2443 17.3412 16.3048 17.3128 16.3814L17.0124 17.1933C16.9222 17.4371 16.5773 17.4371 16.4871 17.1933L16.1867 16.3814C16.1583 16.3048 16.0979 16.2443 16.0212 16.216L15.2094 15.9156C14.9656 15.8253 14.9656 15.4805 15.2094 15.3902L16.0212 15.0898C16.0979 15.0615 16.1583 15.001 16.1867 14.9244L16.4871 14.1125Z" fill="white" />
