@@ -253,15 +253,15 @@ const AfterSelection = () => {
       ) : (
         <div className='.main-container min-h-[100vh] bg-[#F1F4F8]'>
             <div className="NavBar w-full h-[9vh] min-h-[56px] px-8 py-2 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
-                <div className="logo-container w-[130px] h-[6vh] relative  bg-[#FFF]">
-                    <div className="Rectangle7391 w-[10vw] h-[6vh] relative bg-[#0F0F36] rounded-[15px]" />
-                    <div className="logo w-[9vw] h-[5vh] absolute left-[4px] top-[4px] bg-none rounded-[15px] flex justify-center items-center gap-[0.3vw]" >
+                <div className="logo-container w-[130px] h-[6vh] min-h-[36px] relative  bg-[#FFF]">
+                    <div className="Rectangle7391 w-[10vw] h-[6vh] min-h-[36px] relative bg-[#0F0F36] rounded-[15px]" />
+                    <div className="logo w-[9vw] h-[5vh] min-h-[32px] absolute left-[4px] top-[4px] bg-none rounded-[15px] flex justify-center items-center gap-[0.3vw]" >
                         <img className="Aspireit w-[2vw] bg-transparent shrink-0" src={image1} />
                         <img className="Group1000007770 bg-transparent w-[4vw] h-[2vh] shrink-0" src={image2} />
                     </div>
                 </div>
                 <div className="SearchBarContainer w-full flex grow justify-center items-center gap-4 bg-none">
-                    <div className='InputContainer w-[90%] flex justify-start items-center gap-4 h-[6vh] max-w-[657px] pl-6 pr-6 pt-4 pb-4 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
+                    <div className='InputContainer w-[90%] flex justify-start items-center gap-4 h-[6vh] min-h-[36px] max-w-[657px] pl-6 pr-6 pt-4 pb-4 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
                         <div className='searchBar inline-flex items-center h-[5vh] w-full max-w-[657px] bg-[#EBEBEB]'>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="none" className={`w-[3.5vh] h-[3.5vh] shrink-0 rounded-full mr-[8px] ${isFocused1 ? 'transform scale-105 transition-transform duration-300' : ''}`}   >
                                 <path d="M9.49996 2.75C8.16495 2.75 6.85991 3.14588 5.74989 3.88757C4.63986 4.62927 3.7747 5.68347 3.26381 6.91686C2.75292 8.15026 2.61925 9.50745 2.8797 10.8168C3.14015 12.1262 3.78302 13.3289 4.72702 14.2729C5.67102 15.2169 6.87375 15.8598 8.18311 16.1202C9.49248 16.3807 10.8497 16.247 12.0831 15.7361C13.3165 15.2252 14.3707 14.3601 15.1124 13.25C15.854 12.14 16.2499 10.835 16.2499 9.49996C16.2498 7.70979 15.5386 5.99298 14.2728 4.72714C13.0069 3.46131 11.2901 2.75011 9.49996 2.75Z" stroke="#353535" strokeWidth="2" strokeMiterlimit="10" />
@@ -787,7 +787,7 @@ const AfterSelection = () => {
                     </Dialog >
                 </>
             </div>
-            <div className='flex w-full justify-end px-[2vw]'>
+            <div className='flex w-full justify-end px-[2vw] pb-4'>
                 <div className=" ButtonsCta max-w-[251px] h-[6vh] px-8 py-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
                     <div className="flex Text items-center text-center text-white text-sm font-semibold gap-1">
                         <svg width="14" height="14" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
