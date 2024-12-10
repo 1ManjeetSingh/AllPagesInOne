@@ -252,7 +252,7 @@ const AfterSelection = () => {
         </div>
       ) : (
         <div className='.main-container min-h-[100vh] bg-[#F1F4F8]'>
-            <div className="NavBar w-full h-[9vh] px-8 py-2 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
+            <div className="NavBar w-full h-[9vh] min-h-[56px] px-8 py-2 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
                 <div className="logo-container w-[130px] h-[6vh] relative  bg-[#FFF]">
                     <div className="Rectangle7391 w-[10vw] h-[6vh] relative bg-[#0F0F36] rounded-[15px]" />
                     <div className="logo w-[9vw] h-[5vh] absolute left-[4px] top-[4px] bg-none rounded-[15px] flex justify-center items-center gap-[0.3vw]" >
