@@ -69,7 +69,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center px-4 sm:w-6/7 md:w-2/3 bg-none h-[30vh]">
+    <div className="flex flex-col items-center justify-center px-4 sm:w-5/6 bg-none h-[30vh]">
       <div className="relative w-5/6 mx-auto overflow-hidden">
         {/* AfterSelection Items */}
         <div
@@ -84,14 +84,14 @@ const Carousel = () => {
               className="w-full sm:w-1/2 md:w-1/3 flex-shrink-0 px-4"
               style={{ minWidth: `${100 / cardsPerSlide}%` }} // Adjusting the width based on cardsPerSlide
             >
-              <div className="flex flex-col items-center justify-center bg-white border-[1px] border-[#B9B9B9]  shadow-[0px_0px_8px_#C9FFFC] rounded-3xl h-[25vh]">
+              <div className="flex flex-col items-center justify-center bg-white border-[1px] border-[#B9B9B9]  shadow-[0px_0px_8px_#C9FFFC] rounded-[30px] h-[25vh]">
                 <img
                   src={item.icon} // Using the image URL here
                   alt={item.title}
                   className="w-[15vh] h-[15vh] pb-[2vh]"
                 />
                 <p className=" text-gray-600 text-center text-[1.8vh] leading-[2vh] px-[0.5vw]">{item.title}</p>
-                <h3 className="text-center text-gray-600 mt-2 font-bold text-[1.8vh] max-w-[176px] leading-[2vh] px-[0.5vw]">{item.description}</h3>
+                <h3 className="text-center text-gray-600 mt-2 font-bold text-[1.8vh] max-w-[176px] leading-[2vh] px-[0.8vw]">{item.description}</h3>
               </div>
             </div>
           ))}

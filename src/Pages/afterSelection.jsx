@@ -247,28 +247,28 @@ const AfterSelection = () => {
     return (
         <>
         {isScreenTooSmall ? (
-        <div className="h-screen flex items-center justify-center bg-gray-200 text-center text-lg font-bold text-red-500">
-          Please open on a larger screen
+        <div className="h-screen flex items-center justify-center bg-gray-200 text-center text-2xl font-bold text-red-500">
+          Please open on a <span className='text-2xl text-[#000]'>&nbsp;Larger Screen&nbsp;</span> or try in <span className='text-2xl text-[#000]'>&nbsp;Landscape.</span>
         </div>
       ) : (
         <div className='.main-container min-h-[100vh] bg-[#F1F4F8]'>
-            <div className="NavBar w-full h-[9vh] min-h-[56px] px-8 py-2 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
-                <div className="logo-container w-[130px] h-[6vh] min-h-[36px] relative  bg-[#FFF]">
-                    <div className="Rectangle7391 w-[10vw] h-[6vh] min-h-[36px] relative bg-[#0F0F36] rounded-[15px]" />
-                    <div className="logo w-[9vw] h-[5vh] min-h-[32px] absolute left-[4px] top-[4px] bg-none rounded-[15px] flex justify-center items-center gap-[0.3vw]" >
-                        <img className="Aspireit w-[2vw] bg-transparent shrink-0" src={image1} />
-                        <img className="Group1000007770 bg-transparent w-[4vw] h-[2vh] shrink-0" src={image2} />
+            <div className="NavBar w-full mx-[auto] h-[8vh] min-h-[42px] px-8 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
+                <div className="logo-container w-[130px] h-[5vh] min-h-[24px] relative  bg-[#FFF]">
+                    <div className="Rectangle7391 w-[9vw] h-[4.5vh] min-h-[24px] relative bg-[#0F0F36] rounded-[6px]" />
+                    <div className="logo w-[9vw] h-[4vh] min-h-[24px] absolute left-[0px] top-[1px] bg-none flex justify-center items-center gap-[0.3vw]" >
+                        <img className="Aspireit w-[1.5vw] bg-transparent shrink-0" src={image1} />
+                        <img className="Group1000007770 bg-transparent w-[5vw] h-[2vh] shrink-0" src={image2} />
                     </div>
                 </div>
                 <div className="SearchBarContainer w-full flex grow justify-center items-center gap-4 bg-none">
-                    <div className='InputContainer w-[90%] flex justify-start items-center gap-4 h-[6vh] min-h-[36px] max-w-[657px] pl-6 pr-6 pt-4 pb-4 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
+                    <div className='InputContainer w-[90%] flex justify-start items-center gap-4 h-[5vh] min-h-[24px] max-w-[500px] pl-6 pr-6 pt-4 pb-4 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
                         <div className='searchBar inline-flex items-center h-[5vh] w-full max-w-[657px] bg-[#EBEBEB]'>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="none" className={`w-[3.5vh] h-[3.5vh] shrink-0 rounded-full mr-[8px] ${isFocused1 ? 'transform scale-105 transition-transform duration-300' : ''}`}   >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="none" className={`w-[3vh] h-[3vh] shrink-0 rounded-full mr-1 ${isFocused1 ? 'transform scale-110 transition-transform duration-300' : ''}`}   >
                                 <path d="M9.49996 2.75C8.16495 2.75 6.85991 3.14588 5.74989 3.88757C4.63986 4.62927 3.7747 5.68347 3.26381 6.91686C2.75292 8.15026 2.61925 9.50745 2.8797 10.8168C3.14015 12.1262 3.78302 13.3289 4.72702 14.2729C5.67102 15.2169 6.87375 15.8598 8.18311 16.1202C9.49248 16.3807 10.8497 16.247 12.0831 15.7361C13.3165 15.2252 14.3707 14.3601 15.1124 13.25C15.854 12.14 16.2499 10.835 16.2499 9.49996C16.2498 7.70979 15.5386 5.99298 14.2728 4.72714C13.0069 3.46131 11.2901 2.75011 9.49996 2.75Z" stroke="#353535" strokeWidth="2" strokeMiterlimit="10" />
                                 <path d="M14.666 14.668L18.3327 18.3346" stroke="#353535" strokeWidth="2" strokeMiterlimit="10" strokeLinecap="round" />
                             </svg>
                             <input
-                                className='justify-start px-2 w-full max-w-[657px] text-[#353535] py-[0.5vh] text-[3vh] leading-[18px] border-0 bg-[#EBEBEB] focus:outline-none focus:text-[#353535]'
+                                className='justify-start px-2 w-full max-w-[657px] text-[#353535] py-[0.5vh] text-[2vh] leading-[18px] border-0 bg-[#EBEBEB] focus:outline-none focus:text-[#353535]'
                                 onClick={focusInput}
                                 type="text" name='searchBar'
                                 value={isFocused1 ? searchPhrase : ''}
@@ -282,29 +282,29 @@ const AfterSelection = () => {
                 </div>
 
                 <div className="Frame1000008205 flex justify-start items-center w-fit gap-[1vw] bg-none" >
-                    <div className="Frame1000008204 px-[0.8vw] py-[2px] bg-[#EBEBEB] flex justify-start items-center shadow-[0px_0px_6px_rgba(0,_0,_0,_0.25)] rounded-[40px] backdrop-blur-[4px]">
-                        <div className="ButtonsNotification w-[36px] h-[36px] mr-[0.8vw] relative bg-[#EBEBEB]" >
-                            <div className="Ellipse w-[36px] h-[36px] absolute left-0 top-0 bg-white rounded-full" />
-                            <div className="IconsBell w-[24px] h-[24px] absolute left-[8px] top-[8px] bg-none hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <div className="Frame1000008204 px-[2vh] py-[2px] bg-[#EBEBEB] flex justify-start items-center shadow-[0px_0px_6px_rgba(0,_0,_0,_0.25)] rounded-[40px] backdrop-blur-[4px]">
+                        <div className="ButtonsNotification w-[5vh] min-w-[24px] h-[5vh] min-h-[24px] mr-[1.5vh] relative bg-[#EBEBEB]" >
+                            <div className="Ellipse w-[5vh] h-[5vh] min-w-[24px] min-h-[24px] absolute left-0 top-0 bg-white rounded-full" />
+                            <div className="IconsBell w-[4vh] h-[4vh] min-w-[18px] min-h-[18px] absolute left-[1vh] top-[1vh] bg-none hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" className='w-[3vh] h-[3vh] min-w-[16px] min-h-[16px]'>
                                     <path d="M21 6.50001C21 8.43001 19.43 10 17.5 10C15.57 10 14 8.43001 14 6.50001C14 4.57001 15.57 3.00001 17.5 3.00001C19.43 3.00001 21 4.57001 21 6.50001ZM19 11.79C18.5 11.92 18 12 17.5 12C16.0421 11.9974 14.6447 11.4171 13.6138 10.3862C12.583 9.3553 12.0026 7.95788 12 6.50001C12 5.03001 12.58 3.70001 13.5 2.71001C13.3185 2.48755 13.0897 2.30838 12.8302 2.18555C12.5707 2.06272 12.2871 1.99934 12 2.00001C10.9 2.00001 10 2.90001 10 4.00001V4.29001C7.03 5.17001 5 7.90001 5 11V17L3 19V20H21V19L19 17V11.79ZM12 23C13.11 23 14 22.11 14 21H10C10 21.5304 10.2107 22.0391 10.5858 22.4142C10.9609 22.7893 11.4696 23 12 23Z" fill="#0072DC" />
                                 </svg>
                             </div>
                         </div>
                         <div className="Profile flex justify-end items-center bg-[#EBEBEB] hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" >
-                            <img className="AvatarPic w-[36px] min-w-[36px] bg-none rounded-full" src={image3} />
+                            <img className="AvatarPic w-[5vh] min-w-[24px] bg-none rounded-full" src={image3} />
                         </div>
                     </div>
                     <div className="Ai w-[4.5vw] min-w-[42px] bg-none" >
-                        <img className="Layila h-[9vh] bg-none rounded-full hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" src={image4} />
+                        <img className="Layila h-[7.5vh] bg-none rounded-full hover:transform hover:scale-[1.08] hover:transition-transform hover:duration-300" src={image4} />
                     </div>
                 </div>
             </div>
 
 
             <div className='flex flex-col justify-center items-center'>
-                <div className="LetsGetYouStarted text-center text-[5.5vh] font-bold leading-[6vh] px-2
-      text-[#D388FF] break-words mt-[4vh] mb-[2vh] text-transparent sm:w-[65vw]" style={{
+                <div className="LetsGetYouStarted text-center text-[5.5vh] font-bold leading-[6vh]
+      text-[#D388FF] break-words mt-[4vh] mb-[2vh] text-transparent w-[85vw] lg:w-[72vw] xl:w-[60vw]" style={{
                         background: 'linear-gradient(325deg, #D388FF 21.06%, #4B94F6 83.52%)', backgroundClip: 'text'
                     }}>
                     {`Let's get you started with scheduling your AI interview`}
@@ -467,11 +467,11 @@ const AfterSelection = () => {
                             <div
                                 className="Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start" >
                                 <div
-                                    className="Heading text-[#5C9AFF] text-[2vh] md:text-[2.5vh] font-semibold  break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] text-[2vh] lg:text-[2.5vh] font-semibold  break-words bg-none" >
                                     Difficulty Level
                                 </div>
                                 {/* Display Selected Level */}
-                                <div className="text-[#333232] text-[1.5vh] md:text-[2.2vh] text-start" >
+                                <div className="text-[#333232] text-[1.5vh] lg:text-[2.2vh] text-start" >
                                     {selectedLevel}
                                 </div>
                             </div>
@@ -576,10 +576,10 @@ const AfterSelection = () => {
                         </svg>
                             <div className=" cursor-pointer Content flex-1 h-full rounded-[8px] flex flex-col justify-center items-start bg-none" >
                                 <div
-                                    className="Heading text-[#5C9AFF] text-[2vh] md:text-[2.5vh] font-semibold break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] text-[2vh] lg:text-[2.5vh] font-semibold break-words bg-none" >
                                     Duration per question
                                 </div>
-                                <div className='text-[#333232] text-[1.5vh] md:text-[2.2vh] text-start'
+                                <div className='text-[#333232] text-[1.5vh] lg:text-[2.2vh] text-start'
                                 >{duration} {duration ? 'sec' : ''}</div>
                             </div>
                         </div>
@@ -690,10 +690,10 @@ const AfterSelection = () => {
                                 className="cursor-pointer Content flex-1 h-full pr-1 rounded-[8px] flex flex-col justify-center items-start bg-none"
                             >
                                 <div
-                                    className="Heading text-[#5C9AFF] text-[2vh] md:text-[2.5vh] font-semibold break-words bg-none" >
+                                    className="Heading text-[#5C9AFF] text-[2vh] lg:text-[2.5vh] font-semibold break-words bg-none" >
                                     {questionsList.length ? 'Custom questions' : 'Type custom interview questions'}
                                 </div>
-                                <div className='text-[#333232] text-[1.5vh] md:text-[2.2vh] text-start'> {questionsList.length ? `${questionsList.length} Question${questionsList.length !== 1 ? 's' : ''} Added` : ''}</div>
+                                <div className='text-[#333232] text-[1.5vh] lg:text-[2.2vh] text-start'> {questionsList.length ? `${questionsList.length} Question${questionsList.length !== 1 ? 's' : ''} Added` : ''}</div>
                             </div>
                         </div>
                     </div>
@@ -798,7 +798,7 @@ const AfterSelection = () => {
                             <path d="M4.78244 15.9258C4.97954 15.7563 5.28118 15.9234 5.24192 16.1804L5.03428 17.5396C5.02194 17.6204 5.04551 17.7025 5.09881 17.7645L5.99545 18.8069C6.16499 19.004 5.99784 19.3056 5.74084 19.2664L4.38166 19.0587C4.30086 19.0464 4.2187 19.0699 4.15673 19.1232L3.11436 20.0199C2.91727 20.1894 2.61562 20.0223 2.65488 19.7653L2.86252 18.4061C2.87487 18.3253 2.85129 18.2431 2.79799 18.1812L1.90136 17.1388C1.73182 16.9417 1.89897 16.6401 2.15597 16.6793L3.51515 16.887C3.59595 16.8993 3.67811 16.8757 3.74007 16.8224L4.78244 15.9258Z" fill="white" />
                         </svg>
 
-                        Take interview</div>
+                        Take AI interview</div>
                 </div>
             </div>
         </div> )}
