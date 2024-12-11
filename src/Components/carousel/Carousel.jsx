@@ -90,8 +90,8 @@ const Carousel = () => {
                   alt={item.title}
                   className="w-[15vh] h-[15vh] pb-[2vh]"
                 />
-                <p className=" text-gray-600 text-center text-[1.8vh] leading-[2vh] px-[0.5vw]">{item.title}</p>
-                <h3 className="text-center text-gray-600 mt-2 font-bold text-[1.8vh] max-w-[176px] leading-[2vh] px-[0.8vw]">{item.description}</h3>
+                <p className=" text-gray-600 text-center text-[1.8vh] leading-[2vh]">{item.title}</p>
+                <h3 className="text-center text-gray-600 mt-[1vh] font-bold text-[1.8vh] max-w-[65%] leading-[2vh]">{item.description}</h3>
               </div>
             </div>
           ))}

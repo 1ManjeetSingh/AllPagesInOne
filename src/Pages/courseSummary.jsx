@@ -86,6 +86,14 @@ const CourseSummary = () => {
       <Link to="/aiTechnical">aiTechnical</Link>
       </button>
 
+      <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
+      <Link to="/technical">technical</Link>
+      </button>
+
+      <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
+      <Link to="/non_technical">non_technical</Link>
+      </button>
+
       <div>
         <img src={Background} alt="" />
       </div>
