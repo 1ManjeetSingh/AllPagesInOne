@@ -276,7 +276,7 @@ const AfterSelection = () => {
                             </div>
                         </div>
                         <div className="SearchBarContainer w-full flex grow justify-center items-center gap-4 bg-none">
-                            <div className='InputContainer w-[90%] flex justify-start items-center gap-4 h-[5vh] min-h-[24px] max-w-[600px] pl-6 pr-6 pt-4 pb-4 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
+                            <div className='InputContainer w-[55%] flex justify-start items-center gap-4 h-[5vh] min-h-[24px] pl-6 pr-6 bg-[#EBEBEB] shadow-[0px_0px_4px_rgba(0,_0,_0,_0.25)] rounded-[32px]' >
                                 <div className='searchBar inline-flex items-center h-[5vh] w-full bg-[#EBEBEB]'>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" fill="none" className={`w-[3vh] h-[3vh] shrink-0 rounded-full mr-1 ${isFocused1 ? 'transform scale-110 transition-transform duration-300' : ''}`}   >
                                         <path d="M9.49996 2.75C8.16495 2.75 6.85991 3.14588 5.74989 3.88757C4.63986 4.62927 3.7747 5.68347 3.26381 6.91686C2.75292 8.15026 2.61925 9.50745 2.8797 10.8168C3.14015 12.1262 3.78302 13.3289 4.72702 14.2729C5.67102 15.2169 6.87375 15.8598 8.18311 16.1202C9.49248 16.3807 10.8497 16.247 12.0831 15.7361C13.3165 15.2252 14.3707 14.3601 15.1124 13.25C15.854 12.14 16.2499 10.835 16.2499 9.49996C16.2498 7.70979 15.5386 5.99298 14.2728 4.72714C13.0069 3.46131 11.2901 2.75011 9.49996 2.75Z" stroke="#353535" strokeWidth="2" strokeMiterlimit="10" />
@@ -464,8 +464,7 @@ const AfterSelection = () => {
                                     <svg
                                         className="w-fit bg-none"
                                         xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
+                                        style={{width: 'clamp(24px,2.5vh,2.5vh)',height: 'clamp(24px,2.5vh,2.5vh)'}}
                                         viewBox="0 0 32 34"
                                         fill="none"
                                     >
@@ -579,7 +578,8 @@ const AfterSelection = () => {
                                 onClick={toggleDialogDuration}
                                 className="SelectionPanel hover:transform hover:scale-[1.01] overflow-hidden w-1/4 h-[11vh] pl-3 md:pl-[24px] bg-white rounded-[10px] shadow-[0px_2px_12px_rgba(0,_0,_0,_0.25)] border border-[#5c99ff] inline-flex items-center justify-start cursor-pointer"
                             >
-                                <div className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[11vh] py-[2vh] justify-start items-center gap-2 md:gap-[16px] flex bg-none" >          <svg className='w-fit bg-none' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                <div className="Frame1000008202 cursor-pointer flex-[1_1_0] h-[11vh] py-[2vh] justify-start items-center gap-2 md:gap-[16px] flex bg-none" >         
+                                 <svg className='w-fit bg-none' xmlns="http://www.w3.org/2000/svg" style={{width: 'clamp(24px,2.5vh,2.5vh)',height: 'clamp(24px,2.5vh,2.5vh)'}} viewBox="0 0 32 32" fill="none">
                                     <g clipPath="url(#clip0_13_56)">
                                         <path fillRule="evenodd" clipRule="evenodd" d="M11.6258 1.62951C11.6258 1.34367 11.7417 1.06953 11.9479 0.867404C12.1541 0.66528 12.4338 0.551727 12.7254 0.551727H18.5896C18.8813 0.551727 19.1609 0.66528 19.3671 0.867404C19.5733 1.06953 19.6892 1.34367 19.6892 1.62951C19.6892 1.91536 19.5733 2.1895 19.3671 2.39162C19.1609 2.59375 18.8813 2.7073 18.5896 2.7073H12.7254C12.4338 2.7073 12.1541 2.59375 11.9479 2.39162C11.7417 2.1895 11.6258 1.91536 11.6258 1.62951ZM15.6575 5.5814C12.4497 5.5814 9.37331 6.83047 7.10505 9.05384C4.8368 11.2772 3.56251 14.2927 3.56251 17.4371C3.56251 20.5814 4.8368 23.5969 7.10505 25.8203C9.37331 28.0436 12.4497 29.2927 15.6575 29.2927C18.8653 29.2927 21.9417 28.0436 24.21 25.8203C26.4782 23.5969 27.7525 20.5814 27.7525 17.4371C27.7525 14.2927 26.4782 11.2772 24.21 9.05384C21.9417 6.83047 18.8653 5.5814 15.6575 5.5814ZM1.36342 17.4371C1.36342 9.69854 7.76277 3.42583 15.6575 3.42583C23.5522 3.42583 29.9516 9.69854 29.9516 17.4371C29.9516 25.1756 23.5522 31.4483 15.6575 31.4483C7.76277 31.4483 1.36342 25.1756 1.36342 17.4371ZM15.6575 10.6111C15.9491 10.6111 16.2288 10.7246 16.435 10.9267C16.6412 11.1289 16.7571 11.403 16.7571 11.6889V17.4371C16.7571 17.7229 16.6412 17.997 16.435 18.1992C16.2288 18.4013 15.9491 18.5148 15.6575 18.5148C15.3659 18.5148 15.0862 18.4013 14.88 18.1992C14.6738 17.997 14.558 17.7229 14.558 17.4371V11.6889C14.558 11.403 14.6738 11.1289 14.88 10.9267C15.0862 10.7246 15.3659 10.6111 15.6575 10.6111Z" fill="#0072DC" />
                                     </g>
@@ -680,8 +680,7 @@ const AfterSelection = () => {
                                     <svg
                                         className='w-fit bg-none'
                                         xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
+                                        style={{width: 'clamp(24px,2.5vh,2.5vh)',height: 'clamp(24px,2.5vh,2.5vh)'}}
                                         viewBox="0 0 32 32"
                                         fill="none"
                                         aria-hidden="true"
@@ -805,7 +804,7 @@ const AfterSelection = () => {
                     <div className='flex w-full justify-end px-[2vw] pb-4'>
                         <div className=" ButtonsCta h-[6vh] px-4 py-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
                             <div className="flex Text items-center text-center text-white text-[2vh] font-regular gap-1">
-                                <svg width="14" height="14" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg style={{width: 'clamp(14px,1.8vh,1.8vh)',height: 'clamp(14px,1.8vh,1.8vh)'}} viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.39632 5.41047C9.57676 4.92282 10.2665 4.92282 10.4469 5.41047L11.974 9.53725C12.1442 9.9972 12.5068 10.3598 12.9668 10.53L17.0935 12.0571C17.5812 12.2375 17.5812 12.9273 17.0935 13.1077L12.9668 14.6347C12.5068 14.8049 12.1442 15.1676 11.974 15.6275L10.4469 19.7543C10.2665 20.242 9.57676 20.242 9.39632 19.7543L7.86927 15.6275C7.69907 15.1676 7.33643 14.8049 6.87649 14.6347L2.7497 13.1077C2.26205 12.9273 2.26205 12.2375 2.7497 12.0571L6.87649 10.53C7.33643 10.3598 7.69907 9.9972 7.86927 9.53725L9.39632 5.41047Z" fill="white" />
                                     <path d="M16.4871 14.1125C16.5773 13.8687 16.9222 13.8687 17.0124 14.1125L17.3128 14.9244C17.3412 15.001 17.4016 15.0615 17.4783 15.0898L18.2901 15.3903C18.534 15.4805 18.534 15.8253 18.2901 15.9156L17.4783 16.216C17.4016 16.2443 17.3412 16.3048 17.3128 16.3814L17.0124 17.1933C16.9222 17.4371 16.5773 17.4371 16.4871 17.1933L16.1867 16.3814C16.1583 16.3048 16.0979 16.2443 16.0212 16.216L15.2094 15.9156C14.9656 15.8253 14.9656 15.4805 15.2094 15.3902L16.0212 15.0898C16.0979 15.0615 16.1583 15.001 16.1867 14.9244L16.4871 14.1125Z" fill="white" />
                                     <path d="M4.25289 1.41963C4.43334 0.931975 5.12306 0.931977 5.30351 1.41963L5.89951 3.03031C5.95625 3.18362 6.07713 3.3045 6.23044 3.36123L7.84112 3.95724C8.32877 4.13768 8.32877 4.82741 7.84112 5.00786L6.23044 5.60386C6.07713 5.66059 5.95625 5.78147 5.89951 5.93479L5.30351 7.54547C5.12306 8.03312 4.43334 8.03312 4.25289 7.54547L3.65689 5.93479C3.60015 5.78147 3.47927 5.66059 3.32596 5.60386L1.71528 5.00786C1.22763 4.82741 1.22763 4.13768 1.71528 3.95724L3.32596 3.36123C3.47928 3.3045 3.60015 3.18362 3.65689 3.03031L4.25289 1.41963Z" fill="white" />
