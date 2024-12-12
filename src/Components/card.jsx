@@ -59,7 +59,7 @@ const Card = ({ index, candidate }) => {
           src={candidate.src}
           alt="Profile"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col items-start">
           <div className="text-black text-[17px] font-bold">
             {candidate.name}
           </div>
@@ -72,8 +72,8 @@ const Card = ({ index, candidate }) => {
 
           {/* <-------------- Add Layila recommanded change ---------------> */}
           {candidate.recommanded && (
-            <div className="HeaderTag h-5 px-2 rounded shadow border border-[#5c99ff] flex justify-center items-center mt-[0.5vh]">
-              <div className="Label text-center text-[#5c99ff] text-[1.3vh] font-normal uppercase tracking-wide">
+            <div className="HeaderTag rounded shadow border border-[#5c99ff] flex justify-center items-center px-[1vh] mt-[0.5vh]">
+              <div className="Label text-center text-[#5c99ff] text-[1.5vh] font-normal uppercase tracking-wide">
                 Liyla Recommended
               </div>
             </div>
