@@ -79,7 +79,7 @@ const Card = ({ index, candidate }) => {
             </div>
           )}
         </div>
-        <div className="ml-auto border border-[#464646] rounded-md py-2 px-1 text-[#464646] text-center font-normal" style={{boxShadow: '0px 0px 4px 0px #C9FFFC',}}>
+        <div className="ml-auto border border-[#464646] rounded-md py-[1vh] px-[0.5vh] text-[#464646] text-center font-normal" style={{boxShadow: '0px 0px 4px 0px #C9FFFC',}}>
           <p className="text-[1.5vh] font-normal">RANK</p>
 
           {/* <-------------- change ---------------> */}
