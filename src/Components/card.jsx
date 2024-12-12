@@ -83,7 +83,7 @@ const Card = ({ index, candidate }) => {
           <p className="text-[1.5vh] font-normal">RANK</p>
 
           {/* <-------------- change ---------------> */}
-          <span className="text-[2.4vh] font-normal leading-tight">12</span>
+          <span className="text-[2.6vh] font-normal leading-tight">12</span>
         </div>
       </div>
 
