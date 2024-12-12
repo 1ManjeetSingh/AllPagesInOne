@@ -802,7 +802,7 @@ const AfterSelection = () => {
                         </>
                     </div>
                     <div className='flex w-full justify-end px-[2vw] pb-4'>
-                        <div className=" ButtonsCta h-[6vh] px-4 py-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
+                        <div className=" ButtonsCta h-[5vh] px-4 rounded-[30px] justify-center items-center gap-4 inline-flex hover:cursor-pointer bg-question_gradient">
                             <div className="flex Text items-center text-center text-white text-[2vh] font-regular gap-1">
                                 <svg style={{width: 'clamp(14px,1.8vh,1.8vh)',height: 'clamp(14px,1.8vh,1.8vh)'}} viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.39632 5.41047C9.57676 4.92282 10.2665 4.92282 10.4469 5.41047L11.974 9.53725C12.1442 9.9972 12.5068 10.3598 12.9668 10.53L17.0935 12.0571C17.5812 12.2375 17.5812 12.9273 17.0935 13.1077L12.9668 14.6347C12.5068 14.8049 12.1442 15.1676 11.974 15.6275L10.4469 19.7543C10.2665 20.242 9.57676 20.242 9.39632 19.7543L7.86927 15.6275C7.69907 15.1676 7.33643 14.8049 6.87649 14.6347L2.7497 13.1077C2.26205 12.9273 2.26205 12.2375 2.7497 12.0571L6.87649 10.53C7.33643 10.3598 7.69907 9.9972 7.86927 9.53725L9.39632 5.41047Z" fill="white" />
