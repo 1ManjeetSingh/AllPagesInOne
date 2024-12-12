@@ -79,7 +79,7 @@ const CourseSummary = () => {
       </button>
       
       <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
-      <Link to="/aiInterview">aiInterview</Link>
+      <Link to="/applicantResult">applicantResult</Link>
       </button>
 
       <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">

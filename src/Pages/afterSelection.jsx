@@ -231,7 +231,7 @@ const AfterSelection = () => {
 
     // Thresholds for height and width
     const thresholdHeight = 468; // Minimum height
-    const thresholdWidth = 668; // Minimum width
+    const thresholdWidth = 768; // Minimum width
 
     useEffect(() => {
         const checkScreenSize = () => {
