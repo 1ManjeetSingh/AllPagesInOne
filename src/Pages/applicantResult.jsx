@@ -40,6 +40,7 @@ const ApplicantResult = () => {
         { progress: 85, name: "Round 1", description: "Technical" },
         { progress: 95, name: "Round 2", description: "HR Interview" },
       ],
+      recommanded : false,
     },
     {
       name: "Mukesh",
@@ -52,6 +53,7 @@ const ApplicantResult = () => {
         { progress: 20, name: "Round 1", description: "Design Task" },
         { progress: 35, name: "Round 2", description: "Team Interview" },
       ],
+      recommanded : true,
     },
     {
       name: "Debaleena",
@@ -64,6 +66,7 @@ const ApplicantResult = () => {
         { progress: 60, name: "Round 1", description: "Portfolio Review" },
         { progress: 90, name: "Round 2", description: "Technical Round" },
       ],
+      recommanded : false,
     },
     {
       name: "Manjeet",
@@ -76,6 +79,7 @@ const ApplicantResult = () => {
         { progress: 60, name: "Round 1", description: "Technical" },
         { progress: 75, name: "Round 2", description: "HR Interview" },
       ],
+      recommanded : false,
     },
     {
       name: "Priyansh",
@@ -88,6 +92,7 @@ const ApplicantResult = () => {
         { progress: 45, name: "Round 1", description: "Research Task" },
         { progress: 88, name: "Round 2", description: "Team Interview" },
       ],
+      recommanded : true,
     },
     {
       name: "Joe",
@@ -100,6 +105,7 @@ const ApplicantResult = () => {
         { progress: 55, name: "Round 1", description: "Technical" },
         { progress: 90, name: "Round 2", description: "HR Interview" },
       ],
+      recommanded : false,
     },
     {
       name: "Bieden",
@@ -112,6 +118,7 @@ const ApplicantResult = () => {
         { progress: 35, name: "Round 1", description: "Portfolio Review" },
         { progress: 75, name: "Round 2", description: "Team Interview" },
       ],
+      recommanded : false,
     },
     {
       name: "Rajan",
@@ -124,6 +131,7 @@ const ApplicantResult = () => {
         { progress: 70, name: "Round 1", description: "Technical" },
         { progress: 100, name: "Round 2", description: "Final Round" },
       ],
+      recommanded : false,
     },
   ];
 
@@ -249,7 +257,7 @@ const ApplicantResult = () => {
         className="py-12 w-[95%] mx-auto"
         style={{ direction: "rtl" }}
       >
-        <div style={{ direction: "ltr" }} className="flex flex-wrap justify-center">
+        <div style={{ direction: "ltr" }} className="flex flex-wrap justify-center gap-[5vh]">
           {currentCandidates.map((candidate, index) => (
             <Card key={index} index={index} candidate={candidate} />
           ))}

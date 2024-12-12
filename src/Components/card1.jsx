@@ -1,5 +1,6 @@
 import React from "react";
 import Rectangle_7172grilimg from "../assets/Rectangle_7172grilimg.png";
+
 const Card1 = () => {
   return (
     <div className="relative rounded-3xl w-full max-w-4xl mx-auto p-4">

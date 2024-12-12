@@ -1,27 +1,41 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import Save from "../assets/save.svg";
 
 const Card = ({ index, candidate }) => {
-  const generateDots = (progress) => {
+  const [hoveredRoundIndex, setHoveredRoundIndex] = useState(null); // Track hovered round
+  const [hoveredScoreIndex, setHoveredScoreIndex] = useState(false); // Track hovered round
+
+  const generateDots = (progress, roundIndex) => {
     const totalDots = 10;
     const fullDotsCount = Math.floor((progress / 100) * totalDots);
     const hasHalfDot = progress % 10 >= 5;
 
     return Array.from({ length: totalDots }, (_, index) => {
+      let dotStyle = {};
+
       if (index < fullDotsCount) {
-        return {
-          background: "#0071db",
-          boxShadow: "0px 0px 8px rgba(0, 113, 219, 0.4)",
+        dotStyle = {
+          background: "#0071db", // Original blue color
+          boxShadow: "0px 0px 8px rgba(0, 113, 219, 0.4)", // Original shadow
         };
-      }
-      if (index === fullDotsCount && hasHalfDot) {
-        return {
+      } else if (index === fullDotsCount && hasHalfDot) {
+        dotStyle = {
           background:
             "linear-gradient(to top left, #004a9f, #0071db, rgba(0, 113, 219, 0.2), #d9d9d9)",
           boxShadow: "0px 0px 8px rgba(0, 113, 219, 0.3)",
         };
+      } else {
+        dotStyle = { background: "#d9d9d9" };
       }
-      return { background: "#d9d9d9" };
+
+      // Apply hover effect only for the hovered round
+      if (hoveredRoundIndex === roundIndex && dotStyle.background === "#0071db") {
+        dotStyle.background = "#026acc"; // Lighter blue shade
+        dotStyle.boxShadow = "0px 0px 3px rgba(0, 0, 0, 0.6)"; // Change shadow to black on hover
+      }
+
+      return dotStyle;
     });
   };
 
@@ -34,90 +48,128 @@ const Card = ({ index, candidate }) => {
   };
 
   return (
-    <div
-      className={`w-[392px] h-[317px] relative bg-white rounded-[20px] shadow ${
-        index === 2 ? "mx-5 mb-14" : "mx-3 mb-2"
-      }
-      ${index !== 0 && index !== 3 ? "ml-10" : ""}`}
-      style={{ direction: "ltr" }}
-      onMouseEnter={(e) =>
-        (e.currentTarget.style.boxShadow =
-          "0px 4px 3px rgba(0, 114, 220, 0.3)")
-      }
-      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
-    >
-      <div className={`h-[67px] left-[20px] top-[20px] absolute flex-col justify-center gap-2 inline-flex`}>
-        <div className="w-[352px] h-[59px] relative justify-start items-start flex">
-          <div className="pb-0.5 justify-center items-start gap-[9px] inline-flex">
-            <img
-              className="w-[45px] h-[45px] rounded-full shadow-inner"
-              src={candidate.src}
-              alt="Profile"
-            />
-            <div className="w-[166px] self-stretch flex-col justify-start items-start gap-[5px] inline-flex">
-              <div className="self-stretch h-5 text-black text-[17px] font-medium">
-                {candidate.name}
-              </div>
-              <div className="self-stretch h-8 flex-col justify-start items-start gap-1 flex">
-                <div className="w-[178px] text-[#a5a5a7] text-[12px] font-normal mt-2">
-                  {candidate.title} at {candidate.location}
-                </div>
-                <div className="self-stretch text-[#a5a5a7] text-[12px] font-normal">
-                  {candidate.experience} years experience
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="text-[#a5a5a7] text-[10px] font-normal mt-1.5 ml-8">
-            Applied {candidate.appliedDaysAgo} days ago
-            <img src={Save} alt="" className="ml-20 mt-7" />
-          </div>
-        </div>
-        <div className="w-[352px] h-[0px] border border-[#cacaca]"></div>
+    <div className="min-w-[380px] w-[30%] min-h-[380px] bg-white rounded-[20px] shadow py-[2vh] px-[3vh] flex flex-col" style={{ direction: "ltr" }}
+     onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0px 4px 3px rgba(0, 114, 220, 0.3)")}
+     onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+>
+  <div className="flex items-center gap-4">
+    <img
+      className="w-[45px] h-[45px] rounded-full shadow-inner"
+      src={candidate.src}
+      alt="Profile"
+    />
+    <div className="flex flex-col gap-2">
+      <div className="text-black text-[17px] font-medium leading-[18px]">
+        {candidate.name}
       </div>
-      <div className="w-[88px] h-[46px] left-[286px] top-[149px] absolute text-[#09a31b] text-[40px] font-semibold">
-        86%
+      <div className="text-[#a5a5a7] text-[12px] leading-[14px]">
+        {candidate.title} at {candidate.location}
       </div>
-      {candidate.rounds.map((round, roundIndex) => (
-        <div
-          key={roundIndex}
-          className="w-[69px] h-[132px] absolute"
-          style={{ left: `${20 + roundIndex * 135}px`, top: "111px" }}
+      <div className="text-[#a5a5a7] text-[12px] leading-[14px]">
+        {candidate.experience} years experience
+      </div>
+            {/* <-------------- Add Layila recommanded change ---------------> */}
+            {candidate.recommanded && (
+  <div className="HeaderTag h-5 px-2 py-1 rounded shadow border border-[#5c99ff] flex justify-center items-center gap-2">
+    <div className="Label text-center text-[#5c99ff] text-sm font-normal uppercase leading-3 tracking-wide">
+      Liyla Recommended
+    </div>
+  </div>
+)}
+    </div>
+    <div className="ml-auto border border-[#464646] rounded-md py-1 px-2 text-[#464646] text-center font-normal">
+      <p className="text-[1.5vh] font-[300]">Rank</p>
+
+      {/* <-------------- change ---------------> */}
+      <span className="text-[2vh] font-[400]">12</span>
+    </div>
+  </div>
+
+  <div className="border-t border-[#cacaca] my-3"></div>
+
+  <div className="flex justify-around h-full">
+  <div className="flex gap-8">
+    {candidate.rounds.map((round, roundIndex) => (
+      <div key={roundIndex}
+      className="flex flex-col items-center justify-around relative flex-grow "
+      onMouseEnter={() => setHoveredRoundIndex(roundIndex)} // Set hovered round index
+      onMouseLeave={() => setHoveredRoundIndex(null)} // Reset hover state
+      >
+        <div className="text-center text-[10px] mt-1"
+        style={{
+          color: hoveredRoundIndex === roundIndex ? "#4d4d4d" : "#757575", // Change color on hover
+        }}
         >
-          <div className="w-[63px] h-[61.66px] left-[1px] top-[31.66px] absolute">
-            {generateDots(round.progress).map((style, index) => (
-              <div
-                key={index}
-                className="w-[12.06px] h-[12.06px] absolute rounded-full"
-                style={{
-                  ...style,
-                  ...getDotPosition(index, 25),
-                }}
-              />
-            ))}
-          </div>
-          <div className="w-[27px] h-3.5 left-[21px] top-[58px] absolute text-center text-[#757575] text-xs font-bold">
-            {round.progress}%
-          </div>
-          <div className="w-14 h-3 left-[11px] top-0 absolute text-center text-[#656565] text-[10px] font-normal">
-            {round.name}
-          </div>
-          <div className="w-[75px] h-3 left-0 top-[120px] absolute text-[#656565] text-[12px] font-normal">
-            {round.description}
-          </div>
+          {round.name}
         </div>
-      ))}
-      <div className="w-[107px] h-[19px] left-[268px] top-[232px] absolute text-center text-black text-[12px] font-semibold">
-        Cumulative score
+        <div className="relative flex justify-center items-center w-[63px] h-[61.66px]">
+          {generateDots(round.progress).map((style, index) => (
+            <div
+              key={index}
+              className="w-[12.06px] h-[12.06px] rounded-full absolute"
+              style={{
+                ...style,
+                ...getDotPosition(index, 25),
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="text-center text-xs font-bold mt-2 absolute top-[44%] left-[38%]"
+        style={{
+          color: hoveredRoundIndex === roundIndex ? "#000000" : "#656565", // Hover color: black
+        }}
+        >
+          {round.progress}%
+        </div>
+
+        <div className="text-center text-[12px] mt-1"
+        style={{
+          color: hoveredRoundIndex === roundIndex ? "#000000" : "#656565", // Hover color: black
+        }}
+        >
+          {round.description}
+        </div>
       </div>
-      <div className="w-[83px] h-8 px-px left-[289px] top-[262px] absolute justify-center items-center inline-flex">
-        <div className="p-2.5 rounded-[30px] border border-[#0071db] justify-center items-center gap-2.5 inline-flex">
-          <div className="text-center text-[#0071db] text-xs font-medium leading-[14px]">
-            View more
-          </div>
-        </div>
+    ))}
+  </div>
+
+  <div className="flex flex-col justify-around items-center"
+  onMouseEnter={() => setHoveredScoreIndex(true)} // Set hovered round index
+  onMouseLeave={() => setHoveredScoreIndex(false)} // Reset hover state
+  >
+  <div className="text-center text-[12px] font-semibold"
+  style={{
+    color: hoveredScoreIndex === true ? "#000000" : "#656565", // Hover color: black
+  }}
+  >
+     Total
+  </div>
+  <div className="text-[40px] font-semibold"
+  style={{
+    color: hoveredScoreIndex === true ? "#24cf0a" : "#24df3a", // Hover color: black
+  }}
+  >
+      86%
+    </div>
+    <div className="text-center text-[12px] font-semibold"
+    style={{
+      color: hoveredScoreIndex === true ? "#000000" : "#656565", // Hover color: black
+    }}
+    >
+    Cumulative score
+  </div>
+  </div>
+  </div>
+
+  <div className="flex justify-center mt-[2vh]">
+    <div className="p-[1vh] rounded-[30px] border border-[#0071db] flex justify-center items-center gap-2.5">
+      <div className="text-[#0071db] text-sm font-medium leading-[14px]">
+        View more
       </div>
     </div>
+  </div>
+</div>
   );
 };
 
