@@ -91,7 +91,7 @@ const Card = ({ index, candidate }) => {
   <div className="flex gap-8">
     {candidate.rounds.map((round, roundIndex) => (
       <div key={roundIndex}
-      className="flex flex-col items-center justify-around relative flex-grow "
+      className="flex flex-col items-center justify-around relative flex-grow hover:transform hover:scale-[1.02] hover:transition-transform hover:duration-300"
       onMouseEnter={() => setHoveredRoundIndex(roundIndex)} // Set hovered round index
       onMouseLeave={() => setHoveredRoundIndex(null)} // Reset hover state
       >
@@ -134,7 +134,7 @@ const Card = ({ index, candidate }) => {
     ))}
   </div>
 
-  <div className="flex flex-col justify-around items-center"
+  <div className="flex flex-col justify-around items-center hover:scale-[1.02] hover:transition-transform hover:duration-300"
   onMouseEnter={() => setHoveredScoreIndex(true)} // Set hovered round index
   onMouseLeave={() => setHoveredScoreIndex(false)} // Reset hover state
   >
@@ -163,7 +163,7 @@ const Card = ({ index, candidate }) => {
   </div>
 
   <div className="flex justify-center mt-[2vh]">
-    <div className="p-[1vh] rounded-[30px] border border-[#0071db] flex justify-center items-center gap-2.5">
+    <div className="p-[1vh] rounded-[30px] border border-[#0071db] flex justify-center items-center gap-2.5 hover:scale-[1.05] hover:transition-transform hover:duration-300 hover:cursor-pointer hover:shadow-[0px_0px_3px_rgba(0,_0,_220,_0.25)]">
       <div className="text-[#0071db] text-sm font-medium leading-[14px]">
         View more
       </div>
