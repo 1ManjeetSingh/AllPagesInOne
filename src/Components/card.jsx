@@ -79,11 +79,11 @@ const Card = ({ index, candidate }) => {
             </div>
           )}
         </div>
-        <div className="ml-auto border border-[#464646] rounded-md py-2 px-1 text-[#464646] text-center font-normal">
+        <div className="ml-auto border border-[#464646] rounded-md py-2 px-1 text-[#464646] text-center font-normal" style={{boxShadow: '0px 0px 4px 0px #C9FFFC',}}>
           <p className="text-[1.5vh] font-normal">RANK</p>
 
           {/* <-------------- change ---------------> */}
-          <span className="text-[2vh] font-normal leading-tight">12</span>
+          <span className="text-[2.4vh] font-normal leading-tight">12</span>
         </div>
       </div>
 
