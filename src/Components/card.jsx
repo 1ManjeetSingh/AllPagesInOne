@@ -115,7 +115,7 @@ const Card = ({ index, candidate }) => {
               ))}
             </div>
 
-            <div className="text-center text-xs font-bold absolute top-[44%] left-[38%]"
+            <div className="text-center text-xs font-bold absolute top-[46%] left-[42%]"
               style={{
                 color: hoveredRoundIndex === roundIndex ? "#000000" : "#656565", // Hover color: black
               }}
