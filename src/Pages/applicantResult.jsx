@@ -257,7 +257,7 @@ const ApplicantResult = () => {
         className="py-12 w-[95%] mx-auto"
         style={{ direction: "rtl" }}
       >
-        <div style={{ direction: "ltr" }} className="flex flex-wrap justify-center gap-[5vh]">
+        <div style={{ direction: "ltr" }} className="flex flex-wrap justify-center xl:justify-between gap-[3vh]">
           {currentCandidates.map((candidate, index) => (
             <Card key={index} index={index} candidate={candidate} />
           ))}

@@ -48,128 +48,127 @@ const Card = ({ index, candidate }) => {
   };
 
   return (
-    <div className="min-w-[380px] w-[30%] min-h-[380px] bg-white rounded-[20px] shadow py-[2vh] px-[3vh] flex flex-col" style={{ direction: "ltr" }}
-     onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0px 4px 3px rgba(0, 114, 220, 0.3)")}
-     onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
->
-  <div className="flex items-center gap-4">
-    <img
-      className="w-[45px] h-[45px] rounded-full shadow-inner"
-      src={candidate.src}
-      alt="Profile"
-    />
-    <div className="flex flex-col gap-2">
-      <div className="text-black text-[17px] font-medium leading-[18px]">
-        {candidate.name}
-      </div>
-      <div className="text-[#a5a5a7] text-[12px] leading-[14px]">
-        {candidate.title} at {candidate.location}
-      </div>
-      <div className="text-[#a5a5a7] text-[12px] leading-[14px]">
-        {candidate.experience} years experience
-      </div>
-            {/* <-------------- Add Layila recommanded change ---------------> */}
-            {candidate.recommanded && (
-  <div className="HeaderTag h-5 px-2 py-1 rounded shadow border border-[#5c99ff] flex justify-center items-center gap-2">
-    <div className="Label text-center text-[#5c99ff] text-sm font-normal uppercase leading-3 tracking-wide">
-      Liyla Recommended
-    </div>
-  </div>
-)}
-    </div>
-    <div className="ml-auto border border-[#464646] rounded-md py-1 px-2 text-[#464646] text-center font-normal">
-      <p className="text-[1.5vh] font-[300]">Rank</p>
-
-      {/* <-------------- change ---------------> */}
-      <span className="text-[2vh] font-[400]">12</span>
-    </div>
-  </div>
-
-  <div className="border-t border-[#cacaca] my-3"></div>
-
-  <div className="flex justify-around h-full">
-  <div className="flex gap-8">
-    {candidate.rounds.map((round, roundIndex) => (
-      <div key={roundIndex}
-      className="flex flex-col items-center justify-around relative flex-grow hover:transform hover:scale-[1.02] hover:transition-transform hover:duration-300"
-      onMouseEnter={() => setHoveredRoundIndex(roundIndex)} // Set hovered round index
-      onMouseLeave={() => setHoveredRoundIndex(null)} // Reset hover state
-      >
-        <div className="text-center text-[10px] mt-1"
-        style={{
-          color: hoveredRoundIndex === roundIndex ? "#4d4d4d" : "#757575", // Change color on hover
-        }}
-        >
-          {round.name}
-        </div>
-        <div className="relative flex justify-center items-center w-[63px] h-[61.66px]">
-          {generateDots(round.progress).map((style, index) => (
-            <div
-              key={index}
-              className="w-[12.06px] h-[12.06px] rounded-full absolute"
-              style={{
-                ...style,
-                ...getDotPosition(index, 25),
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="text-center text-xs font-bold mt-2 absolute top-[44%] left-[38%]"
-        style={{
-          color: hoveredRoundIndex === roundIndex ? "#000000" : "#656565", // Hover color: black
-        }}
-        >
-          {round.progress}%
-        </div>
-
-        <div className="text-center text-[12px] mt-1"
-        style={{
-          color: hoveredRoundIndex === roundIndex ? "#000000" : "#656565", // Hover color: black
-        }}
-        >
-          {round.description}
-        </div>
-      </div>
-    ))}
-  </div>
-
-  <div className="flex flex-col justify-around items-center hover:scale-[1.02] hover:transition-transform hover:duration-300"
-  onMouseEnter={() => setHoveredScoreIndex(true)} // Set hovered round index
-  onMouseLeave={() => setHoveredScoreIndex(false)} // Reset hover state
-  >
-  <div className="text-center text-[12px] font-semibold"
-  style={{
-    color: hoveredScoreIndex === true ? "#000000" : "#656565", // Hover color: black
-  }}
-  >
-     Total
-  </div>
-  <div className="text-[40px] font-semibold"
-  style={{
-    color: hoveredScoreIndex === true ? "#24cf0a" : "#24df3a", // Hover color: black
-  }}
-  >
-      86%
-    </div>
-    <div className="text-center text-[12px] font-semibold"
-    style={{
-      color: hoveredScoreIndex === true ? "#000000" : "#656565", // Hover color: black
-    }}
+    <div className="min-w-[380px] w-[31%] min-h-[380px] bg-white rounded-[20px] shadow py-[2vh] px-[3vh] flex flex-col mb-[2vh]" style={{ direction: "ltr" }}
+      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0px 4px 3px rgba(0, 114, 220, 0.3)")}
+      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
     >
-    Cumulative score
-  </div>
-  </div>
-  </div>
+      <div className="flex items-center gap-4">
+        <img
+          className="w-[45px] h-[45px] rounded-full shadow-inner"
+          src={candidate.src}
+          alt="Profile"
+        />
+        <div className="flex flex-col">
+          <div className="text-black text-[17px] font-bold">
+            {candidate.name}
+          </div>
+          <div className="text-[#6f6f6f] text-[1.5vh] font-normal">
+            {candidate.title} at {candidate.location}
+          </div>
+          <div className="text-[#6f6f6f] text-[1.5vh] font-normal">
+            {candidate.experience} years experience
+          </div>
 
-  <div className="flex justify-center mt-[2vh]">
-    <div className="p-[1vh] rounded-[30px] border border-[#0071db] flex justify-center items-center gap-2.5 hover:scale-[1.05] hover:transition-transform hover:duration-300 hover:cursor-pointer hover:shadow-[0px_0px_3px_rgba(0,_0,_220,_0.25)]">
-      <div className="text-[#0071db] text-sm font-medium leading-[14px]">
-        View more
+          {/* <-------------- Add Layila recommanded change ---------------> */}
+          {candidate.recommanded && (
+            <div className="HeaderTag h-5 px-2 rounded shadow border border-[#5c99ff] flex justify-center items-center mt-[0.5vh]">
+              <div className="Label text-center text-[#5c99ff] text-[1.3vh] font-normal uppercase tracking-wide">
+                Liyla Recommended
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="ml-auto border border-[#464646] rounded-md py-2 px-1 text-[#464646] text-center font-normal">
+          <p className="text-[1.5vh] font-normal">RANK</p>
+
+          {/* <-------------- change ---------------> */}
+          <span className="text-[2vh] font-normal leading-tight">12</span>
+        </div>
+      </div>
+
+      <div className="border-t border-[#cacaca] my-3"></div>
+
+      <div className="flex justify-around h-full">
+        {candidate.rounds.map((round, roundIndex) => (
+          <div key={roundIndex}
+            className="flex flex-col items-center justify-between  py-[2vh] relative hover:transform hover:scale-[1.02] hover:transition-transform hover:duration-300"
+            onMouseEnter={() => setHoveredRoundIndex(roundIndex)} // Set hovered round index
+            onMouseLeave={() => setHoveredRoundIndex(null)} // Reset hover state
+          >
+            <div className="text-center text-[10px]"
+              style={{
+                color: hoveredRoundIndex === roundIndex ? "#4d4d4d" : "#757575", // Change color on hover
+              }}
+            >
+              {round.name}
+            </div>
+            <div className="relative flex justify-center items-center w-[72px] h-[74px]">
+              {generateDots(round.progress).map((style, index) => (
+                <div
+                  key={index}
+                  className="w-[14.06px] h-[14.06px] rounded-full absolute"
+                  style={{
+                    ...style,
+                    ...getDotPosition(index, 30),
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="text-center text-xs font-bold absolute top-[44%] left-[38%]"
+              style={{
+                color: hoveredRoundIndex === roundIndex ? "#000000" : "#656565", // Hover color: black
+              }}
+            >
+              {round.progress}%
+            </div>
+
+            <div className="text-center text-[12px]"
+              style={{
+                color: hoveredRoundIndex === roundIndex ? "#000000" : "#656565", // Hover color: black
+              }}
+            >
+              {round.description}
+            </div>
+          </div>
+        ))}
+
+        <div className="flex flex-col justify-between py-[2vh] items-center hover:scale-[1.02] hover:transition-transform hover:duration-300"
+          onMouseEnter={() => setHoveredScoreIndex(true)} // Set hovered round index
+          onMouseLeave={() => setHoveredScoreIndex(false)} // Reset hover state
+        >
+          <div className="text-center text-[12px] font-semibold"
+            style={{
+              color: hoveredScoreIndex === true ? "#000000" : "#656565", // Hover color: black
+            }}
+          >
+            Total
+          </div>
+          <div className="text-[40px] font-semibold"
+            style={{
+              color: hoveredScoreIndex === true ? "#24cf0a" : "#24df3a", // Hover color: black
+            }}
+          >
+            86%
+          </div>
+          <div className="text-center text-[12px] font-semibold"
+            style={{
+              color: hoveredScoreIndex === true ? "#000000" : "#656565", // Hover color: black
+            }}
+          >
+            Cumulative score
+          </div>
+        </div>
+      </div>
+
+      <div className="flex justify-center mt-[2vh]">
+        <div className="p-[1vh] rounded-[30px] border border-[#0071db] flex justify-center items-center gap-2.5 hover:scale-[1.05] hover:transition-transform hover:duration-300 hover:cursor-pointer hover:shadow-[0px_0px_3px_rgba(0,_0,_220,_0.25)]">
+          <div className="text-[#0071db] text-sm font-medium leading-[14px]">
+            View more
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
   );
 };
 
