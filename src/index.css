@@ -5,6 +5,23 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@keyframes rotatePetals {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-petals {
+  animation: rotatePetals 20s linear infinite;
+  animation-fill-mode: forwards; 
+  animation-play-state: running; /* Default to running */
+}
+
+
 .monaco-editor-background, .monaco-editor {
   background-color: transparent !important;
 }
