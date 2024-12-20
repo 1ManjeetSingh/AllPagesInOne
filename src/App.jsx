@@ -11,6 +11,7 @@ import AfterSelection from "./Pages/afterSelection";
 import AiTechnical from "./Pages/aiTechnical";
 import Aftersalection from "./Pages/aftersalection";
 import LoaderWithIcons from "./Pages/LoaderWithIcons";
+import RecruiterDashboard from "./Pages/recruiterDashboard";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/afterSelection" element={<AfterSelection />} />
         <Route path="/aftersalection" element={<Aftersalection />} />
         <Route path="/LoaderWithIcons" element={<LoaderWithIcons />} />
+        <Route path="/RecruiterDashboard" element={<RecruiterDashboard />} />
         <Route path="/" element={<CourseSummary />} />
       </Routes>
     </BrowserRouter>

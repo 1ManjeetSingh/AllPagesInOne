@@ -97,6 +97,10 @@ const CourseSummary = () => {
       <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
       <Link to="/LoaderWithIcons">LoaderWithIcons</Link>
       </button>
+      
+      <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
+      <Link to="/RecruiterDashboard">RecruiterDashboard</Link>
+      </button>
 
       <div>
         <img src={Background} alt="" />
