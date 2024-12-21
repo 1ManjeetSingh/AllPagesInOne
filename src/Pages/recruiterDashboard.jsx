@@ -1,8 +1,11 @@
 import { React, useState, useEffect, useRef } from 'react';
+import { ResponsiveLine } from "@nivo/line";
+import Select from 'react-select';
 import image1 from "../assets/image1.png"
 import image2 from '../assets/Aspireit.png';
 import image3 from '../assets/Ellipse 1872.svg';
 import image4 from '../assets/Type=Layila.svg';
+
 
 const RecruiterDashboard = () => {
 
@@ -47,8 +50,8 @@ const RecruiterDashboard = () => {
     marketingManager: {
       postedOn: '12th Dec 2024',
       jobPosted: 1, // Completed
-      applicantsApplied: 0, // Pending
-      selectionComplete: 0, // Pending
+      applicantsApplied: 1, // Pending
+      selectionComplete: 1, // Pending
       aiInterviewPending: 0, // Pending
       aiTechnicalRound: 0, // Pending
       shortlistedCandidates: 0, // Pending
@@ -58,11 +61,37 @@ const RecruiterDashboard = () => {
       jobPosted: 1, // Completed
       applicantsApplied: 1, // Completed
       selectionComplete: 1, // Completed
-      aiInterviewPending: 1, // Completed
+      aiInterviewPending: 0, // Completed
       aiTechnicalRound: 0, // Pending
       shortlistedCandidates: 0, // Pending
     }
   };
+
+  const statusStyles = {
+    completed: {
+      circle: 'bg-[#7d7da4] border-[#c3c3ea] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)]',
+      text: 'text-[#7d7da4]',
+    },
+    pending: {
+      circle: 'bg-[#d7d7fe]',
+      text: 'text-[#c3c3ea]',
+    },
+    active: {
+      circle: 'bg-[#7d7da4] shadow-[0px_0px_24px_2px_rgba(151,71,255,1.00)]',
+      text: 'text-transparent font-bold',
+      gradient: 'linear-gradient(319deg, #D388FF 5.96%, #4B94F6 95.49%)',
+    },
+  };
+
+  const roundsList = [
+    { label: 'Job Posted', key: 'jobPosted' },
+    { label: 'Applicants Applied', key: 'applicantsApplied' },
+    { label: 'Selection Complete', key: 'selectionComplete' },
+    { label: 'AI Interview Pending...', key: 'aiInterviewPending', isActive: true },
+    { label: 'AI Technical Round', key: 'aiTechnicalRound' },
+    { label: 'Shortlisted Candidates', key: 'shortlistedCandidates' },
+  ];
+
 
   const scores = {
     aiTechnicalRoundAndInterview: {
@@ -74,12 +103,12 @@ const RecruiterDashboard = () => {
       "Kunal M.": 84
     },
     aiNonTechnicalRoundAndInterview: {
-      postedOn: '12th Dec 2024',
-      "Kunal P.": 92, // Test case: Score in range 100-80
-      "Muskan M.": 89, // Test case: Score in range 100-80
-      "Gautam K.": 87, // Test case: Score in range 100-80
-      "Payal R.": 85, // Test case: Score in range 100-80
-      "Kunal M.": 83 // Test case: Score in range 100-80
+      postedOn: '13th Dec 2024',
+      "Aman S.": 92,
+      "Riya T.": 89,
+      "Vikas J.": 87,
+      "Neha G.": 85,
+      "Rahul V.": 83,
     }
   };
 
@@ -91,10 +120,124 @@ const RecruiterDashboard = () => {
   const zoom = "https://s3-alpha-sig.figma.com/img/8a76/0006/20564ddd89bc90c94911ce13c481f7d8?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=D8N7eCw8o7Hvg2my~I4Jw7fapvPNNcw9kxV2gv05CUooPsfowMNCfMkYs7OS5gWgOyb8QCC7Y3kqXn0KEEmdKaDxCs8ZRGnEs6oa8rCEr9RQL3Ci73EoQsWs-qqyQKwk8yBCyN2UYyHl6OdfAWkPkW7ibT6D8CU9ie40-usIcOXtSmgKfK-2JjWNV3wIwKju9Y-xdAVrLrXCdI4NdwB8nNzcAn8bWn7Bd8VqBZ83~PLr94r7Ft1Pq6p2KrgIthRuvEXNw3oIdomNHmMB7uoiQipx-4i~kkYKm9AOxhacokAXS6EOkuxzAlXJ5nvEa3~E70vzifekcO85LdulJ3uLaA__";
 
 
+  const [openSelect, setOpenSelect] = useState(false);
 
+  const options = [
+    { value: 'aiTechnicalRoundAndInterview', label: 'AI Technical Round & Interview' },
+    { value: 'aiNonTechnicalRoundAndInterview', label: 'AI Non-Technical Round & Interview' },
+  ];
+
+  const [option, setOption] = useState(options[0].value);
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "none",
+      border: "none",
+      color: "#161616",
+      height: "36px",
+      width: "full",
+      minWidth: "300px",
+      fontWeight: "400",
+      boxShadow: "none",
+      display: "flex",
+      justifySelf: "center",
+      justifyContent: "center",
+      alignItems: "center",
+      paddingRight: "25px",
+      ":hover": {
+        borderColor: "#EBEBEB",
+      },
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      width: "20px",
+      height: "20px",
+      position: "absolute",
+      color: "#0072DC",
+      top: "27%",
+      right: "10px",
+      padding: "0",
+    }),
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      position: "fixed",
+      backgroundColor: "#D7D7D7",
+      border: "1px solid #EBEBEB",
+      borderRadius: "4px",
+      zIndex: 999,
+      top: "auto",
+      left: "auto",
+      fontSize: "18px",
+      maxWidth: "250px",
+      maxHeight: "300px",
+      overflowY: "auto",
+      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    }),
+
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#161616",
+      fontWeight: "400",
+      fontSize: "18px",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#161616",
+      fontSize: "14px",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? "#C3C3EA" : "#D7D7D7",
+      color: "#161616",
+      fontWeight: state.isSelected ? "600" : "400",
+      padding: "10px 20px",
+      cursor: "pointer",
+      ":active": {
+        backgroundColor: "#EBEBEB",
+      },
+    }),
+  };
+
+  const toggleDialogOption = () => {
+    setOpenSelect(!openSelect);
+  };
+
+  const handleChangeOption = (selectedOption) => {
+    setOption(selectedOption.value);
+    toggleDialogOption();
+  };
+
+  const currentScores = scores[option];
+  const scoreEntries = Object.entries(currentScores || {}).filter(([key]) => key !== "postedOn");
+
+  const formattedData = Object.entries(currentScores)
+    .filter(([key]) => key !== 'postedOn') // Exclude 'postedOn'
+    .map(([name, score]) => ({
+      candidate: name,
+      score,
+    }));
+
+  const lineData = [
+    {
+      id: "Scores",
+      color: "#A5A5CC",
+      data: Object.entries(currentScores || {})
+        .filter(([key]) => key !== "postedOn")
+        .map(([name, score]) => ({
+          x: name,
+          y: score,
+        })),
+    },
+  ];
+
+  
 
   return (
-    <div className='.main-container min-h-[100vh] bg-[#F1F4F8]'>
+    <div className='.main-container min-h-[100vh] bg-[#F1F4F8] pb-8'>
       <div className="NavBar w-full mx-[auto] h-[8vh] min-h-[42px] px-8 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
         <div className="logo-container w-[130px] h-[5vh] min-h-[24px] relative  bg-[#FFF]">
           <div className="Rectangle7391 w-[9vw] h-[4.5vh] min-h-[24px] relative bg-[#0F0F36] rounded-[6px]" />
@@ -145,7 +288,7 @@ const RecruiterDashboard = () => {
       </div>
 
       <div className="flex flex-col items-center mt-[3vh]">
-        <div style={{ width: '90%', height: '100%', paddingLeft: 56, paddingRight: 56, paddingTop: 40, paddingBottom: 40, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 40, display: 'inline-flex' }}>
+        <div className='overflow-hidden' style={{ width: '90%', height: 320, paddingLeft: 56, paddingRight: 56, paddingTop: 40, paddingBottom: 40, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 40, display: 'inline-flex' }}>
           {/* Yesterday's Progress Section */}
           <div style={{ flex: '1 1 0', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 20, display: 'inline-flex' }}>
             <div className="font-['SF UI  Display']" style={{ textAlign: 'center', color: 'white', fontSize: 28, fontWeight: '700', lineHeight: '28px', wordWrap: 'break-word' }}>Yesterday’s Progress</div>
@@ -192,82 +335,173 @@ const RecruiterDashboard = () => {
           </div>
         </div>
 
-        <div className='flex justify-center mt-[3vh]'>
-          <div className="w-[504px] h-[577px] relative bg-white/30 rounded-[32px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg">
-            <div className="h-[102px] left-[32px] top-[24px] absolute flex-col justify-start items-start gap-4 inline-flex">
+
+        <div className="flex justify-center mt-[3vh] gap-12 w-[90%]">
+
+          {/* <---------------- Score Graph -----------------> */}
+
+          <div
+            className="h-[530px] py-[2vw] px-[4vw] bg-white/30 rounded-[4vw] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
+          >
+            <div className="self-stretch justify-between items-start inline-flex">
+              <div className="w-full flex-col justify-start items-start gap-[1vh] inline-flex pl-2">
+                <div className="justify-start items-center gap-[1vw] inline-flex">
+                  <div className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
+                    style={{
+                      background: 'linear-gradient(90deg, #BF4CF9 0%, #4274FE 100%)',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}>
+                    Top candidates
+                  </div>
+                </div>
+                <div className="self-stretch flex-col justify-start items-start gap-[0.5vh] flex">
+                  <div className="self-stretch justify-start items-center inline-flex">
+                    <div className="py-[0.5vh] justify-center items-center gap-[1vw] flex">
+                      <div className="text-center text-[#6f6f6f] text-[2.2vh] font-normal font-['SF UI Text'] leading-[2.8vh]">
+                        Job designation : &nbsp;
+                      </div>
+                    </div>
+                    <div className="py-[0.5vh] justify-center items-center gap-[1vw] flex">
+                      <div className="text-center text-[#bf4cf9] text-[2.2vh] font-semibold font-['SF UI Text'] leading-[2.8vh]"
+                        style={{
+                          background: 'linear-gradient(90deg, #BF4CF9 0%, #4274FE 100%)',
+                          backgroundClip: 'text',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                        }}>
+                        UI/UX Designer
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center text-[#6f6f6f] text-[2.2vh] font-normal font-['SF UI Text'] leading-[2.5vh]">
+                    Posted On: {currentScores?.postedOn || "N/A"}
+                  </div>
+                </div>
+              </div>
+              <div className="w-[55vh] px-[1.5vh] mt-1 bg-neutral-100 rounded-[2.5vw] shadow-[0px_0px_1vw_0px_rgba(0,0,0,0.25)] justify-start items-center gap-[1vw] flex">
+                <Select
+                  defaultValue={options[0]} // Set the default value to the first option
+                  options={options}
+                  styles={customStyles}
+                  onChange={handleChangeOption}
+                  value={options.find(option => option.value === option) || options[0]} // Ensure value fallback to first option
+                />
+                {/* <div className="w-[3vw] h-[3vw] flex-col justify-center items-center gap-[1vw] inline-flex" /> */}
+              </div>
+            </div>
+            <div className="self-stretch h-[60vh] py-[2vh] bg-none rounded-[3vw] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#dcffff] flex-col justify-center items-center flex">
+              {/* responsive bar code place here */}
+              <ResponsiveLine
+                data={lineData}
+                margin={{ top: 40, right: 50, bottom: 60, left: 60 }}
+                xScale={{ type: "point" }}
+                yScale={{ type: "linear", min: 80, max: 100, stacked: false }}
+                axisTop={null}
+                axisRight={null}
+                axisBottom={{
+                  tickPadding: 5,
+                  legend: "Top Candidates",
+                  legendPosition: "middle",
+                  legendOffset: 45,
+                }}
+                axisLeft={{
+                  tickSize: 5,
+                  tickPadding: 5,
+                  legend: "Scores",
+                  legendPosition: "middle",
+                  legendOffset: -45,
+                }}
+                pointSize={10}
+                pointBorderWidth={2}
+                pointColor="#4B94F6"
+                pointBorderColor="#4B94F6"
+                pointLabelYOffset={-12}
+                useMesh={true}
+                colors={{ datum: 'color' }}
+              />
+            </div>
+          </div>
+
+
+          {/* <-------------- progress card ---------------> */}
+
+          <div className="w-[35vw] min-w-[360px] max-h-[530px] relative bg-white/30 rounded-[32px] py-[24px] px-[48px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
+            <div className="h-[102px] flex-col justify-start items-start gap-4 inline-flex">
               <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
                 <div className="p-1 justify-start items-center gap-2 inline-flex">
-                  <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI  Text'] uppercase leading-none tracking-wide">Progress Report for</div>
+                  <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
+                    Progress Report for
+                  </div>
                 </div>
                 <div className="self-stretch px-1 justify-start items-center inline-flex">
                   <div className="py-1 justify-center items-center gap-2 flex">
-                    <div className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']" style={{
+                    <div
+                      className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
+                      style={{
                         background: 'linear-gradient(90deg, #BF4CF9 0%, #4274FE 100%)',
                         backgroundClip: 'text',
-                        WebkitBackgroundClip: 'text', // For Webkit-based browsers
-                        WebkitTextFillColor: 'transparent', // Makes the text color transparent but shows the gradient
-                      }}>Marketing Manager</div>
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                      }}
+                    >
+                      Marketing Manager
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="self-stretch px-1 justify-start items-center inline-flex">
                 <div className="py-1 justify-center items-center gap-2 flex">
-                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI  Text'] leading-[18px]">Posted on</div>
+                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                    Posted on
+                  </div>
                 </div>
                 <div className="p-1 justify-center items-center gap-2 flex">
-                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI  Text'] leading-[18px]">:</div>
+                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
                 </div>
                 <div className="justify-start items-center gap-1 flex">
                   <div className="py-1 justify-center items-center gap-2 flex">
-                    <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI  Text'] leading-[18px]">12th</div>
-                  </div>
-                  <div className="py-1 justify-center items-center gap-2 flex">
-                    <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI  Text'] leading-[18px]">Dec</div>
-                  </div>
-                  <div className="py-1 justify-center items-center gap-2 flex">
-                    <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI  Text'] leading-[18px]">2024</div>
+                    <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                      {rounds.marketingManager.postedOn}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='h-[250px] w-[1px] bg-[#A5A5CC] left-[52px] top-[175px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-            <div className="left-[468px] top-[273px] absolute flex-col justify-center items-start gap-2 inline-flex">
+
+            <div className='h-[250px] w-[1px] bg-[#A5A5CC] left-[68px] top-[175px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
+            {/* <div className="left-[468px] top-[273px] absolute flex-col justify-center items-start gap-2 inline-flex">
               <div className="w-3 h-3 bg-[#2890fa] rounded-full shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]" />
               <div className="w-3 h-3 bg-[#d9d9d9] rounded-full shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]" />
+            </div> */}
+            <div className="px-4 pb-8 left-[32px] flex-col justify-start items-start gap-10 inline-flex mt-14">
+              {roundsList.map(({ label, key, isActive }) => {
+                const status =
+                  rounds.marketingManager[key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
+
+                return (
+                  <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
+                    <div
+                      className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[status].circle}`}
+                      style={isActive ? { boxShadow: statusStyles[status].gradient } : {}}
+                    />
+                    <div
+                      className={`text-center text-xl font-normal font-['SF UI Text'] leading-tight ${statusStyles[status].text}`}
+                      style={isActive ? { background: statusStyles[status].gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
+                    >
+                      {label}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <div className="h-[328px] px-4 py-1 left-[32px] top-[166px] absolute flex-col justify-start items-start gap-10 inline-flex">
-              <div className="self-stretch justify-start items-center gap-6 inline-flex">
-                <div className="w-[18px] h-[18px] relative bg-[#7d7da4] rounded-[100px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#c3c3ea]" />
-                <div className="text-center text-[#7d7da4] text-xl font-normal font-['SF UI  Text'] leading-tight">Job Posted </div>
-              </div>
-              <div className="self-stretch justify-start items-center gap-6 inline-flex">
-              <div className="w-[18px] h-[18px] relative bg-[#7d7da4] rounded-[100px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#c3c3ea]" />
-                <div className="text-center text-[#7d7da4] text-xl font-normal font-['SF UI  Text'] leading-tight">1278 Applicants Applied</div>
-              </div>
-              <div className="self-stretch justify-start items-center gap-6 inline-flex">
-              <div className="w-[18px] h-[18px] relative bg-[#7d7da4] rounded-[100px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#c3c3ea]" />
-                <div className="text-center text-[#7d7da4] text-xl font-normal font-['SF UI  Text'] leading-tight">Selection Complete</div>
-              </div>
-              <div className="self-stretch justify-start items-center gap-6 inline-flex">
-              <div className="w-[18px] h-[18px] relative bg-[#7d7da4] rounded-[100px] shadow-[0px_0px_24px_2px_rgba(151,71,255,1.00)]" />
-                <div className="text-center text-[#d388ff] text-xl font-bold font-['SF UI  Text'] leading-tight" style={{
-                        background: 'linear-gradient(319deg, #D388FF 5.96%, #4B94F6 95.49%)',
-                        backgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent', // Makes the text color transparent but shows the gradient
-                      }}>AI Interview Pending...</div>
-              </div>
-              <div className="self-stretch justify-start items-center gap-6 inline-flex">
-              <div className="w-[18px] h-[18px] relative bg-[#d7d7fe] rounded-[100px]" />
-                <div className="text-center text-[#c3c3ea] text-xl font-normal font-['SF UI  Text'] leading-tight">AI Technical Round</div>
-              </div>
-              <div className="self-stretch justify-start items-center gap-6 inline-flex">
-              <div className="w-[18px] h-[18px] relative bg-[#d7d7fe] rounded-[100px]" />
-                <div className="text-center text-[#c3c3ea] text-xl font-normal font-['SF UI  Text'] leading-tight">Shortlisted Candidates</div>
+            <div className='w-full flex justify-end'>
+              <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
+                <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px]">Intervene</div>
               </div>
             </div>
-            <div className="h-14 px-5 left-[347px] top-[497px] absolute bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-              <div className="text-center text-white text-lg font-semibold font-['SF UI  Text'] leading-[18px]">Intervene</div>
-            </div>
+
           </div>
         </div>
 
@@ -276,7 +510,7 @@ const RecruiterDashboard = () => {
 
           {/* <------------------ Scheduled Interview------------------> */}
 
-          <div className="w-[703px] p-8 bg-white/30 rounded-[32px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] backdrop-blur-lg flex-col justify-center items-end gap-6 inline-flex" style={{ border: '0.5px solid var(--Gradients-Gradient-Blue-to-pink, #D388FF)' }}>
+          <div className="p-8 bg-white/30 rounded-[32px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] backdrop-blur-lg flex-col justify-center items-end gap-6 inline-flex flex-grow" style={{ border: '0.5px solid var(--Gradients-Gradient-Blue-to-pink, #D388FF)' }}>
             <div className="self-stretch h-48 flex-col justify-center items-center gap-6 flex">
               <div className="self-stretch h-9 flex-col justify-start items-start flex">
                 <div className="self-stretch h-9 flex-col justify-start items-start flex">
@@ -312,7 +546,7 @@ const RecruiterDashboard = () => {
 
           {/* <------------- AI summary --------------> */}
 
-          <div style={{ height: '100%', padding: 32, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+          <div className='w-[35vw]' style={{ height: '100%', padding: 32, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column' }}>
             <div className="self-stretch flex-col justify-start items-start gap-6 flex">
               <div className=" justify-start items-center gap-1 inline-flex">
                 <div className="w-8 h-8 pl-1 pr-[2.67px] pt-[1.33px] pb-[1.44px] justify-center items-center flex">

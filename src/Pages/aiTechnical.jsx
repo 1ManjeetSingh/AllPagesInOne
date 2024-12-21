@@ -274,6 +274,16 @@ const AiTechnical = () => {
                             </div>
                         </div>
 
+                        {/* nothing was here */}
+                        <div className='h-[250px] w-[1px] bg-[#A5A5CC] left-[52px] top-[175px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
+            <div className="left-[468px] top-[273px] absolute flex-col justify-center items-start gap-2 inline-flex">
+              <div className="w-3 h-3 bg-[#2890fa] rounded-full shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]" />
+              <div className="w-3 h-3 bg-[#d9d9d9] rounded-full shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]" />
+            </div>
+            <div className="h-14 px-5 left-[347px] top-[497px] absolute bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
+              <div className="text-center text-white text-lg font-semibold font-['SF UI  Text'] leading-[18px]">Intervene</div>
+            </div>
+
                         <div className="flex flex-1 bg-none py-4 ">
                             {/* Left side code editor container */}
                             <div className={`w-[100%]  rounded-3xl p-6 relative shadow-lg rounded-[30px] border border-black bg-[black]  backdrop-blur-[5px] ${isExpanded ? 'h-[90vh]' : 'h-[35vh]'}`}>

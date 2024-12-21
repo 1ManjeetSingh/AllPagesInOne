@@ -21,6 +21,10 @@
   animation-play-state: running; /* Default to running */
 }
 
+.nivo-point circle {
+  fill: url(#gradient-blue-pink) !important;
+}
+
 
 .monaco-editor-background, .monaco-editor {
   background-color: transparent !important;
