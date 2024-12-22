@@ -16,6 +16,7 @@
     "@mui/material": "^6.1.6",
     "@mui/styled-engine": "^6.1.9",
     "@mui/x-date-pickers": "^7.22.2",
+    "@nivo/bump": "^0.88.0",
     "@nivo/line": "^0.88.0",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",

@@ -100,7 +100,8 @@ const RecruiterDashboard = () => {
       "Muskan M.": 96,
       "Gautam K.": 91,
       "Payal R.": 90,
-      "Kunal M.": 84
+      "Kunal M.": 84,
+      "Rahul V.": 83,
     },
     aiNonTechnicalRoundAndInterview: {
       postedOn: '13th Dec 2024',
@@ -221,20 +222,25 @@ const RecruiterDashboard = () => {
       score,
     }));
 
-  const lineData = [
-    {
-      id: "Scores",
-      color: "#A5A5CC",
-      data: Object.entries(currentScores || {})
-        .filter(([key]) => key !== "postedOn")
-        .map(([name, score]) => ({
-          x: name,
-          y: score,
-        })),
-    },
-  ];
+    const lineData = [
+      {
+        id: "Scores",
+        color: "#A5A5CC",
+        data: [
+          { x: "", y: null }, // Invisible padding point on the left
+          ...Object.entries(currentScores || {})
+            .filter(([key]) => key !== "postedOn")
+            .map(([name, score]) => ({
+              x: name,
+              y: score,
+            })),
+          { x: " ", y: null }, // Invisible padding point on the right
+        ],
+      },
+    ];
+    
 
-  
+
 
   return (
     <div className='.main-container min-h-[100vh] bg-[#F1F4F8] pb-8'>
@@ -386,7 +392,7 @@ const RecruiterDashboard = () => {
                   options={options}
                   styles={customStyles}
                   onChange={handleChangeOption}
-                  value={options.find(option => option.value === option) || options[0]} // Ensure value fallback to first option
+                  value={options.find(option => option.value === option)} // Ensure value fallback to first option
                 />
                 {/* <div className="w-[3vw] h-[3vw] flex-col justify-center items-center gap-[1vw] inline-flex" /> */}
               </div>
@@ -396,8 +402,8 @@ const RecruiterDashboard = () => {
               <ResponsiveLine
                 data={lineData}
                 margin={{ top: 40, right: 50, bottom: 60, left: 60 }}
-                xScale={{ type: "point" }}
-                yScale={{ type: "linear", min: 80, max: 100, stacked: false }}
+                xScale={{ type: "point", }}
+                yScale={{ type: "linear", min: 80, max: 100, }}
                 axisTop={null}
                 axisRight={null}
                 axisBottom={{
@@ -405,6 +411,7 @@ const RecruiterDashboard = () => {
                   legend: "Top Candidates",
                   legendPosition: "middle",
                   legendOffset: 45,
+                  
                 }}
                 axisLeft={{
                   tickSize: 5,
@@ -412,14 +419,28 @@ const RecruiterDashboard = () => {
                   legend: "Scores",
                   legendPosition: "middle",
                   legendOffset: -45,
+                  tickValues: [80, 85, 90, 95, 100],
                 }}
+                gridXValues={[]}
+                gridYValues={[80, 85, 90, 95, 100]}
                 pointSize={10}
                 pointBorderWidth={2}
                 pointColor="#4B94F6"
                 pointBorderColor="#4B94F6"
                 pointLabelYOffset={-12}
                 useMesh={true}
+                animation={true}
                 colors={{ datum: 'color' }}
+                theme={{
+                  axis: {
+                    legend: {
+                      text: {
+                        fontSize: 16,
+                        fill: "#55557C",
+                      },
+                    },
+                  },
+                }}
               />
             </div>
           </div>
@@ -498,7 +519,7 @@ const RecruiterDashboard = () => {
             </div>
             <div className='w-full flex justify-end'>
               <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px]">Intervene</div>
+                <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
               </div>
             </div>
 
@@ -540,7 +561,7 @@ const RecruiterDashboard = () => {
               </div>
             </div>
             <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-              <div className="text-center text-white text-[18px] font-semibold font-['SF UI  Text'] leading-[18px]">Continue</div>
+              <div className="text-center text-white text-[18px] font-semibold font-['SF UI  Text'] leading-[18px] cursor-pointer">Continue</div>
             </div>
           </div>
 
