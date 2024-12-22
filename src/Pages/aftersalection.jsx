@@ -9,7 +9,7 @@ import image4 from '../assets/Type=Layila.svg';
 import image5 from '../assets/Group.svg';
 import Carousel from '../Components/carousel/Carousel';
 
-
+// this is replica of afterSelection page nothing changed other than navbar size
 
 const slidesData = [
     {

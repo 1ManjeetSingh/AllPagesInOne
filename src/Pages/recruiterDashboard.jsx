@@ -66,7 +66,30 @@ const RecruiterDashboard = () => {
       aiTechnicalRound: 0, // Pending
       shortlistedCandidates: 0, // Pending
     }
+  };  
+
+  const roundsList = [
+    { label: 'Job Posted', key: 'jobPosted' },
+    { label: 'Applicants Applied', key: 'applicantsApplied' },
+    { label: 'Selection Complete', key: 'selectionComplete' },
+    { label: 'AI Interview Pending...', key: 'aiInterviewPending' },
+    { label: 'AI Technical Round', key: 'aiTechnicalRound' },
+    { label: 'Shortlisted Candidates', key: 'shortlistedCandidates' },
+  ];
+
+  const markFirstPendingActive = (rounds) => {
+    for (const key in rounds) {
+      if (rounds[key] === 0 && key !== 'postedOn') {
+        return key;
+      }
+    }
+    return null; // Return null if no pending found
   };
+  
+  // Dynamically update rounds with active state
+  Object.keys(rounds).forEach((role) => {
+    rounds[role].isActive = markFirstPendingActive(rounds[role]);
+  });
 
   const statusStyles = {
     completed: {
@@ -83,15 +106,6 @@ const RecruiterDashboard = () => {
       gradient: 'linear-gradient(319deg, #D388FF 5.96%, #4B94F6 95.49%)',
     },
   };
-
-  const roundsList = [
-    { label: 'Job Posted', key: 'jobPosted' },
-    { label: 'Applicants Applied', key: 'applicantsApplied' },
-    { label: 'Selection Complete', key: 'selectionComplete' },
-    { label: 'AI Interview Pending...', key: 'aiInterviewPending', isActive: true },
-    { label: 'AI Technical Round', key: 'aiTechnicalRound' },
-    { label: 'Shortlisted Candidates', key: 'shortlistedCandidates' },
-  ];
 
 
   const scores = {
@@ -543,7 +557,8 @@ const RecruiterDashboard = () => {
               <div className="w-3 h-3 bg-[#d9d9d9] rounded-full shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]" />
             </div> */}
             <div className="px-4 pb-8 left-[32px] flex-col justify-start items-start gap-10 inline-flex mt-14">
-              {roundsList.map(({ label, key, isActive }) => {
+              {roundsList.map(({ label, key }) => {
+                const isActive = rounds.marketingManager.isActive === key;
                 const status =
                   rounds.marketingManager[key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
 
