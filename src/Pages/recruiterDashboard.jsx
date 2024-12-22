@@ -1,5 +1,6 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { ResponsiveLine } from "@nivo/line";
+import { ToastContainer, toast } from 'react-toastify';
 import Select from 'react-select';
 import image1 from "../assets/image1.png"
 import image2 from '../assets/Aspireit.png';
@@ -222,28 +223,74 @@ const RecruiterDashboard = () => {
       score,
     }));
 
-    const lineData = [
-      {
-        id: "Scores",
-        color: "#A5A5CC",
-        data: [
-          { x: "", y: null }, // Invisible padding point on the left
-          ...Object.entries(currentScores || {})
-            .filter(([key]) => key !== "postedOn")
-            .map(([name, score]) => ({
-              x: name,
-              y: score,
-            })),
-          { x: " ", y: null }, // Invisible padding point on the right
-        ],
-      },
-    ];
-    
+  const lineData = [
+    {
+      id: "Scores",
+      color: "#A5A5CC",
+      data: [
+        { x: "", y: null }, // Invisible padding point on the left
+        ...Object.entries(currentScores || {})
+          .filter(([key]) => key !== "postedOn")
+          .map(([name, score]) => ({
+            x: name,
+            y: score,
+          })),
+        { x: " ", y: null }, // Invisible padding point on the right
+      ],
+    },
+  ];
 
+
+  // ai summary buttons
+  const [summaryText, setSummaryText] = useState([
+    "You have posted 15 jobs last week, your applicants growth is up by 35%.",
+    "Your premium accounts expiring soon in 5 days.",
+    "Content writer AI interview is yet to be scheduled."
+  ]);
+
+  const [isSpeaking, setIsSpeaking] = useState(false);  // Track speaking state
+
+  // Function to handle text-to-speech
+  const handleTextToSpeech = () => {
+    if (!window.speechSynthesis) {
+      alert('Speech Synthesis not supported in this browser.');
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(summaryText.join(' '));
+    
+    // Disable button during speech
+    setIsSpeaking(true);
+
+    // Re-enable after speech ends
+    utterance.onend = () => {
+      setIsSpeaking(false);
+    };
+
+    // Handle errors
+    utterance.onerror = () => {
+      alert('Error during speech synthesis.');
+      setIsSpeaking(false);
+    };
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // Function to handle copy-to-clipboard
+  const handleCopyToClipboard = () => {
+    const textToCopy = summaryText.join('\n');
+    navigator.clipboard.writeText(textToCopy).then(
+      () => toast.success('Summary copied'),
+      (err) => alert('Failed to copy text: ' + err)
+    );
+  };
 
 
   return (
     <div className='.main-container min-h-[100vh] bg-[#F1F4F8] pb-8'>
+      <ToastContainer 
+       position="top-center"  // Moves the toast to mid-top
+       autoClose={2000}/>
       <div className="NavBar w-full mx-[auto] h-[8vh] min-h-[42px] px-8 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
         <div className="logo-container w-[130px] h-[5vh] min-h-[24px] relative  bg-[#FFF]">
           <div className="Rectangle7391 w-[9vw] h-[4.5vh] min-h-[24px] relative bg-[#0F0F36] rounded-[6px]" />
@@ -347,7 +394,7 @@ const RecruiterDashboard = () => {
           {/* <---------------- Score Graph -----------------> */}
 
           <div
-            className="h-[530px] py-[2vw] px-[4vw] bg-white/30 rounded-[4vw] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
+            className="h-[550px] py-[2vw] px-[4vw] bg-white/30 rounded-[4vw] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
           >
             <div className="self-stretch justify-between items-start inline-flex">
               <div className="w-full flex-col justify-start items-start gap-[1vh] inline-flex pl-2">
@@ -411,7 +458,6 @@ const RecruiterDashboard = () => {
                   legend: "Top Candidates",
                   legendPosition: "middle",
                   legendOffset: 45,
-                  
                 }}
                 axisLeft={{
                   tickSize: 5,
@@ -448,7 +494,7 @@ const RecruiterDashboard = () => {
 
           {/* <-------------- progress card ---------------> */}
 
-          <div className="w-[35vw] min-w-[360px] max-h-[530px] relative bg-white/30 rounded-[32px] py-[24px] px-[48px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
+          <div className="w-[35vw] min-w-[360px] max-h-[550px] relative bg-white/30 rounded-[32px] py-[24px] px-[48px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
             <div className="h-[102px] flex-col justify-start items-start gap-4 inline-flex">
               <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
                 <div className="p-1 justify-start items-center gap-2 inline-flex">
@@ -586,23 +632,23 @@ const RecruiterDashboard = () => {
                 </div>
               </div>
               <ul className="self-stretch text-white font-normal font-['SF UI  Text'] leading-normal list-disc list-inside">
-                <li className='text-[18px]'>
-                  You have posted 15 jobs last week, your applicants growth is up by 35%.
-                </li>
-                <li className='text-[18px]'>
-                  Your premium accounts expiring soon in 5 days.
-                </li>
-                <li className='text-[18px]'>
-                  Content writer AI interview is yet to be scheduled.
-                </li>
+                {summaryText.map((text, index) => (
+                  <li key={index} className="text-[18px]">{text}</li>
+                ))}
               </ul>
             </div>
             <div className="self-stretch justify-end items-center gap-4 inline-flex">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* text to speech ai summary */}
+              <button className='bg-none' disabled={isSpeaking}>
+                <svg onClick={handleTextToSpeech} className={`rounded ${isSpeaking ? 'cursor-not-allowed transform scale-110 transition-transform duration-200' : ''}`}
+              width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.2696 1.07212C13.5606 1.19493 13.7643 1.45693 13.8166 1.76136L13.8298 1.91667V22.0833C13.8298 22.4525 13.6083 22.7858 13.2678 22.9287C12.976 23.0511 12.6457 23.0131 12.3914 22.8368L12.2712 22.7373L6.9075 17.4664H3.74925C2.32021 17.4664 1.14581 16.3758 1.01259 14.9813L1 14.7165V9.23666C1 7.80723 2.09034 6.63251 3.48448 6.49925L3.74925 6.48667H6.90977L12.2739 1.26006C12.5379 1.00288 12.9301 0.928848 13.2696 1.07212ZM18.8476 2.94183L19.0063 3.04963L19.1855 3.20467C19.3008 3.30831 19.4599 3.45844 19.6483 3.65411C20.0246 4.04496 20.5205 4.62088 21.0154 5.37482C22.0059 6.88386 23 9.12045 23 12.0074C23 14.8945 22.0057 17.1278 21.0147 18.6335C20.5196 19.3857 20.0235 19.9599 19.647 20.3495L19.3881 20.6079L19.0458 20.9177L18.9854 20.9674C18.5886 21.2818 18.0108 21.216 17.6965 20.8192C17.4178 20.4672 17.4389 19.9737 17.7242 19.6473L17.961 19.4319C18.0464 19.3555 18.1738 19.2361 18.3292 19.0754C18.6406 18.7531 19.0616 18.267 19.4839 17.6256C20.3272 16.3439 21.1672 14.4558 21.1672 12.0074C21.1672 9.55885 20.3272 7.66678 19.4832 6.38099C19.1313 5.84477 18.7801 5.4165 18.4924 5.10129L18.1823 4.77812L17.8444 4.46753C17.4491 4.15208 17.3829 3.57493 17.698 3.17906C17.9782 2.82701 18.4648 2.7362 18.8476 2.94183ZM17.0162 6.60831L17.1987 6.73616L17.4437 6.96668L17.5427 7.07051C17.7508 7.29496 18.0191 7.62375 18.2849 8.06095C18.8191 8.94008 19.3362 10.248 19.3362 11.9973C19.3362 13.7466 18.8191 15.0559 18.2852 15.9363C18.0198 16.3741 17.7515 16.7038 17.5437 16.9287L17.3575 17.1199L17.2287 17.2391L17.1558 17.3009L17.0395 17.3537C16.7968 17.4509 16.2294 17.6094 15.8679 17.157C15.5884 16.8072 15.6065 16.3157 15.8879 15.988L16.1343 15.7511L16.1974 15.6846C16.334 15.5369 16.5248 15.3045 16.7181 14.9855C17.1023 14.3522 17.5033 13.3678 17.5033 11.9973C17.5033 10.6269 17.1023 9.64456 16.7187 9.01331C16.5737 8.7748 16.4302 8.585 16.3101 8.44301L16.1355 8.25074L16.0099 8.13157C15.6164 7.81766 15.5517 7.24198 15.8666 6.84602C16.1467 6.49385 16.6332 6.40284 17.0162 6.60831Z" fill="white" />
               </svg>
+              </button>
+              
 
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* copy ai summary */}
+              <svg onClick={handleCopyToClipboard} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.7368 1H4.10526C2.94211 1 2 1.895 2 3V17H4.10526V3H16.7368V1ZM19.8947 5H8.31579C7.15263 5 6.21053 5.895 6.21053 7V21C6.21053 22.105 7.15263 23 8.31579 23H19.8947C21.0579 23 22 22.105 22 21V7C22 5.895 21.0579 5 19.8947 5ZM19.8947 21H8.31579V7H19.8947V21Z" fill="white" />
               </svg>
 
