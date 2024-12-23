@@ -170,7 +170,7 @@ const applicant = () => {
                                                     <path d="M3 23V9.70046C3 9.27995 3.26307 8.90437 3.65826 8.76067L13.3291 5.24398C13.5886 5.14961 13.8755 5.28349 13.9699 5.54301C13.9898 5.59778 14 5.65561 14 5.71388V10.6667L20.3162 12.7721C20.7246 12.9082 21 13.2904 21 13.7208V23H22C22.5523 23 23 23.4477 23 24V24C23 24.5523 22.5523 25 22 25H2C1.44772 25 1 24.5523 1 24V24C1 23.4477 1.44772 23 2 23H3ZM5 23H12V7.85543L5 10.4009V23ZM19 23V14.4416L14 12.7749V23H19Z" fill="#0072DC" />
                                                 </svg>
 
-                                                <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text'] leading-none">Company :</div>
+                                                <span className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text'] leading-none inline-flex"><span>Company&nbsp;</span><span>:</span></span>
                                             </div>
                                             <div className="grow shrink basis-0 text-[#1e1e1e] text-base font-normal font-['SF UI  Text'] leading-none">TCS</div>
                                         </div>
@@ -180,7 +180,7 @@ const applicant = () => {
                                                     <path d="M3 23V9.70046C3 9.27995 3.26307 8.90437 3.65826 8.76067L13.3291 5.24398C13.5886 5.14961 13.8755 5.28349 13.9699 5.54301C13.9898 5.59778 14 5.65561 14 5.71388V10.6667L20.3162 12.7721C20.7246 12.9082 21 13.2904 21 13.7208V23H22C22.5523 23 23 23.4477 23 24V24C23 24.5523 22.5523 25 22 25H2C1.44772 25 1 24.5523 1 24V24C1 23.4477 1.44772 23 2 23H3ZM5 23H12V7.85543L5 10.4009V23ZM19 23V14.4416L14 12.7749V23H19Z" fill="#0072DC" />
                                                 </svg>
 
-                                                <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text'] leading-none">Experience :</div>
+                                                <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text'] leading-none inline-flex"><span>Experience&nbsp;</span><span>:</span></div>
                                             </div>
                                             <div className="grow shrink basis-0 text-[#1e1e1e] text-base font-normal font-['SF UI  Text'] leading-none">5 years</div>
                                         </div>
@@ -190,7 +190,7 @@ const applicant = () => {
                                                     <path d="M6 8H4V6H20V8H18V10C18 11.6154 17.1838 12.9147 16.1561 13.9767C15.4532 14.703 14.598 15.372 13.7309 16C14.598 16.628 15.4532 17.297 16.1561 18.0233C17.1838 19.0853 18 20.3846 18 22V24H20V26H4V24H6V22C6 20.3846 6.81616 19.0853 7.8439 18.0233C8.54682 17.297 9.40202 16.628 10.2691 16C9.40202 15.372 8.54682 14.703 7.8439 13.9767C6.81616 12.9147 6 11.6154 6 10V8ZM8 8V10C8 10.8846 8.43384 11.7103 9.2811 12.5858C10.008 13.337 10.9548 14.0398 12 14.7781C13.0452 14.0398 13.992 13.337 14.7189 12.5858C15.5662 11.7103 16 10.8846 16 10V8H8ZM12 17.2219C10.9548 17.9602 10.008 18.663 9.2811 19.4142C8.43384 20.2897 8 21.1154 8 22V24H16V22C16 21.1154 15.5662 20.2897 14.7189 19.4142C13.992 18.663 13.0452 17.9602 12 17.2219Z" fill="#0072DC" />
                                                 </svg>
 
-                                                <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text'] leading-none">Location :</div>
+                                                <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text'] leading-none inline-flex"><span>Location&nbsp;</span><span>:</span></div>
                                             </div>
                                             <div className="grow shrink basis-0 text-[#1e1e1e] text-base font-normal font-['SF UI  Text'] leading-none">Kolkata </div>
                                         </div>
@@ -220,7 +220,7 @@ const applicant = () => {
                                 </div>
                                 <div className='flex items-end'>
                                     <div className="ButtonsCta h-[5vh] px-9 bg-[#0071db] rounded-[30px] shadow justify-center max-w-[235px] items-center gap-2 inline-flex cursor-pointer">
-                                        <div className="ButtonLabel text-center text-white text-[18px] font-['SF UI  Text'] leading-[18px]">Finalize Candidate</div>
+                                        <div className="ButtonLabel text-center inline-flex"><span className="text-white text-[18px] font-['SF UI  Text'] leading-[18px]">Finalize&nbsp;</span><span className="text-white text-[18px] font-['SF UI  Text'] leading-[18px]">Candidate</span></div>
                                     </div>
                                 </div>
 

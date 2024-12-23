@@ -5,6 +5,26 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #2890fa;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;  /* Scrollbar width */
+}
+
+@keyframes blink {
+  0%,100%{
+      box-shadow: 0px 0px 18px 4px rgba(200,106,255,0.6);
+  } 
+  50% {
+    box-shadow: 0px 0px 12px 2px rgba(200,106,255,0.25);
+    background-color: #55557c;
+  }
+}
+
+/* .blink-animation:hover{
+  animation: blink 2.5s infinite;
+} */
 
 @keyframes rotatePetals {
   0% {
