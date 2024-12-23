@@ -625,11 +625,11 @@ const RecruiterDashboard = () => {
         </div>
 
 
-        <div className='flex justify-center my-[3vh] gap-12 w-[100%]'>
+        <div className='flex justify-center items-center my-[3vh] gap-12 w-[100%]'>
 
           {/* <------------------ Scheduled Interview------------------> */}
 
-          <div className="p-8 bg-white/30 rounded-[32px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] backdrop-blur-lg flex-col justify-center items-end gap-6 inline-flex flex-grow" style={{ border: '0.5px solid var(--Gradients-Gradient-Blue-to-pink, #D388FF)' }}>
+          <div className="w-[60vw] p-8 bg-white/30 rounded-[32px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] backdrop-blur-lg flex-col justify-center items-end gap-6 inline-flex flex-grow" style={{ border: '0.5px solid var(--Gradients-Gradient-Blue-to-pink, #D388FF)' }}>
             <div className="self-stretch h-48 flex-col justify-center items-center gap-6 flex">
               <div className="self-stretch h-9 flex-col justify-start items-start flex">
                 <div className="self-stretch h-9 flex-col justify-start items-start flex">
@@ -665,7 +665,7 @@ const RecruiterDashboard = () => {
 
           {/* <------------- AI summary --------------> */}
 
-          <div className='w-[35vw]' style={{ height: '100%', padding: 32, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ height: '100%', padding: 32, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column' }}>
             <div className="self-stretch flex-col justify-start items-start gap-6 flex">
               <div className=" justify-start items-center gap-1 inline-flex">
                 <div className="w-8 h-8 pl-1 pr-[2.67px] pt-[1.33px] pb-[1.44px] justify-center items-center flex">
