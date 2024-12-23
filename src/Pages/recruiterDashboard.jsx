@@ -190,7 +190,7 @@ const RecruiterDashboard = () => {
       top: "auto",
       left: "auto",
       fontSize: "18px",
-      maxWidth: "250px",
+      maxWidth: "280px",
       maxHeight: "280px",
       overflowY: "auto",
       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -411,7 +411,7 @@ const RecruiterDashboard = () => {
           {/* <---------------- Score Graph -----------------> */}
 
           <div
-            className="h-fit py-[2vw] px-[4vw] bg-white/30 rounded-[32px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
+            className="h-fit w-[50vw] py-[2vw] px-[4vw] bg-white/30 rounded-[32px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
           >
             <div className="self-stretch justify-between items-start inline-flex">
               <div className="w-full flex-col justify-start items-start gap-[1vh] inline-flex pl-2">
@@ -461,13 +461,13 @@ const RecruiterDashboard = () => {
                 {/* <div className="w-[3vw] h-[3vw] flex-col justify-center items-center gap-[1vw] inline-flex" /> */}
               </div>
             </div>
-            <div className="h-[350px] self-stretch py-[2vh] bg-none rounded-[24px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#dcffff] flex-col justify-center items-center flex">
+            <div className="w-[100%] h-[350px] py-[2vh] bg-none rounded-[24px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#dcffff] flex-col justify-center items-center flex shrink">
               {/* responsive bar code place here */}
               <ResponsiveLine
                 data={lineData}
                 margin={{ top: 40, right: 50, bottom: 60, left: 60 }}
-                xScale={{ type: "point", }}
-                yScale={{ type: "linear", min: 80, max: 100, }}
+                xScale={{ type: "point" }}
+                yScale={{ type: "linear", min: 80, max: 100 }}
                 axisTop={null}
                 axisRight={null}
                 axisBottom={{
@@ -487,10 +487,8 @@ const RecruiterDashboard = () => {
                 }}
                 gridXValues={[]}
                 gridYValues={[80, 85, 90, 95, 100]}
-                pointSize={10}
-                pointBorderWidth={2}
-                pointColor="#4B94F6"
-                pointBorderColor="#4B94F6"
+                pointSize={15}
+                pointColor='#4B94F7'
                 pointLabelYOffset={-12}
                 useMesh={true}
                 animation={true}
@@ -511,7 +509,33 @@ const RecruiterDashboard = () => {
                     },
                   },
                 }}
+                pointSymbol={({ x, y }) => {
+                  const circleRadius = 7;
+                  const svgWidth = 15;
+                  const svgHeight = 15;
+
+                  // Use Nivo's x, y values directly to center the SVG within the point symbol
+                  return (
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 15 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ transform: `translate(${x || 0}px, ${y || 0}px)` }}
+                    >
+                      <circle cx="7.01562" cy="7.27588" r="7" fill="url(#paint0_linear_215_2108)" />
+                      <defs>
+                        <linearGradient id="paint0_linear_215_2108" x1="12.2378" y1="14.2759" x2="-4.62882" y2="-4.79073" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#D388FF" />
+                          <stop offset="0.695" stopColor="#4B94F7" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  );
+                }}
               />
+
             </div>
           </div>
 
@@ -582,7 +606,7 @@ const RecruiterDashboard = () => {
                       } : {}}
                     />
                     <div
-                      className={`text-center text-xl font-normal font-['SF UI Text'] leading-tight ${statusStyles[status].text}`}
+                      className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
                       style={isActive ? { background: statusStyles[status].gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
                     >
                       {label}
