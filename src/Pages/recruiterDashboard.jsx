@@ -260,7 +260,6 @@ const RecruiterDashboard = () => {
       ...provided,
       position: "fixed",
       backgroundColor: "#D7D7D7",
-      border: "1px solid #EBEBEB",
       borderRadius: "4px",
       zIndex: 999,
       top: "auto",
@@ -285,9 +284,9 @@ const RecruiterDashboard = () => {
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isFocused ? "#C3C3EA" : "#D7D7D7",
-      color: "#161616",
-      fontWeight: state.isSelected ? "600" : "400",
+      backgroundColor: state.isFocused ? "#C3C3EA" : "#EBEBEB",
+      color: state.isSelected ? "#1E1E1E" : "#6F6F6F",
+      fontWeight: "400",
       padding: "10px 20px",
       cursor: "pointer",
       ":active": {
@@ -409,12 +408,12 @@ const RecruiterDashboard = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center mt-[3vh] px-[10vw]">
+      <div className="flex flex-col items-center mt-[3vh] px-[6vw]">
         <div className='overflow-hidden' style={{ width: '100%', height: 320, paddingLeft: 56, paddingRight: 56, paddingTop: 40, paddingBottom: 40, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 40, display: 'inline-flex' }}>
           {/* Yesterday's Progress Section */}
           <div style={{ flex: '1 1 0', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 20, display: 'inline-flex' }}>
             <div className="font-['SF UI  Display'] text-4xl" style={{ textAlign: 'center', color: 'white', fontWeight: '700', lineHeight: '28px', wordWrap: 'break-word' }}>Yesterday’s Progress</div>
-            <div className='custom-scrollbar' style={{ alignSelf: 'stretch', height: 208, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', overflowY: 'scroll', paddingRight: 20, boxSizing: 'border-box' }}>
+            <div className='custom-scrollbar' style={{ alignSelf: 'stretch', height: 198, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', overflowY: 'scroll', paddingRight: 20, boxSizing: 'border-box' }}>
               {progress.yesterdaysProgress.map((item, index) => (
                 <div key={index} style={{ alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20, paddingTop: 12, paddingBottom: 12, background: 'rgba(255, 255, 255, 0.16)', boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.25)', borderRadius: 12, backdropFilter: 'blur(16px)', justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'inline-flex' }}>
                   <div style={{ width: 32, height: 32, position: 'relative' }}>
@@ -435,7 +434,7 @@ const RecruiterDashboard = () => {
           {/* Today's Goals Section */}
           <div style={{ flex: '1 1 0', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 20, display: 'inline-flex' }}>
             <div className="font-['SF UI  Display'] text-4xl" style={{ textAlign: 'center', color: 'white', fontWeight: '700', lineHeight: '28px', wordWrap: 'break-word' }}>Today's Goals</div>
-            <div className='custom-scrollbar' style={{ alignSelf: 'stretch', height: 208, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', overflowY: 'scroll', paddingRight: 20, boxSizing: 'border-box' }}>
+            <div className='custom-scrollbar' style={{ alignSelf: 'stretch', height: 198, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', overflowY: 'scroll', paddingRight: 20, boxSizing: 'border-box' }}>
               {progress.todaysGoals.map((goal, index) => (
                 <div key={index} style={{ alignSelf: 'stretch', paddingLeft: 20, paddingTop: 12, paddingBottom: 12, background: 'rgba(255, 255, 255, 0.16)', boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.25)', borderRadius: 12, backdropFilter: 'blur(16px)', justifyContent: 'flex-start', alignItems: 'center', gap: 16, display: 'inline-flex' }}>
                   <div style={{ width: 32, height: 32, justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
@@ -468,15 +467,19 @@ const RecruiterDashboard = () => {
             <div className="self-stretch justify-between items-start inline-flex">
               <div className="w-full flex-col justify-start items-start gap-[1vh] inline-flex pl-2">
                 <div className="justify-start items-center gap-[1vw] inline-flex">
-                  <div className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
+                  <div
+                    className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
                     style={{
-                      background: statusStyles[role]['active'].gradient,
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}>
+                      backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
+                      backgroundClip: 'text', // Clip the background to the text
+                      WebkitBackgroundClip: 'text', // For webkit browsers
+                      WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
+                      transition: 'background-image 0.5s ease', // Smooth transition for background image
+                    }}
+                  >
                     Top candidates
                   </div>
+
                 </div>
                 <div className="self-stretch flex-col justify-start items-start gap-[0.5vh] flex">
                   <div className="self-stretch justify-start items-center inline-flex">
@@ -486,12 +489,14 @@ const RecruiterDashboard = () => {
                       </div>
                     </div>
                     <div className="py-[0.5vh] justify-center items-center gap-[1vw] flex">
+
                       <div className="text-center text-[#bf4cf9] text-[2.2vh] font-semibold font-['SF UI Text'] leading-[2.8vh]"
                         style={{
-                          background: statusStyles[role]['active'].gradient,
-                          backgroundClip: 'text',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
+                          backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
+                          backgroundClip: 'text', // Clip the background to the text
+                          WebkitBackgroundClip: 'text', // For webkit browsers
+                          WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
+                          transition: 'background-image 0.5s ease', // Smooth transition for background image
                         }}>
                         UI/UX Designer
                       </div>
@@ -567,167 +572,182 @@ const RecruiterDashboard = () => {
 
 
           {/* <-------------- progress card ---------------> */}
-          <div className="w-[35vw] min-w-[360px] overflow-hidden h-[540px] relative bg-white/30 rounded-[32px] py-[24px] px-[48px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
-          <Swiper
-        direction="vertical"  // Enables vertical sliding
-        slidesPerView={1}      
-        spaceBetween={30}      
-        pagination={{ clickable: true }}
-        onSlideChange={handleSlideChange}
-        modules={[Pagination]}
-        className="h-full w-full"
-      >
-        <SwiperSlide>
-        <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
-              <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
-                <div className="p-1 justify-start items-center gap-2 inline-flex">
-                  <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
-                    Progress Report for
-                  </div>
-                </div>
-                <div className="self-stretch px-1 justify-start items-center inline-flex">
-                  <div className="py-1 justify-center items-center gap-2 flex">
-                    <div
-                      className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
-                      style={{
-                        background: statusStyles[role]['active'].gradient,
-                        backgroundClip: 'text',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                      }}
-                    >
-                      {textRole}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch px-1 justify-start items-center inline-flex">
-                <div className="py-1 justify-center items-center gap-2 flex">
-                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                    Posted on
-                  </div>
-                </div>
-                <div className="p-1 justify-center items-center gap-2 flex">
-                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
-                </div>
-                <div className="justify-start items-center gap-1 flex">
-                  <div className="py-1 justify-center items-center gap-2 flex">
-                    <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                      {rounds[role].postedOn}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="w-[35vw] min-w-[360px] overflow-hidden h-[540px] relative bg-white/30 rounded-[32px] py-[24px] pl-[48px] pr-[24px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
+            <style>
+              {`
+          .swiper-pagination-bullet {
+            background-color: #7D7DA4 !important;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.50);
+          }
 
-            <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
-              {roundsList.map(({ label, key }) => {
-                const isActive = rounds[role].isActive === key;
-                const status =
-                  rounds[role][key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
+          .swiper-pagination-bullet-active {
+            background-color: #2890FA !important;
+          }
+        `}
 
-                return (
-                  <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
-                    <div
-                      className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
-                      style={isActive ? {
-                        boxShadow: statusStyles[role][status].gradient,
-                        animation: 'blink 2.5s infinite'
-                      } : {}}
-                    />
-                    <div
-                      className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-                      style={isActive ? { background: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
-                    >
-                      {label}
+            </style>
+            <Swiper
+              direction="vertical"  // Enables vertical sliding
+              slidesPerView={1}
+              spaceBetween={30}
+              pagination={{ clickable: true }}
+              onSlideChange={handleSlideChange}
+              modules={[Pagination]}
+              className="h-full w-full"
+            >
+              <SwiperSlide>
+                <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
+                  <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
+                    <div className="p-1 justify-start items-center gap-2 inline-flex">
+                      <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
+                        Progress Report for
+                      </div>
+                    </div>
+                    <div className="self-stretch px-1 justify-start items-center inline-flex">
+                      <div className="py-1 justify-center items-center gap-2 flex">
+                        <div
+                          className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
+                          style={{
+                            backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
+                            backgroundClip: 'text', // Clip the background to the text
+                            WebkitBackgroundClip: 'text', // For webkit browsers
+                            WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
+                            transition: 'background-image 0.5s ease', // Smooth transition for background image
+                          }}
+                        >
+                          {textRole}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                );
-              })}
-              <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-            </div>
-            <div className='w-full flex justify-end'>
-              <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
-              </div>
-            </div>
-        </SwiperSlide>
-        <SwiperSlide>
-        <div className="h-[102px] flex-col justify-start items-start gap-4 inline-flex">
-              <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
-                <div className="p-1 justify-start items-center gap-2 inline-flex">
-                  <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
-                    Progress Report for
-                  </div>
-                </div>
-                <div className="self-stretch px-1 justify-start items-center inline-flex">
-                  <div className="py-1 justify-center items-center gap-2 flex">
-                    <div
-                      className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
-                      style={{
-                        background: statusStyles[role]['active'].gradient,
-                        backgroundClip: 'text',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                      }}
-                    >
-                      {textRole}
+                  <div className="self-stretch px-1 justify-start items-center inline-flex">
+                    <div className="py-1 justify-center items-center gap-2 flex">
+                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                        Posted on
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div className="self-stretch px-1 justify-start items-center inline-flex">
-                <div className="py-1 justify-center items-center gap-2 flex">
-                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                    Posted on
-                  </div>
-                </div>
-                <div className="p-1 justify-center items-center gap-2 flex">
-                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
-                </div>
-                <div className="justify-start items-center gap-1 flex">
-                  <div className="py-1 justify-center items-center gap-2 flex">
-                    <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                      {rounds[role].postedOn}
+                    <div className="p-1 justify-center items-center gap-2 flex">
+                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
+                    </div>
+                    <div className="justify-start items-center gap-1 flex">
+                      <div className="py-1 justify-center items-center gap-2 flex">
+                        <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                          {rounds[role].postedOn}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
-              {roundsList.map(({ label, key }) => {
-                const isActive = rounds[role].isActive === key;
-                const status =
-                  rounds[role][key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
+                <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
+                  {roundsList.map(({ label, key }) => {
+                    const isActive = rounds[role].isActive === key;
+                    const status =
+                      rounds[role][key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
 
-                return (
-                  <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
-                    <div
-                      className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
-                      style={isActive ? {
-                        boxShadow: statusStyles[role][status].gradient,
-                        animation: 'blink 2.5s infinite'
-                      } : {}}
-                    />
-                    <div
-                      className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-                      style={isActive ? { background: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
-                    >
-                      {label}
+                    return (
+                      <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
+                        <div
+                          className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
+                          style={isActive ? {
+                            boxShadow: statusStyles[role][status].gradient,
+                            animation: 'blink 2.5s infinite'
+                          } : {}}
+                        />
+                        <div
+                          className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
+                          style={isActive ? { background: statusStyles[role][status].gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
+                        >
+                          {label}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
+                </div>
+                <div className='w-full flex justify-end'>
+                  <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
+                    <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
+                  <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
+                    <div className="p-1 justify-start items-center gap-2 inline-flex">
+                      <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
+                        Progress Report for
+                      </div>
+                    </div>
+                    <div className="self-stretch px-1 justify-start items-center inline-flex">
+                      <div className="py-1 justify-center items-center gap-2 flex">
+                        <div
+                          className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
+                          style={{
+                            backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
+                            backgroundClip: 'text', // Clip the background to the text
+                            WebkitBackgroundClip: 'text', // For webkit browsers
+                            WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
+                            transition: 'background-image 0.5s ease', // Smooth transition for background image
+                          }}
+                        >
+                          {textRole}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                );
-              })}
-              <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-            </div>
-            <div className='w-full flex justify-end'>
-              <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
-              </div>
-            </div>
-        </SwiperSlide>
-      </Swiper>
+                  <div className="self-stretch px-1 justify-start items-center inline-flex">
+                    <div className="py-1 justify-center items-center gap-2 flex">
+                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                        Posted on
+                      </div>
+                    </div>
+                    <div className="p-1 justify-center items-center gap-2 flex">
+                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
+                    </div>
+                    <div className="justify-start items-center gap-1 flex">
+                      <div className="py-1 justify-center items-center gap-2 flex">
+                        <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                          {rounds[role].postedOn}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
+                  {roundsList.map(({ label, key }) => {
+                    const isActive = rounds[role].isActive === key;
+                    const status =
+                      rounds[role][key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
+
+                    return (
+                      <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
+                        <div
+                          className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
+                          style={isActive ? {
+                            boxShadow: statusStyles[role][status].gradient,
+                            animation: 'blink 2.5s infinite'
+                          } : {}}
+                        />
+                        <div
+                          className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
+                          style={isActive ? { background: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
+                        >
+                          {label}
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
+                </div>
+                <div className='w-full flex justify-end'>
+                  <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
+                    <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
 
           </div>
 
@@ -774,7 +794,7 @@ const RecruiterDashboard = () => {
 
           {/* <------------- AI summary --------------> */}
 
-          <div className='w-[35vw] min-w-[360px] px-[32px] py-[24px]' style={{ height: '100%', background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column' }}>
+          <div className='w-[35vw] min-w-[360px] px-[32px] py-[36px]' style={{ height: '100%', background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column' }}>
             <div className="self-stretch flex-col justify-start items-start gap-6 flex">
               <div className=" justify-start items-center gap-1 inline-flex">
                 <div className="w-8 h-8 pl-1 pr-[2.67px] pt-[1.33px] pb-[1.44px] justify-center items-center flex">
