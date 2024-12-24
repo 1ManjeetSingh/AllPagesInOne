@@ -7,6 +7,13 @@ import image2 from '../assets/Aspireit.png';
 import image3 from '../assets/Ellipse 1872.svg';
 import image4 from '../assets/Type=Layila.svg';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { Pagination } from 'swiper/modules';
+
+
 
 const RecruiterDashboard = () => {
 
@@ -29,6 +36,7 @@ const RecruiterDashboard = () => {
       setSearchPhrase('');
     }
   }, [isFocused1]);
+
 
 
   // <--------- Data Consts ----------->
@@ -64,19 +72,26 @@ const RecruiterDashboard = () => {
       jobPosted: 1, // Completed
       applicantsApplied: 1, // Completed
       selectionComplete: 1, // Completed
-      aiInterviewPending: 0, // Completed
+      aiInterviewPending: 1, // Completed
       aiTechnicalRound: 0, // Pending
       shortlistedCandidates: 0, // Pending
     }
   };
 
-  const roundsList = [
-    { label: 'Job Posted', key: 'jobPosted' },
-    { label: 'Applicants Applied', key: 'applicantsApplied' },
-    { label: 'Selection Complete', key: 'selectionComplete' },
-    { label: 'AI Interview Pending...', key: 'aiInterviewPending' },
-    { label: 'AI Technical Round', key: 'aiTechnicalRound' },
-    { label: 'Shortlisted Candidates', key: 'shortlistedCandidates' },
+  const [role, setRole] = useState('marketingManager'); // or 'softwareDeveloper' or 'marketingManager'
+
+  const textRole = role
+    .replace(/([A-Z])/g, ' $1')  // Add space before uppercase letters
+    .trim()                      // Remove leading/trailing spaces
+    .replace(/^./, str => str.toUpperCase()); // Capitalize the first letter
+
+  const roundsList = Object.keys(rounds[role])
+    .filter(key => key !== 'postedOn')
+    .map(key => ({ label: key.replace(/([A-Z])/g, ' $1').trim().replace(/^./, str => str.toUpperCase()), key }));
+
+  const options = [
+    { value: 'aiTechnicalRoundAndInterview', label: 'AI Technical Round & Interview' },
+    { value: 'aiNonTechnicalRoundAndInterview', label: 'AI Non-Technical Round & Interview' },
   ];
 
   const markFirstPendingActive = (rounds) => {
@@ -94,41 +109,83 @@ const RecruiterDashboard = () => {
   });
 
   const statusStyles = {
-    completed: {
-      circle: 'bg-[#7d7da4] border-[#c3c3ea] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)]',
-      text: 'text-[#7d7da4]',
+    marketingManager: {
+      completed: {
+        circle: 'bg-[#7d7da4] border-[#c3c3ea] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)]',
+        text: 'text-[#7d7da4]',
+      },
+      pending: {
+        circle: 'bg-[#d7d7fe]',
+        text: 'text-[#c3c3ea]',
+      },
+      active: {
+        circle: 'bg-[#7d7da4] shadow-[0px_0px_24px_2px_rgba(151,71,255,1.00)]',
+        text: 'text-transparent font-bold',
+        gradient: 'linear-gradient(319deg, #D388FF 5.96%, #4B94F6 95.49%)',
+      },
     },
-    pending: {
-      circle: 'bg-[#d7d7fe]',
-      text: 'text-[#c3c3ea]',
-    },
-    active: {
-      circle: 'bg-[#7d7da4] shadow-[0px_0px_24px_2px_rgba(151,71,255,1.00)]',
-      text: 'text-transparent font-bold',
-      gradient: 'linear-gradient(319deg, #D388FF 5.96%, #4B94F6 95.49%)',
-    },
+    softwareDeveloper: {
+      completed: {
+        circle: 'bg-[#7d7da4] border-[#c3c3ea] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)]',
+        text: 'text-[#f671c4]',
+      },
+      pending: {
+        circle: 'bg-[#d7d7fe]',
+        text: 'text-[#f8a5d7]',
+      },
+      active: {
+        circle: 'bg-[#7d7da4] shadow-[0px_0px_24px_2px_rgba(151,71,255,1.00)]',
+        text: 'text-transparent font-bold',
+        gradient: 'linear-gradient(90deg, #B054F6 0%, #FE52B0 100%)',
+      },
+    }
   };
 
 
   const scores = {
-    aiTechnicalRoundAndInterview: {
-      postedOn: '12th Dec 2024',
-      "Kunal P.": 97,
-      "Muskan M.": 96,
-      "Gautam K.": 91,
-      "Payal R.": 90,
-      "Kunal M.": 84,
-      "Rahul V.": 83,
+    marketingManager: {
+      aiTechnicalRoundAndInterview: {
+        postedOn: '12th Dec 2024',
+        "Kunal P.": 97,
+        "Muskan M.": 96,
+        "Gautam K.": 91,
+        "Payal R.": 90,
+        "Kunal M.": 84,
+        "Rahul V.": 83,
+      },
+      aiNonTechnicalRoundAndInterview: {
+        postedOn: '13th Dec 2024',
+        "Aman S.": 92,
+        "Riya T.": 89,
+        "Vikas J.": 87,
+        "Neha G.": 85,
+        "Rahul V.": 83,
+      }
     },
-    aiNonTechnicalRoundAndInterview: {
-      postedOn: '13th Dec 2024',
-      "Aman S.": 92,
-      "Riya T.": 89,
-      "Vikas J.": 87,
-      "Neha G.": 85,
-      "Rahul V.": 83,
+    softwareDeveloper: {
+      aiTechnicalRoundAndInterview: {
+        postedOn: '12th Dec 2024',
+        "Kunal P.": 98,
+        "Muskan M.": 95,
+        "Gautam K.": 90,
+        "Payal R.": 89,
+        "Kunal M.": 84,
+        "Rahul V.": 80,
+      },
+      aiNonTechnicalRoundAndInterview: {
+        postedOn: '13th Dec 2024',
+        "Aman S.": 95,
+        "Riya T.": 89,
+        "Vikas J.": 85,
+        "Neha G.": 84,
+        "Rahul V.": 80,
+      }
     }
   };
+
+  const [openSelect, setOpenSelect] = useState(false);
+  const [option, setOption] = useState(options[0].value);
+
 
   const schedule = {
     meet: ['Dhaval Jha | UI/UX Designer | 24th Jan | 11AM'],
@@ -137,15 +194,34 @@ const RecruiterDashboard = () => {
   const googleMeet = "https://s3-alpha-sig.figma.com/img/b37e/be4e/3abb7516c4f7dd6da8177518f712eb09?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XA4-MPAmnelxCyHDUN-CkUJx0qNII7ZTT1IkgV3KrLxE6wR7toPuYzpGSOxdXD~qr0DKsXwbQXj6~iWQPpm0UMlmPF~T0BJv6Zw-SQmU2JByyGwmtzyjOdHyaAVDowwRSRMfH3ciZd~fywdAKOsjEfLlH-XKdjSriRiEu5kPp4K6lXYCXj-Tmuiy14HUQyW1OUeatNQhiDXgTH~rnK2crhUhWfWFR-78q2sLZcd59NqQrjaWiwr3vTWwbYVbyOG8O1bbfTyYsQAi-Di4Np~ADFPaFJB0vqUPpWuyx5iEeleZ1j--GZGSM9NoHInL78bswyKFgGjHLl0WY10XwWsN3g__";
   const zoom = "https://s3-alpha-sig.figma.com/img/8a76/0006/20564ddd89bc90c94911ce13c481f7d8?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=D8N7eCw8o7Hvg2my~I4Jw7fapvPNNcw9kxV2gv05CUooPsfowMNCfMkYs7OS5gWgOyb8QCC7Y3kqXn0KEEmdKaDxCs8ZRGnEs6oa8rCEr9RQL3Ci73EoQsWs-qqyQKwk8yBCyN2UYyHl6OdfAWkPkW7ibT6D8CU9ie40-usIcOXtSmgKfK-2JjWNV3wIwKju9Y-xdAVrLrXCdI4NdwB8nNzcAn8bWn7Bd8VqBZ83~PLr94r7Ft1Pq6p2KrgIthRuvEXNw3oIdomNHmMB7uoiQipx-4i~kkYKm9AOxhacokAXS6EOkuxzAlXJ5nvEa3~E70vzifekcO85LdulJ3uLaA__";
 
+  const toggleDialogOption = () => {
+    setOpenSelect(!openSelect);
+  };
 
-  const [openSelect, setOpenSelect] = useState(false);
+  const handleChangeOption = (selectedOption) => {
+    setOption(selectedOption.value);
+    toggleDialogOption();
+  };
 
-  const options = [
-    { value: 'aiTechnicalRoundAndInterview', label: 'AI Technical Round & Interview' },
-    { value: 'aiNonTechnicalRoundAndInterview', label: 'AI Non-Technical Round & Interview' },
+  const currentScores = scores[role][option];
+
+  const lineData = [
+    {
+      id: "Scores",
+      color: "#A5A5CC",
+      data: [
+        { x: "", y: null }, // Invisible padding point on the left
+        ...Object.entries(currentScores || {})
+          .filter(([key]) => key !== "postedOn")
+          .map(([name, score]) => ({
+            x: name,
+            y: score,
+          })),
+        { x: " ", y: null }, // Invisible padding point on the right
+      ],
+    },
   ];
 
-  const [option, setOption] = useState(options[0].value);
 
   const customStyles = {
     control: (provided) => ({
@@ -206,7 +282,6 @@ const RecruiterDashboard = () => {
       ...provided,
       color: "#161616",
       fontSize: "14px",
-      textAlign: 'center',
     }),
     option: (provided, state) => ({
       ...provided,
@@ -220,42 +295,6 @@ const RecruiterDashboard = () => {
       },
     }),
   };
-
-  const toggleDialogOption = () => {
-    setOpenSelect(!openSelect);
-  };
-
-  const handleChangeOption = (selectedOption) => {
-    setOption(selectedOption.value);
-    toggleDialogOption();
-  };
-
-  const currentScores = scores[option];
-  const scoreEntries = Object.entries(currentScores || {}).filter(([key]) => key !== "postedOn");
-
-  const formattedData = Object.entries(currentScores)
-    .filter(([key]) => key !== 'postedOn') // Exclude 'postedOn'
-    .map(([name, score]) => ({
-      candidate: name,
-      score,
-    }));
-
-  const lineData = [
-    {
-      id: "Scores",
-      color: "#A5A5CC",
-      data: [
-        { x: "", y: null }, // Invisible padding point on the left
-        ...Object.entries(currentScores || {})
-          .filter(([key]) => key !== "postedOn")
-          .map(([name, score]) => ({
-            x: name,
-            y: score,
-          })),
-        { x: " ", y: null }, // Invisible padding point on the right
-      ],
-    },
-  ];
 
 
   // ai summary buttons
@@ -303,11 +342,24 @@ const RecruiterDashboard = () => {
   };
 
 
+  // progress Report pagination
+
+  const handleSlideChange = (swiper) => {
+    // Change role to softwareDeveloper when on second slide
+    if (swiper.activeIndex === 1) {
+      setRole('softwareDeveloper');
+    } else {
+      setRole('marketingManager');
+    }
+  };
+
   return (
     <div className='.main-container min-h-[100vh] bg-[#F1F4F8] pb-8'>
       <ToastContainer
         position="top-center"  // Moves the toast to mid-top
         autoClose={2000} />
+
+      {/* Navbar */}
       <div className="NavBar w-full mx-[auto] h-[8vh] min-h-[42px] px-8 bg-white border border-[#D2D2D2] backdrop-blur-[220px] flex justify-between items-center hover:cursor-pointer">
         <div className="logo-container w-[130px] h-[5vh] min-h-[24px] relative  bg-[#FFF]">
           <div className="Rectangle7391 w-[9vw] h-[4.5vh] min-h-[24px] relative bg-[#0F0F36] rounded-[6px]" />
@@ -411,14 +463,14 @@ const RecruiterDashboard = () => {
           {/* <---------------- Score Graph -----------------> */}
 
           <div
-            className="h-fit w-[50vw] py-[2vw] px-[4vw] bg-white/30 rounded-[32px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
+            className="h-fit min-h-[540px] w-full max-w-[50vw] py-[2vw] px-[4vw] bg-white/30 rounded-[32px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
           >
             <div className="self-stretch justify-between items-start inline-flex">
               <div className="w-full flex-col justify-start items-start gap-[1vh] inline-flex pl-2">
                 <div className="justify-start items-center gap-[1vw] inline-flex">
                   <div className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
                     style={{
-                      background: 'linear-gradient(90deg, #BF4CF9 0%, #4274FE 100%)',
+                      background: statusStyles[role]['active'].gradient,
                       backgroundClip: 'text',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
@@ -436,7 +488,7 @@ const RecruiterDashboard = () => {
                     <div className="py-[0.5vh] justify-center items-center gap-[1vw] flex">
                       <div className="text-center text-[#bf4cf9] text-[2.2vh] font-semibold font-['SF UI Text'] leading-[2.8vh]"
                         style={{
-                          background: 'linear-gradient(90deg, #BF4CF9 0%, #4274FE 100%)',
+                          background: statusStyles[role]['active'].gradient,
                           backgroundClip: 'text',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
@@ -488,7 +540,7 @@ const RecruiterDashboard = () => {
                 gridXValues={[]}
                 gridYValues={[80, 85, 90, 95, 100]}
                 pointSize={15}
-                pointColor='#4B94F7'
+                pointColor={role === 'softwareDeveloper' ? '#E253C9' : '#4B94F7'}
                 pointLabelYOffset={-12}
                 useMesh={true}
                 animation={true}
@@ -497,53 +549,36 @@ const RecruiterDashboard = () => {
                   axis: {
                     ticks: {
                       text: {
-                        fill: '#7d7da4',
+                        fill: role === 'softwareDeveloper' ? '#E253C9' : '#7d7da4',
                       },
                     },
                     legend: {
                       text: {
                         fontSize: 16,
                         fontWeight: 'bold',
-                        fill: "#55557C",
+                        fill: role === 'softwareDeveloper' ? '#F752B6' : '#55557C',
                       },
                     },
                   },
-                }}
-                pointSymbol={({ x, y }) => {
-                  const circleRadius = 7;
-                  const svgWidth = 15;
-                  const svgHeight = 15;
-
-                  // Use Nivo's x, y values directly to center the SVG within the point symbol
-                  return (
-                    <svg
-                      width="15"
-                      height="15"
-                      viewBox="0 0 15 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style={{ transform: `translate(${x || 0}px, ${y || 0}px)` }}
-                    >
-                      <circle cx="7.01562" cy="7.27588" r="7" fill="url(#paint0_linear_215_2108)" />
-                      <defs>
-                        <linearGradient id="paint0_linear_215_2108" x1="12.2378" y1="14.2759" x2="-4.62882" y2="-4.79073" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#D388FF" />
-                          <stop offset="0.695" stopColor="#4B94F7" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  );
-                }}
+                }} j
               />
-
             </div>
           </div>
 
 
           {/* <-------------- progress card ---------------> */}
-
-          <div className="w-[35vw] min-w-[360px] max-h-[550px] relative bg-white/30 rounded-[32px] py-[24px] px-[48px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
-            <div className="h-[102px] flex-col justify-start items-start gap-4 inline-flex">
+          <div className="w-[35vw] min-w-[360px] overflow-hidden h-[540px] relative bg-white/30 rounded-[32px] py-[24px] px-[48px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
+          <Swiper
+        direction="vertical"  // Enables vertical sliding
+        slidesPerView={1}      
+        spaceBetween={30}      
+        pagination={{ clickable: true }}
+        onSlideChange={handleSlideChange}
+        modules={[Pagination]}
+        className="h-full w-full"
+      >
+        <SwiperSlide>
+        <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
               <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
                 <div className="p-1 justify-start items-center gap-2 inline-flex">
                   <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
@@ -555,13 +590,13 @@ const RecruiterDashboard = () => {
                     <div
                       className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
                       style={{
-                        background: 'linear-gradient(90deg, #BF4CF9 0%, #4274FE 100%)',
+                        background: statusStyles[role]['active'].gradient,
                         backgroundClip: 'text',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                       }}
                     >
-                      Marketing Manager
+                      {textRole}
                     </div>
                   </div>
                 </div>
@@ -578,50 +613,124 @@ const RecruiterDashboard = () => {
                 <div className="justify-start items-center gap-1 flex">
                   <div className="py-1 justify-center items-center gap-2 flex">
                     <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                      {rounds.marketingManager.postedOn}
+                      {rounds[role].postedOn}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className='h-[250px] w-[1px] bg-[#A5A5CC] left-[68px] top-[175px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-            {/* <div className="left-[468px] top-[273px] absolute flex-col justify-center items-start gap-2 inline-flex">
-              <div className="w-3 h-3 bg-[#2890fa] rounded-full shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]" />
-              <div className="w-3 h-3 bg-[#d9d9d9] rounded-full shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)]" />
-            </div> */}
-            <div className="px-4 pb-8 left-[32px] flex-col justify-start items-start gap-10 inline-flex mt-14">
+            <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
               {roundsList.map(({ label, key }) => {
-                const isActive = rounds.marketingManager.isActive === key;
+                const isActive = rounds[role].isActive === key;
                 const status =
-                  rounds.marketingManager[key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
+                  rounds[role][key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
 
                 return (
                   <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
                     <div
-                      className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
+                      className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
                       style={isActive ? {
-                        boxShadow: statusStyles[status].gradient,
+                        boxShadow: statusStyles[role][status].gradient,
                         animation: 'blink 2.5s infinite'
                       } : {}}
                     />
                     <div
-                      className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-                      style={isActive ? { background: statusStyles[status].gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
+                      className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
+                      style={isActive ? { background: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
                     >
                       {label}
                     </div>
                   </div>
                 );
               })}
+              <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
             </div>
             <div className='w-full flex justify-end'>
               <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
                 <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
               </div>
             </div>
+        </SwiperSlide>
+        <SwiperSlide>
+        <div className="h-[102px] flex-col justify-start items-start gap-4 inline-flex">
+              <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
+                <div className="p-1 justify-start items-center gap-2 inline-flex">
+                  <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
+                    Progress Report for
+                  </div>
+                </div>
+                <div className="self-stretch px-1 justify-start items-center inline-flex">
+                  <div className="py-1 justify-center items-center gap-2 flex">
+                    <div
+                      className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
+                      style={{
+                        background: statusStyles[role]['active'].gradient,
+                        backgroundClip: 'text',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                      }}
+                    >
+                      {textRole}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="self-stretch px-1 justify-start items-center inline-flex">
+                <div className="py-1 justify-center items-center gap-2 flex">
+                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                    Posted on
+                  </div>
+                </div>
+                <div className="p-1 justify-center items-center gap-2 flex">
+                  <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
+                </div>
+                <div className="justify-start items-center gap-1 flex">
+                  <div className="py-1 justify-center items-center gap-2 flex">
+                    <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                      {rounds[role].postedOn}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
+              {roundsList.map(({ label, key }) => {
+                const isActive = rounds[role].isActive === key;
+                const status =
+                  rounds[role][key] === 1 ? 'completed' : isActive ? 'active' : 'pending';
+
+                return (
+                  <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
+                    <div
+                      className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
+                      style={isActive ? {
+                        boxShadow: statusStyles[role][status].gradient,
+                        animation: 'blink 2.5s infinite'
+                      } : {}}
+                    />
+                    <div
+                      className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
+                      style={isActive ? { background: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } : {}}
+                    >
+                      {label}
+                    </div>
+                  </div>
+                );
+              })}
+              <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
+            </div>
+            <div className='w-full flex justify-end'>
+              <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
+                <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
+              </div>
+            </div>
+        </SwiperSlide>
+      </Swiper>
 
           </div>
+
         </div>
 
 
@@ -629,7 +738,7 @@ const RecruiterDashboard = () => {
 
           {/* <------------------ Scheduled Interview------------------> */}
 
-          <div className="w-[60vw] p-8 bg-white/30 rounded-[32px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] backdrop-blur-lg flex-col justify-center items-end gap-6 inline-flex flex-grow" style={{ border: '0.5px solid var(--Gradients-Gradient-Blue-to-pink, #D388FF)' }}>
+          <div className="w-full max-w-[50vw] p-[2vw] bg-white/30 rounded-[32px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] backdrop-blur-lg flex-col justify-center items-end gap-6 inline-flex flex-grow" style={{ border: '0.5px solid var(--Gradients-Gradient-Blue-to-pink, #D388FF)' }}>
             <div className="self-stretch h-48 flex-col justify-center items-center gap-6 flex">
               <div className="self-stretch h-9 flex-col justify-start items-start flex">
                 <div className="self-stretch h-9 flex-col justify-start items-start flex">
@@ -665,7 +774,7 @@ const RecruiterDashboard = () => {
 
           {/* <------------- AI summary --------------> */}
 
-          <div style={{ height: '100%', padding: 32, background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column' }}>
+          <div className='w-[35vw] min-w-[360px] px-[32px] py-[24px]' style={{ height: '100%', background: 'linear-gradient(302deg, #5C9AFF 0%, #154DD1 75%), linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%)', boxShadow: '0px 0px 24px rgba(211, 136, 255, 0.45)', borderRadius: 32, border: '1px #DCFFFF solid', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 12, display: 'flex', flexDirection: 'column' }}>
             <div className="self-stretch flex-col justify-start items-start gap-6 flex">
               <div className=" justify-start items-center gap-1 inline-flex">
                 <div className="w-8 h-8 pl-1 pr-[2.67px] pt-[1.33px] pb-[1.44px] justify-center items-center flex">
@@ -685,7 +794,7 @@ const RecruiterDashboard = () => {
               </div>
               <ul className="self-stretch text-white font-normal font-['SF UI  Text'] leading-normal list-disc list-inside">
                 {summaryText.map((text, index) => (
-                  <li key={index} className="text-xl">{text}</li>
+                  <li key={index} className="text-xl text-justify">{text}</li>
                 ))}
               </ul>
             </div>
