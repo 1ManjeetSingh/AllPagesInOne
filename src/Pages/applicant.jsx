@@ -351,7 +351,7 @@ const applicant = () => {
                     <div className="text-[#1e1e1e] text-xl font-normal font-['SF UI  Text'] uppercase leading-none tracking-wide">Round 1</div>
                     <div className="text-[#1e1e1e] text-2xl font-semibold font-['SF UI  Text'] leading-normal">AI Interview</div>
                 </div>
-                <div className='flex gap-[4vh] justify-around'>
+                <div className='flex gap-[4vh] justify-between'>
                     <div className='w-[25%] flex flex-col gap-[2vh]'>
                         <div className='flex items-center'>
                             <CircularLoader progress={65} />
@@ -424,7 +424,7 @@ const applicant = () => {
                     <div className="text-[#1e1e1e] text-xl font-normal font-['SF UI  Text'] uppercase leading-none tracking-wide">Round 2</div>
                     <div className="text-[#1e1e1e] text-2xl font-semibold font-['SF UI  Text'] leading-normal">AI Technical</div>
                 </div>
-                <div className='flex gap-[4vh] justify-around'>
+                <div className='flex gap-[4vh] justify-between'>
                     <div className='w-[25%] flex flex-col gap-[2vh]'>
                         <div className='flex items-center'>
                         <CircularLoader progress={75} />
