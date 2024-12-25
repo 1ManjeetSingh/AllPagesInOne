@@ -243,6 +243,10 @@ const RecruiterDashboard = () => {
         borderColor: "#EBEBEB",
       },
     }),
+    input: (provided) => ({
+      ...provided,
+      caretColor: "transparent",  // This removes the blinking cursor
+    }),
     dropdownIndicator: (provided) => ({
       ...provided,
       width: "20px",
