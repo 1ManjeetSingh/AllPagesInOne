@@ -561,7 +561,6 @@ const AfterSelection = () => {
                                                     onChange={() => handleSelection(level)}
                                                     className="custom-radio"
                                                 />
-                                                <span className="custom-radio-circle"></span>
                                             </div>
                                             <span className={`text-[16px] text-[#161616] ${selectedLevel === level ? 'font-bold' : 'font-normal'}`}>
                                                 {level}

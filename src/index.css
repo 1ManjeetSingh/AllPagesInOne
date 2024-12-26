@@ -9,7 +9,7 @@
   background-color: #2890fa;
 }
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px;  /* Scrollbar width */
+  width: 5px;  /* Scrollbar width */
 }
 
 
@@ -451,22 +451,11 @@ table td:last-child {
   background-color: white;
   position: relative;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .custom-radio:checked {
+  appearance: auto;
   border-color: #007aff;
-}
-
-.custom-radio:checked + .custom-radio-circle {
-  content: "";
-  width: 10px;
-  height: 10px;
-  background-color: #007aff;
-  border-radius: 50%;
-  position: absolute;
-  top: 5px;
-  left: 3px;
 }
 
 .custom-radio:hover {
