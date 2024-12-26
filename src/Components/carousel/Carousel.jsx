@@ -5,32 +5,32 @@ const Carousel = () => {
     {
       title: "Unique Question Sets",
       description: "Tailored questions for authenticity",
-      icon: "https://s3-alpha-sig.figma.com/img/0ada/0b19/29f4e3cd9705c3665842a066214dad2c?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YZiaRTwn1WrTuNlSNFqg59ZqJlM4Of~CzcjbV4uANul3-b5Y6sKS9HHKvuznTyB8a7UVDA0x52fxnboB~KDonFLSCz5Boeiyu6RGuYheesFYnmbDvsi65zeuG-LPwFmMFDxmcF2eOniH5ivycbNwhZfasJKnnKIFYyNhPuE9bB30vdSUa6Lf2wqLW6lWZkx1dRvzCFif6tgDyiVIgYcTdVguwlMfUpcqMo7NDPbiR4cVUJJgsNhK5anoihmarPGP1q7ft2t-B4Fim33vYwJGyfFUTFQbKLWRBkwg8d75laN0RwcVDamzheTKyXQq7kLIJR7UNQu74S52LElLH6U7vg__",
+      icon: "https://s3-alpha-sig.figma.com/img/0ada/0b19/29f4e3cd9705c3665842a066214dad2c?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SAvxfHBRT6u9bY-ZLDoaa2vbhMFBqzymKHxcKwBZNVnQ-CmXp5GkqyHg~CHtGeMO~-thHK6FvzIrA7FX1IBReW9t7cBN791SsXGKXqCQc-IRdV7NU3RXMxZDzl7bgHh5uvT1jshn6BFeZ3huKDmAwHgD1a-0i44n6xueWoQmG~1a3gOGCrn9LMwJ4In4hb9V-8TqqjWONWZoJOPUKdvl9kP0AeLJHyfhQOnQm~v-CEZUnr8fwbYKLZvUTJn0Tc7QycOy2IOuc-p4zMAk4zs-NWawMZuwMtEZFiO0uDFB9M4z~KBmaiTF8Xu0UZmtkmIIDIHeb6~YUTS1S9M-HO02ag__",
     },
     {
       title: "Multilingual Interviews",
       description: "Assess in any language",
-      icon: "https://s3-alpha-sig.figma.com/img/9c7b/c700/7f7ea02700f5dacd86d8ae0cb3f8d7c2?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mkmF7WkmHicxRnGuK3Np4eUH67~MbliKRmdwnh6pg09vHnLsWBuxsKx~-wPZT3YjzcjUFl85D7MeCTQPWRZ8vsfCRdN8IEaONvXl3HBQcNJxLiKNc85fbbXgo5fkWjcroBCcFFf~4CDyVF78e0iayFY8UOSFFrNo2Y4tBTsaOZz1JUfdkML8M~C9CWVdlHjgdcsOvOv-HrtHKeKZW7AvNOPRRxgB7L3gJ-JvF~stg-XvWC3nfFPuyI3RoHQnrhih-vSN5PzvRMMy3IUGxHl~cCgXvsaz4GPmiFA1-3HdfI5vWarn7ohrQrPaETAtGUoCqQCt2zj5~LboFOHcsl1C8w__",
+      icon: "https://s3-alpha-sig.figma.com/img/9c7b/c700/7f7ea02700f5dacd86d8ae0cb3f8d7c2?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Kl3L3xAXYlUQlIFDKIwKhoW99mQLByYSWT7iml4u0aGsQ2HapgWb9uK9~7I6R9h4JL~SaYMLsh8ryXrpCWgwR88lBHs29txugvWbqJA0T8QF-VhzAYFpklf6PxE8kVmwszo4fRWQiURfS1Sq8nBzM5C-k17EAj1e1hBVDU8C5aeCfJ0U2pheYuaAEN~nwIeuPOI5X5gkyCJruvsfF~7iK6BvSrxkEWmxvFAk-EyIcNag9Sn~9l6Qx6e72oIvmt~hBHB6Qlw9qj64HvIz28xAtp6NFOpHOJZypQfhnObP~qdIPP7GKYOoGElqAxm6d84Qt0ooRJ1vQnAk0tGnd1R4ng__",
     },
     {
       title: "Bulk Invitations",
       description: "Invite multiple candidates",
-      icon: "https://s3-alpha-sig.figma.com/img/566b/7ce5/9af10d3068323170cfcefd4a38402623?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TZhW5~sN1oAVAPxKc3R6LIdsx11N3tbR9iPRUklLp2JkwmScUcZhILbNhqtZ~kAVsK6Lu05fDguIQ1jIbH~gvZ5CHii8bNVVLjrlPRE14piRFOv54-xFWsaADklexRKoEfxuBQ0qC7GlUYj9oXIb790ZGICAaKi8mV5UhgpCrwaiSG5j3y2jvhWSrORGTZNfOLeMEJj8EBRD78nLeU18jjvYAnMtX2oePJ3LFYWaHJ0a-z0W3yoeEcQkZNnEtx5FUbZ~ZONVh~0LJGR6fC7qvt5AXu4Wew86NjKpavTyb7wyKFqdmG3Ib3xyhnY9JDd6CUhqPBtpXjYAcFc0Zxj8zw__",
+      icon: "https://s3-alpha-sig.figma.com/img/566b/7ce5/9af10d3068323170cfcefd4a38402623?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YxT8gz66PQqznCmH-y-geinV4Dgjq8RZRkmuoIY9BcdKy71VUibA2UOx23YjN9UyIrTTCusY2JWVzCUa5uH-FMaGdgYzehIQTi3innqHSuy1Txe4dVZ2BPbvMGLKTtF~WM8dt47tGqRERHTf2RIH8B9TZKx~kNWjWuJy3f5kDVlA4NzBGkrdUEOlsN~Mx-zVfXkg2xag71CBBbK8hwY0UYIUkXKXnF6Eeg6vsr2V5K5JdTP4Mb~SwiMIjY6J9ry9lOlZaUh3uuGKPUljVBsZdxY3R2YVf2yqB-6kV0xrgkmFFyum~vVDZS5PDlSwy9mz4KMN0eKXn92bv6HDpKEuZQ__",
     },
     {
       title: "Advanced Analytics",
       description: "Insights into performance",
-      icon: "https://s3-alpha-sig.figma.com/img/0ada/0b19/29f4e3cd9705c3665842a066214dad2c?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YZiaRTwn1WrTuNlSNFqg59ZqJlM4Of~CzcjbV4uANul3-b5Y6sKS9HHKvuznTyB8a7UVDA0x52fxnboB~KDonFLSCz5Boeiyu6RGuYheesFYnmbDvsi65zeuG-LPwFmMFDxmcF2eOniH5ivycbNwhZfasJKnnKIFYyNhPuE9bB30vdSUa6Lf2wqLW6lWZkx1dRvzCFif6tgDyiVIgYcTdVguwlMfUpcqMo7NDPbiR4cVUJJgsNhK5anoihmarPGP1q7ft2t-B4Fim33vYwJGyfFUTFQbKLWRBkwg8d75laN0RwcVDamzheTKyXQq7kLIJR7UNQu74S52LElLH6U7vg__",
+      icon: "https://s3-alpha-sig.figma.com/img/0ada/0b19/29f4e3cd9705c3665842a066214dad2c?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SAvxfHBRT6u9bY-ZLDoaa2vbhMFBqzymKHxcKwBZNVnQ-CmXp5GkqyHg~CHtGeMO~-thHK6FvzIrA7FX1IBReW9t7cBN791SsXGKXqCQc-IRdV7NU3RXMxZDzl7bgHh5uvT1jshn6BFeZ3huKDmAwHgD1a-0i44n6xueWoQmG~1a3gOGCrn9LMwJ4In4hb9V-8TqqjWONWZoJOPUKdvl9kP0AeLJHyfhQOnQm~v-CEZUnr8fwbYKLZvUTJn0Tc7QycOy2IOuc-p4zMAk4zs-NWawMZuwMtEZFiO0uDFB9M4z~KBmaiTF8Xu0UZmtkmIIDIHeb6~YUTS1S9M-HO02ag__",
     },
     {
       title: "Custom Questions",
       description: "Fully customizable interviews",
-      icon: "https://s3-alpha-sig.figma.com/img/9c7b/c700/7f7ea02700f5dacd86d8ae0cb3f8d7c2?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mkmF7WkmHicxRnGuK3Np4eUH67~MbliKRmdwnh6pg09vHnLsWBuxsKx~-wPZT3YjzcjUFl85D7MeCTQPWRZ8vsfCRdN8IEaONvXl3HBQcNJxLiKNc85fbbXgo5fkWjcroBCcFFf~4CDyVF78e0iayFY8UOSFFrNo2Y4tBTsaOZz1JUfdkML8M~C9CWVdlHjgdcsOvOv-HrtHKeKZW7AvNOPRRxgB7L3gJ-JvF~stg-XvWC3nfFPuyI3RoHQnrhih-vSN5PzvRMMy3IUGxHl~cCgXvsaz4GPmiFA1-3HdfI5vWarn7ohrQrPaETAtGUoCqQCt2zj5~LboFOHcsl1C8w__",
+      icon: "https://s3-alpha-sig.figma.com/img/9c7b/c700/7f7ea02700f5dacd86d8ae0cb3f8d7c2?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Kl3L3xAXYlUQlIFDKIwKhoW99mQLByYSWT7iml4u0aGsQ2HapgWb9uK9~7I6R9h4JL~SaYMLsh8ryXrpCWgwR88lBHs29txugvWbqJA0T8QF-VhzAYFpklf6PxE8kVmwszo4fRWQiURfS1Sq8nBzM5C-k17EAj1e1hBVDU8C5aeCfJ0U2pheYuaAEN~nwIeuPOI5X5gkyCJruvsfF~7iK6BvSrxkEWmxvFAk-EyIcNag9Sn~9l6Qx6e72oIvmt~hBHB6Qlw9qj64HvIz28xAtp6NFOpHOJZypQfhnObP~qdIPP7GKYOoGElqAxm6d84Qt0ooRJ1vQnAk0tGnd1R4ng__",
     },
     {
       title: "Secure Data",
       description: "Built with privacy in mind",
-      icon: "https://s3-alpha-sig.figma.com/img/566b/7ce5/9af10d3068323170cfcefd4a38402623?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TZhW5~sN1oAVAPxKc3R6LIdsx11N3tbR9iPRUklLp2JkwmScUcZhILbNhqtZ~kAVsK6Lu05fDguIQ1jIbH~gvZ5CHii8bNVVLjrlPRE14piRFOv54-xFWsaADklexRKoEfxuBQ0qC7GlUYj9oXIb790ZGICAaKi8mV5UhgpCrwaiSG5j3y2jvhWSrORGTZNfOLeMEJj8EBRD78nLeU18jjvYAnMtX2oePJ3LFYWaHJ0a-z0W3yoeEcQkZNnEtx5FUbZ~ZONVh~0LJGR6fC7qvt5AXu4Wew86NjKpavTyb7wyKFqdmG3Ib3xyhnY9JDd6CUhqPBtpXjYAcFc0Zxj8zw__",
+      icon: "https://s3-alpha-sig.figma.com/img/566b/7ce5/9af10d3068323170cfcefd4a38402623?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YxT8gz66PQqznCmH-y-geinV4Dgjq8RZRkmuoIY9BcdKy71VUibA2UOx23YjN9UyIrTTCusY2JWVzCUa5uH-FMaGdgYzehIQTi3innqHSuy1Txe4dVZ2BPbvMGLKTtF~WM8dt47tGqRERHTf2RIH8B9TZKx~kNWjWuJy3f5kDVlA4NzBGkrdUEOlsN~Mx-zVfXkg2xag71CBBbK8hwY0UYIUkXKXnF6Eeg6vsr2V5K5JdTP4Mb~SwiMIjY6J9ry9lOlZaUh3uuGKPUljVBsZdxY3R2YVf2yqB-6kV0xrgkmFFyum~vVDZS5PDlSwy9mz4KMN0eKXn92bv6HDpKEuZQ__",
     },
   ];
 

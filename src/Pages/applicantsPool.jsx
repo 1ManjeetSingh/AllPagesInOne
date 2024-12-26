@@ -241,7 +241,7 @@ const ApplicantsPool = () => {
   };
 
   return (
-    <div className="bg-[#F1F4F8] h-screen overflow-hidden">
+    <div className="bg-[#F2F2F2] h-screen overflow-hidden">
       {/* job description */}
       <div className="flex justify-between bg-gray-100 p-4 rounded-lg ml-8">
         {/* UI/UX Designer Section styled like a separate card */}
