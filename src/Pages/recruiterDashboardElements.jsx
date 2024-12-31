@@ -1,12 +1,37 @@
 // common import in all elements
 import { React, useState, useEffect, useRef } from 'react';
 
-//  first element import
-import Select from 'react-select';
 
 //  second element import
 import linkedIn from '../assets/linkedIn.png';
 import ziprecruiter from '../assets/ziprecruiter.png';
+import Select, { components } from 'react-select';
+
+
+const customDropdownIndicator = (props) => {
+    const { selectProps } = props;
+    const isOpen = selectProps.menuIsOpen;
+
+    return (
+        <components.DropdownIndicator {...props}>
+            {isOpen ? (
+                // SVG for open state (Up Arrow)
+                <svg xmlns="http://www.w3.org/2000/svg" className='w-[16px] h-[16px]' fill='#46AEF5' viewBox="0 0 448 512">
+                    <path d="M246.6 137.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 205.3l137.4 137.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+                </svg>
+            ) : (
+                // SVG for closed state (Down Arrow)
+                <svg xmlns="http://www.w3.org/2000/svg" className='w-[16px] h-[16px]' fill='#B9B9B9' viewBox="0 0 448 512">
+                    <path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                </svg>
+            )}
+        </components.DropdownIndicator>
+    );
+};
+
+const customComponents = {
+    DropdownIndicator: customDropdownIndicator,
+};
 
 const RecruiterDashboardElements = () => {
 
@@ -59,7 +84,7 @@ const RecruiterDashboardElements = () => {
     const customStyles = {
         control: (provided) => ({
             ...provided,
-            backgroundColor: "#F5F5F5",
+            backgroundColor: "#FFF",
             border: "none",
             color: "#F5F5F5",
             height: "36px",
@@ -121,7 +146,7 @@ const RecruiterDashboardElements = () => {
         }),
         option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isFocused ? "#46AEF5" : "#EBEBEB",
+            backgroundColor: state.isFocused ? "#46AEF5" : "#FFF",
             color: state.isSelected ? "#1E1E1E" : "#6F6F6F",
             fontWeight: "400",
             padding: "10px 20px",
@@ -162,6 +187,20 @@ const RecruiterDashboardElements = () => {
         }
     };
 
+    const [dropdownState, setDropdownState] = useState({
+        role: false,
+        type: false,
+        workplace: false,
+    });
+
+        // Handlers for open/close
+        const handleMenuOpen = (key) => {
+            setDropdownState((prev) => ({ ...prev, [key]: true }));
+        };
+    
+        const handleMenuClose = (key) => {
+            setDropdownState((prev) => ({ ...prev, [key]: false }));
+        };
 
     return (
         <div className='main-container min-h-[100vh] bg-[#F2F2F2] py-8 flex flex-col items-center gap-12'>
@@ -196,8 +235,8 @@ const RecruiterDashboardElements = () => {
 
                     <div className="grow shrink basis-0 flex-col justify-start items-start gap-3 inline-flex">
                         <div className="text-[#1e1e1e] text-xl font-semibold font-['SF UI  Text'] leading-normal">Designation</div>
-                        <div className="w-full px-3 py-1 bg-[#F5F5F5] border border-[#B9B9B9] rounded-[10px] justify-start items-center gap-4 inline-flex">
-                            <div className="justify-start items-center gap-4 flex bg-[#F5F5F5]">
+                        <div className={`w-full px-3 py-1 bg-[#FFF] border ${dropdownState.role ? 'border-[#0072DC]' : 'border-[#B9B9B9]'} rounded-[10px] justify-start items-center gap-4 inline-flex`}>
+                            <div className="justify-start items-center gap-4 flex bg-[#FFF]">
                                 <div className="grow shrink basis-0 text-[#b9b9b9] text-base font-normal font-['SF UI  Text']">
                                     <Select
                                         defaultValue={jobOptions.find(option => option.value === jobOption)} // Set the default value to the first option
@@ -205,6 +244,9 @@ const RecruiterDashboardElements = () => {
                                         styles={customStyles}
                                         onChange={handleChangeJobOption}
                                         value={jobOptions.find(option => option.value === jobOption)} // Ensure value fallback to first option
+                                        components={customComponents}
+                                        onMenuOpen={() => handleMenuOpen('role')}
+                                        onMenuClose={() => handleMenuClose('role')}
                                         placeholder="Text"
                                     />
                                 </div>
@@ -217,8 +259,8 @@ const RecruiterDashboardElements = () => {
                         <div className="self-stretch justify-start items-start gap-[5vw] inline-flex">
                             <div className="shrink basis-0 flex-col justify-start items-start gap-3 inline-flex">
                                 <div className="text-[#1e1e1e] text-xl font-semibold font-['SF UI  Text'] leading-normal">Job Type</div>
-                                <div className="w-full px-3 py-1 bg-[#F5F5F5] border border-[#B9B9B9] rounded-[10px] justify-start items-center gap-4 inline-flex">
-                                    <div className="justify-start items-center gap-4 flex bg-[#F5F5F5]">
+                                <div className={`w-full px-3 py-1 bg-[#FFF] border ${dropdownState.type ? 'border-[#0072DC]' : 'border-[#B9B9B9]'} rounded-[10px] justify-start items-center gap-4 inline-flex`}>
+                                <div className="justify-start items-center gap-4 flex bg-[#FFF]">
                                         <div className="grow shrink basis-0 text-[#b9b9b9] text-base font-normal font-['SF UI  Text']">
                                             <Select
                                                 defaultValue={timingOptions.find(option => option.value === timingOption)} // Set the default value to the first option
@@ -226,6 +268,9 @@ const RecruiterDashboardElements = () => {
                                                 styles={customStyles}
                                                 onChange={handleChangeTimingOption}
                                                 value={timingOptions.find(option => option.value === timingOption)} // Ensure value fallback to first option
+                                                components={customComponents}
+                                                onMenuOpen={() => handleMenuOpen('type')}
+                                                onMenuClose={() => handleMenuClose('type')}
                                                 placeholder="Text"
                                             />
                                         </div>
@@ -234,8 +279,8 @@ const RecruiterDashboardElements = () => {
                             </div>
                             <div className="shrink basis-0 flex-col justify-start items-start gap-3 inline-flex pb-8">
                                 <div className="text-[#1e1e1e] text-xl font-semibold font-['SF UI  Text'] leading-normal">Workplace type</div>
-                                <div className="w-full px-3 py-1 bg-[#F5F5F5] border border-[#B9B9B9] rounded-[10px] justify-start items-center gap-4 inline-flex">
-                                    <div className="justify-start items-center gap-4 flex bg-[#F5F5F5]">
+                                <div className={`w-full px-3 py-1 bg-[#FFF] border ${dropdownState.workplace ? 'border-[#0072DC]' : 'border-[#B9B9B9]'} rounded-[10px] justify-start items-center gap-4 inline-flex`}>
+                                <div className="justify-start items-center gap-4 flex bg-[#FFF]">
                                         <div className="grow shrink basis-0 text-[#b9b9b9] text-base font-normal font-['SF UI  Text']">
                                             <Select
                                                 // defaultValue={workplaceOptions[0]}
@@ -244,6 +289,9 @@ const RecruiterDashboardElements = () => {
                                                 styles={customStyles}
                                                 onChange={handleChangeWorkplaceOption}
                                                 value={workplaceOptions.find(option => option.value === workplaceOption)} // Ensure value fallback to first option
+                                                components={customComponents}
+                                                onMenuOpen={() => handleMenuOpen('workplace')}
+                                                onMenuClose={() => handleMenuClose('workplace')}
                                                 placeholder="Text"
                                             />
                                         </div>
@@ -256,7 +304,7 @@ const RecruiterDashboardElements = () => {
                     {/* Create Job Button */}
                     <div className='flex w-full justify-end py-4 gap-8'>
                         <div className="h-[48.28px] px-5 rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] border border-[#0071db] justify-center items-center gap-2 inline-flex">
-                            <div className="text-center text-[#0071db] text-xl font-semibold font-['SF UI Text'] leading-tight">Save</div>
+                            <div className="text-center text-[#0071db] text-xl font-semibold font-['SF UI Text'] leading-tight cursor-pointer">Save</div>
                         </div>
                         <div className="ButtonsCta w-[260.14px] h-[48.28px] px-4 rounded-[30px] justify-center items-center gap-3 inline-flex hover:cursor-pointer bg-question_gradient">
                             <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -355,7 +403,7 @@ const RecruiterDashboardElements = () => {
                                         value="Health Insurance"
                                         checked={benefits.includes('Health Insurance')}
                                         onClick={handleRadioChange}
-                                        onChange={() => {}}
+                                        onChange={() => { }}
                                     />
                                     <label htmlFor="healthInsurance" className="cursor-pointer">
                                         Health Insurance
@@ -371,7 +419,7 @@ const RecruiterDashboardElements = () => {
                                         value="401 (k)"
                                         checked={benefits.includes('401 (k)')}
                                         onClick={handleRadioChange}
-                                        onChange={() => {}}
+                                        onChange={() => { }}
                                     />
                                     <label htmlFor="k401" className="cursor-pointer">
                                         401 (k)
@@ -389,7 +437,7 @@ const RecruiterDashboardElements = () => {
                                         value="Paid time off"
                                         checked={benefits.includes('Paid time off')}
                                         onClick={handleRadioChange}
-                                        onChange={() => {}}
+                                        onChange={() => { }}
                                     />
                                     <label htmlFor="paidTimeOff" className="cursor-pointer">
                                         Paid Time Off
@@ -405,7 +453,7 @@ const RecruiterDashboardElements = () => {
                                         value="Remote Work"
                                         checked={benefits.includes('Remote Work')}
                                         onClick={handleRadioChange}
-                                        onChange={() => {}}
+                                        onChange={() => { }}
                                     />
                                     <label htmlFor="remote" className="cursor-pointer">
                                         Remote Work
@@ -416,44 +464,44 @@ const RecruiterDashboardElements = () => {
                     </div>
                 </div>
 
-            {/* Sites to post job */}
+                {/* Sites to post job */}
                 <div className='w-full flex flex-col gap-6'>
-                <div className='w-full flex flex-col'>
-                <div className="text-[#1e1e1e] text-xl font-semibold font-['SF UI  Text'] leading-normal">Job Portals</div>
-                <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text']">Select any 2 platforms for posting jobs for free</div>
-                </div>
-                <div className="h-10 justify-start items-start gap-6 inline-flex">
-    <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-    <div className="w-6 h-6 justify-center items-center flex">
-            <img className="w-6 h-6 rounded" src={linkedIn} />
-        </div>
-        <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">LinkedIn</div>
-    </div>
-    <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-        <div className="w-6 h-6 justify-center items-center flex">
-            <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/5331/9b58/6f6c04300fc1ee80583629773cb036fd?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jGmE2xbPMYmmU020YKvyCmu7pkwFzK2rXN6a4F1wTv6d2lHWKjX94OdniyAEMyIOyKUQSBuMYp-PLNm8phXinvtA~DMLI5Qvs0yIJGH75aI~DGqrFKSoDitziwitaTt--7h7nrMV4VPqOWwJT5BcC6adPDQhoZ8wlpUG~rCG8ImYn0oSdeHvCN~E4iPrN8Zhd3tWE4WDhH1qRkRxMESgvTvuqv8K9N9mhXhpRsQMq-USOKiHr9J8gP0FP8Jks0WKZLPbKmWbb-8cOCjPPZ8-yM4en7Pdhegcht5aDn4iPkvMRSjgobHyC2K4Z7z3X8qIj54g6XfgkxGyCtcLMy~KYw__" />
-        </div>
-        <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Naukri.com</div>
-    </div>
-    <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-        <div className="w-6 h-6 justify-center items-center flex">
-            <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/9831/46f1/9bddbe0da9db67153b96427e939e87c6?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=N3-RtXhk4oe7QlWmA5wcRoAUYhz3uoIPZhy6aj1OV7ff4OsEXpLfaHQ8fbYH8S~vqFIWTS7g45cy8oOFfp4wVG48xy9hpF9~HdDEKA6fp9GsYqexk6boLJN0foiKxpczQPoPvjD45HYHqQwb1wbASSzJNe8nnHk2g0-JNNFSL4Xvijn~a3zpEU1hWs~cebjVDf-q0VKTZoQ-pjsmodflJR8ZbHfkkTbmpk2u-TQAqWakTLr4j-j5kBbHBaIR5fkl9M2bggCXVSeeNFJbY3UbTYwpvoEPRfmIwDoO7bKwvmU4GPOdYY0IOSx7lt05z3HpDIvbIDanSGFn2x52fCnyEw__" />
-        </div>
-        <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Glassdoor</div>
-    </div>
-    <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-        <div className="w-6 h-6 justify-center items-center flex">
-            <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/30ba/6c8b/2fad2a15f0b8708429659322fdec1b9f?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HEzWApeISkA2BuTCfbcJ0N6Wl5-0-fYykTa8JDyoNGhSFLkbDvYuvxgDxPJlcM8CerKUeAo5YuCdFaJjVOcCxjXfjQqeeycdNz0mWaBgaM40E0TGeqRnOvQKdkDYJ~Gs08-wM4F5uSSHsL~VHmQXMqN6TQim5PV4L3Cb57W8lCL6WtDM~D9wlCgtLoEc19PUsfjsbs891i9KjSJLfTV3mkXH8qkSVxIMNG4NmY-Ux8LxHCv0niZRk3xZu2m5rarrEuoDzcmE09b~D7TvZIkANggc5sIigSUj4hWDP3rFgK2wVJHpaUFw6af1n-G7n1laIgl8GL34DyQ8FnulGhEmBQ__" />
-        </div>
-        <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Foundit</div>
-    </div>
-    <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-        <div className="w-6 h-6 justify-center items-center flex">
-            <img className="w-6 h-6 rounded" src={ziprecruiter} />
-        </div>
-        <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Ziprecruiter</div>
-    </div>
-</div>
+                    <div className='w-full flex flex-col'>
+                        <div className="text-[#1e1e1e] text-xl font-semibold font-['SF UI  Text'] leading-normal">Job Portals</div>
+                        <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text']">Select any 2 platforms for posting jobs for free</div>
+                    </div>
+                    <div className="h-10 justify-start items-start gap-6 inline-flex">
+                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
+                            <div className="w-6 h-6 justify-center items-center flex">
+                                <img className="w-6 h-6 rounded" src={linkedIn} />
+                            </div>
+                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">LinkedIn</div>
+                        </div>
+                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
+                            <div className="w-6 h-6 justify-center items-center flex">
+                                <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/5331/9b58/6f6c04300fc1ee80583629773cb036fd?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jGmE2xbPMYmmU020YKvyCmu7pkwFzK2rXN6a4F1wTv6d2lHWKjX94OdniyAEMyIOyKUQSBuMYp-PLNm8phXinvtA~DMLI5Qvs0yIJGH75aI~DGqrFKSoDitziwitaTt--7h7nrMV4VPqOWwJT5BcC6adPDQhoZ8wlpUG~rCG8ImYn0oSdeHvCN~E4iPrN8Zhd3tWE4WDhH1qRkRxMESgvTvuqv8K9N9mhXhpRsQMq-USOKiHr9J8gP0FP8Jks0WKZLPbKmWbb-8cOCjPPZ8-yM4en7Pdhegcht5aDn4iPkvMRSjgobHyC2K4Z7z3X8qIj54g6XfgkxGyCtcLMy~KYw__" />
+                            </div>
+                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Naukri.com</div>
+                        </div>
+                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
+                            <div className="w-6 h-6 justify-center items-center flex">
+                                <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/9831/46f1/9bddbe0da9db67153b96427e939e87c6?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=N3-RtXhk4oe7QlWmA5wcRoAUYhz3uoIPZhy6aj1OV7ff4OsEXpLfaHQ8fbYH8S~vqFIWTS7g45cy8oOFfp4wVG48xy9hpF9~HdDEKA6fp9GsYqexk6boLJN0foiKxpczQPoPvjD45HYHqQwb1wbASSzJNe8nnHk2g0-JNNFSL4Xvijn~a3zpEU1hWs~cebjVDf-q0VKTZoQ-pjsmodflJR8ZbHfkkTbmpk2u-TQAqWakTLr4j-j5kBbHBaIR5fkl9M2bggCXVSeeNFJbY3UbTYwpvoEPRfmIwDoO7bKwvmU4GPOdYY0IOSx7lt05z3HpDIvbIDanSGFn2x52fCnyEw__" />
+                            </div>
+                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Glassdoor</div>
+                        </div>
+                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
+                            <div className="w-6 h-6 justify-center items-center flex">
+                                <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/30ba/6c8b/2fad2a15f0b8708429659322fdec1b9f?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HEzWApeISkA2BuTCfbcJ0N6Wl5-0-fYykTa8JDyoNGhSFLkbDvYuvxgDxPJlcM8CerKUeAo5YuCdFaJjVOcCxjXfjQqeeycdNz0mWaBgaM40E0TGeqRnOvQKdkDYJ~Gs08-wM4F5uSSHsL~VHmQXMqN6TQim5PV4L3Cb57W8lCL6WtDM~D9wlCgtLoEc19PUsfjsbs891i9KjSJLfTV3mkXH8qkSVxIMNG4NmY-Ux8LxHCv0niZRk3xZu2m5rarrEuoDzcmE09b~D7TvZIkANggc5sIigSUj4hWDP3rFgK2wVJHpaUFw6af1n-G7n1laIgl8GL34DyQ8FnulGhEmBQ__" />
+                            </div>
+                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Foundit</div>
+                        </div>
+                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
+                            <div className="w-6 h-6 justify-center items-center flex">
+                                <img className="w-6 h-6 rounded" src={ziprecruiter} />
+                            </div>
+                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Ziprecruiter</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className='w-full flex'>
@@ -527,9 +575,9 @@ const RecruiterDashboardElements = () => {
                 </div>
 
                 <div className='w-full flex justify-end'>
-                        <div className="h-[43.06px] px-[17.22px] bg-[#0071db] rounded-[32.30px] border-2 border-[#0071db] justify-center items-center gap-[4.31px] inline-flex">
-                            <div className="text-center text-white text-[15.07px] font-semibold font-['SF UI Text'] leading-[15.07px]">Save</div>
-                        </div>
+                    <div className="h-[43.06px] px-[17.22px] bg-[#0071db] rounded-[32.30px] border-2 border-[#0071db] justify-center items-center gap-[4.31px] inline-flex">
+                        <div className="text-center text-white text-[15.07px] font-semibold font-['SF UI Text'] leading-[15.07px]">Save</div>
+                    </div>
                 </div>
             </div>
 
