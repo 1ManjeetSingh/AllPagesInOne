@@ -119,6 +119,10 @@ const CourseSummary = () => {
       </button>
 
       <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
+      <Link to="/dummyInterface">DummyInterface</Link>
+      </button>
+
+      <button className="border border-black p-2 rounded-lg m-4 leading-[24px]">
       <Link to="/kalangiElements">Recruiter DashBoard Elements</Link>
       </button>
 

@@ -32,22 +32,24 @@ const RecruiterDashboardElements = () => {
 
     // DropDown Variables
     const jobOptions = [
-        { value: 'uiDesigner', label: 'UI Designer' },
-        { value: 'frontendDev', label: 'Frontend Developer' },
-        { value: 'backendDev', label: 'Backend Developer' },
-        { value: 'fullstackDev', label: 'Full Stack Developer' },
-        { value: 'dataAnalyst', label: 'Data Analyst' }
+        { value: 'senior', label: 'Senior' },
+        { value: 'mid', label: 'Mid' },
+        { value: 'junior', label: 'Junior' },
+        { value: 'fresher', label: 'Fresher' },
+        { value: 'intern', label: 'Intern' }
     ]
 
     const workplaceOptions = [
         { value: 'remote', label: 'Remote' },
-        { value: 'onsite', label: 'On-site' },
         { value: 'hybrid', label: 'Hybrid' },
+        { value: 'onsite', label: 'On-site' },
     ]
 
     const timingOptions = [
         { value: 'fullTime', label: 'Full-Time' },
         { value: 'partTime', label: 'Part-Time' },
+        { value: 'contractual', label: 'Contractual' },
+
     ]
 
     const [jobOption, setJobOption] = useState();
@@ -78,12 +80,12 @@ const RecruiterDashboardElements = () => {
         //     ...provided,
         //     caretColor: "transparent", 
         // }),
-        dropdownIndicator: (provided) => ({
+        dropdownIndicator: (provided, state) => ({
             ...provided,
             width: "20px",
             height: "20px",
             position: "absolute",
-            color: "#0072DC",
+            color: state.isFocused ? "#46AEF5" : "#B9B9B9",
             top: "27%",
             right: "10px",
             padding: "0",
@@ -119,7 +121,7 @@ const RecruiterDashboardElements = () => {
         }),
         option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isFocused ? "#C3C3EA" : "#EBEBEB",
+            backgroundColor: state.isFocused ? "#46AEF5" : "#EBEBEB",
             color: state.isSelected ? "#1E1E1E" : "#6F6F6F",
             fontWeight: "400",
             padding: "10px 20px",

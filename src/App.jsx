@@ -13,6 +13,7 @@ import LoaderWithIcons from "./Pages/LoaderWithIcons";
 import RecruiterDashboard from "./Pages/recruiterDashboard";
 import Applicant from "./Pages/applicant";
 import RecruiterDashboardElements from "./Pages/recruiterDashboardElements";
+import DummyInterface from "./Pages/DummyInterface";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/userDashboard" element={<UserDashboard />} />
         <Route path="/applicant" element={<Applicant />} />
         <Route path="/kalangiElements" element={<RecruiterDashboardElements />} />
+        <Route path="/dummyInterface" element={<DummyInterface />} />
         <Route path="/" element={<CourseSummary />} />
       </Routes>
     </BrowserRouter>
