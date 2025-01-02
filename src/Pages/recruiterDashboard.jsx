@@ -114,8 +114,8 @@ const RecruiterDashboard = () => {
     .map(key => ({ label: key.replace(/([A-Z])/g, ' $1').trim().replace(/^./, str => str.toUpperCase()), key }));
 
   const options = [
-    { value: 'aiTechnicalRoundAndInterview', label: 'AI Technical Round & Interview' },
     { value: 'aiNonTechnicalRoundAndInterview', label: 'AI Non-Technical Round & Interview' },
+    { value: 'aiTechnicalRoundAndInterview', label: 'AI Technical Round & Interview' },
   ];
 
   const markLastActive = (rounds) => {
