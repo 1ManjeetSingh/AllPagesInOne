@@ -170,6 +170,22 @@ const RecruiterDashboardElements = () => {
     };
 
 
+    const [dropdownState, setDropdownState] = useState({
+        role: false,
+        type: false,
+        workplace: false,
+    });
+
+    // Handlers for open/close
+    const handleMenuOpen = (key) => {
+        setDropdownState((prev) => ({ ...prev, [key]: true }));
+    };
+
+    const handleMenuClose = (key) => {
+        setDropdownState((prev) => ({ ...prev, [key]: false }));
+    };
+
+
 
     //<----------- Second Element Variables -------------->
     const [minSalary, setMinSalary] = useState();
@@ -187,20 +203,37 @@ const RecruiterDashboardElements = () => {
         }
     };
 
-    const [dropdownState, setDropdownState] = useState({
-        role: false,
-        type: false,
-        workplace: false,
-    });
+    const companies = {
+        LinkedIn: {
+            icon: linkedIn
+        },
+        'Naukri.com': {
+            icon: "https://s3-alpha-sig.figma.com/img/5331/9b58/6f6c04300fc1ee80583629773cb036fd?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jGmE2xbPMYmmU020YKvyCmu7pkwFzK2rXN6a4F1wTv6d2lHWKjX94OdniyAEMyIOyKUQSBuMYp-PLNm8phXinvtA~DMLI5Qvs0yIJGH75aI~DGqrFKSoDitziwitaTt--7h7nrMV4VPqOWwJT5BcC6adPDQhoZ8wlpUG~rCG8ImYn0oSdeHvCN~E4iPrN8Zhd3tWE4WDhH1qRkRxMESgvTvuqv8K9N9mhXhpRsQMq-USOKiHr9J8gP0FP8Jks0WKZLPbKmWbb-8cOCjPPZ8-yM4en7Pdhegcht5aDn4iPkvMRSjgobHyC2K4Z7z3X8qIj54g6XfgkxGyCtcLMy~KYw__"
+        },
+        Glassdoor: {
+            icon: "https://s3-alpha-sig.figma.com/img/9831/46f1/9bddbe0da9db67153b96427e939e87c6?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=N3-RtXhk4oe7QlWmA5wcRoAUYhz3uoIPZhy6aj1OV7ff4OsEXpLfaHQ8fbYH8S~vqFIWTS7g45cy8oOFfp4wVG48xy9hpF9~HdDEKA6fp9GsYqexk6boLJN0foiKxpczQPoPvjD45HYHqQwb1wbASSzJNe8nnHk2g0-JNNFSL4Xvijn~a3zpEU1hWs~cebjVDf-q0VKTZoQ-pjsmodflJR8ZbHfkkTbmpk2u-TQAqWakTLr4j-j5kBbHBaIR5fkl9M2bggCXVSeeNFJbY3UbTYwpvoEPRfmIwDoO7bKwvmU4GPOdYY0IOSx7lt05z3HpDIvbIDanSGFn2x52fCnyEw__"
+        },
+        Foundit: {
+            icon: "https://s3-alpha-sig.figma.com/img/30ba/6c8b/2fad2a15f0b8708429659322fdec1b9f?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HEzWApeISkA2BuTCfbcJ0N6Wl5-0-fYykTa8JDyoNGhSFLkbDvYuvxgDxPJlcM8CerKUeAo5YuCdFaJjVOcCxjXfjQqeeycdNz0mWaBgaM40E0TGeqRnOvQKdkDYJ~Gs08-wM4F5uSSHsL~VHmQXMqN6TQim5PV4L3Cb57W8lCL6WtDM~D9wlCgtLoEc19PUsfjsbs891i9KjSJLfTV3mkXH8qkSVxIMNG4NmY-Ux8LxHCv0niZRk3xZu2m5rarrEuoDzcmE09b~D7TvZIkANggc5sIigSUj4hWDP3rFgK2wVJHpaUFw6af1n-G7n1laIgl8GL34DyQ8FnulGhEmBQ__"
+        },
+        Ziprecruiter: {
+            icon: ziprecruiter
+        }
+    }
 
-        // Handlers for open/close
-        const handleMenuOpen = (key) => {
-            setDropdownState((prev) => ({ ...prev, [key]: true }));
-        };
-    
-        const handleMenuClose = (key) => {
-            setDropdownState((prev) => ({ ...prev, [key]: false }));
-        };
+    const [selectedCompany, setSelectedCompany] = useState([]);
+
+    const handleSelectedComponies = (company) => {
+  setSelectedCompany((prevSelected) => {
+    if (prevSelected.includes(company)) {
+      // Remove if already selected
+      return prevSelected.filter((item) => item !== company);
+    } else {
+      // Add if not selected
+      return [...prevSelected, company];
+    }
+  });
+};
 
     return (
         <div className='main-container min-h-[100vh] bg-[#F2F2F2] py-8 flex flex-col items-center gap-12'>
@@ -260,7 +293,7 @@ const RecruiterDashboardElements = () => {
                             <div className="shrink basis-0 flex-col justify-start items-start gap-3 inline-flex">
                                 <div className="text-[#1e1e1e] text-xl font-semibold font-['SF UI  Text'] leading-normal">Job Type</div>
                                 <div className={`w-full px-3 py-1 bg-[#FFF] border ${dropdownState.type ? 'border-[#0072DC]' : 'border-[#B9B9B9]'} rounded-[10px] justify-start items-center gap-4 inline-flex`}>
-                                <div className="justify-start items-center gap-4 flex bg-[#FFF]">
+                                    <div className="justify-start items-center gap-4 flex bg-[#FFF]">
                                         <div className="grow shrink basis-0 text-[#b9b9b9] text-base font-normal font-['SF UI  Text']">
                                             <Select
                                                 defaultValue={timingOptions.find(option => option.value === timingOption)} // Set the default value to the first option
@@ -280,7 +313,7 @@ const RecruiterDashboardElements = () => {
                             <div className="shrink basis-0 flex-col justify-start items-start gap-3 inline-flex pb-8">
                                 <div className="text-[#1e1e1e] text-xl font-semibold font-['SF UI  Text'] leading-normal">Workplace type</div>
                                 <div className={`w-full px-3 py-1 bg-[#FFF] border ${dropdownState.workplace ? 'border-[#0072DC]' : 'border-[#B9B9B9]'} rounded-[10px] justify-start items-center gap-4 inline-flex`}>
-                                <div className="justify-start items-center gap-4 flex bg-[#FFF]">
+                                    <div className="justify-start items-center gap-4 flex bg-[#FFF]">
                                         <div className="grow shrink basis-0 text-[#b9b9b9] text-base font-normal font-['SF UI  Text']">
                                             <Select
                                                 // defaultValue={workplaceOptions[0]}
@@ -471,36 +504,16 @@ const RecruiterDashboardElements = () => {
                         <div className="text-[#6f6f6f] text-base font-normal font-['SF UI  Text']">Select any 2 platforms for posting jobs for free</div>
                     </div>
                     <div className="h-10 justify-start items-start gap-6 inline-flex">
-                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-                            <div className="w-6 h-6 justify-center items-center flex">
-                                <img className="w-6 h-6 rounded" src={linkedIn} />
+                        {Object.entries(companies).map(([name, data]) => (
+                            <div key={name} onClick={() => handleSelectedComponies(name)} className={`p-2 bg-neutral-100 rounded justify-start items-center gap-2 flex cursor-pointer ${selectedCompany.includes(name) ? 'border border-[#0072DC] shadow-[0px_0px_8px_0px_rgba(120,127,252,0.40)]' : 'shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)]'}`}>
+                                <div className="w-6 h-6 justify-center items-center flex">
+                                    <img className="w-6 h-6 rounded" src={data.icon} alt={name} />
+                                </div>
+                                <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">
+                                    {name}
+                                </div>
                             </div>
-                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">LinkedIn</div>
-                        </div>
-                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-                            <div className="w-6 h-6 justify-center items-center flex">
-                                <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/5331/9b58/6f6c04300fc1ee80583629773cb036fd?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jGmE2xbPMYmmU020YKvyCmu7pkwFzK2rXN6a4F1wTv6d2lHWKjX94OdniyAEMyIOyKUQSBuMYp-PLNm8phXinvtA~DMLI5Qvs0yIJGH75aI~DGqrFKSoDitziwitaTt--7h7nrMV4VPqOWwJT5BcC6adPDQhoZ8wlpUG~rCG8ImYn0oSdeHvCN~E4iPrN8Zhd3tWE4WDhH1qRkRxMESgvTvuqv8K9N9mhXhpRsQMq-USOKiHr9J8gP0FP8Jks0WKZLPbKmWbb-8cOCjPPZ8-yM4en7Pdhegcht5aDn4iPkvMRSjgobHyC2K4Z7z3X8qIj54g6XfgkxGyCtcLMy~KYw__" />
-                            </div>
-                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Naukri.com</div>
-                        </div>
-                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-                            <div className="w-6 h-6 justify-center items-center flex">
-                                <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/9831/46f1/9bddbe0da9db67153b96427e939e87c6?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=N3-RtXhk4oe7QlWmA5wcRoAUYhz3uoIPZhy6aj1OV7ff4OsEXpLfaHQ8fbYH8S~vqFIWTS7g45cy8oOFfp4wVG48xy9hpF9~HdDEKA6fp9GsYqexk6boLJN0foiKxpczQPoPvjD45HYHqQwb1wbASSzJNe8nnHk2g0-JNNFSL4Xvijn~a3zpEU1hWs~cebjVDf-q0VKTZoQ-pjsmodflJR8ZbHfkkTbmpk2u-TQAqWakTLr4j-j5kBbHBaIR5fkl9M2bggCXVSeeNFJbY3UbTYwpvoEPRfmIwDoO7bKwvmU4GPOdYY0IOSx7lt05z3HpDIvbIDanSGFn2x52fCnyEw__" />
-                            </div>
-                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Glassdoor</div>
-                        </div>
-                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-                            <div className="w-6 h-6 justify-center items-center flex">
-                                <img className="w-6 h-6 rounded" src="https://s3-alpha-sig.figma.com/img/30ba/6c8b/2fad2a15f0b8708429659322fdec1b9f?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HEzWApeISkA2BuTCfbcJ0N6Wl5-0-fYykTa8JDyoNGhSFLkbDvYuvxgDxPJlcM8CerKUeAo5YuCdFaJjVOcCxjXfjQqeeycdNz0mWaBgaM40E0TGeqRnOvQKdkDYJ~Gs08-wM4F5uSSHsL~VHmQXMqN6TQim5PV4L3Cb57W8lCL6WtDM~D9wlCgtLoEc19PUsfjsbs891i9KjSJLfTV3mkXH8qkSVxIMNG4NmY-Ux8LxHCv0niZRk3xZu2m5rarrEuoDzcmE09b~D7TvZIkANggc5sIigSUj4hWDP3rFgK2wVJHpaUFw6af1n-G7n1laIgl8GL34DyQ8FnulGhEmBQ__" />
-                            </div>
-                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Foundit</div>
-                        </div>
-                        <div className="p-2 bg-neutral-100 rounded shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] justify-start items-center gap-2 flex">
-                            <div className="w-6 h-6 justify-center items-center flex">
-                                <img className="w-6 h-6 rounded" src={ziprecruiter} />
-                            </div>
-                            <div className="text-[#161616] text-base font-semibold font-['SF UI  Text'] leading-none">Ziprecruiter</div>
-                        </div>
+                        ))}
                     </div>
                 </div>
 

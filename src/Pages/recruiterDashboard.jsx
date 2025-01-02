@@ -100,41 +100,25 @@ const RecruiterDashboard = () => {
       aiTechnicalRound: 1, // Pending
       shortlistedCandidates: 0, // Pending
     },
+    marketingManager: {
+      postedOn: '12th Dec 2024',
+      jobPosted: 1, // Completed
+      applicantsApplied: 1278, // Completed
+      selectionComplete: 1, // Completed
+      aiInterviewRound: 1, // Completed
+      aiTechnicalRound: 1, // Pending
+      shortlistedCandidates: 0, // Pending
+    },
+    softwareDeveloper: {
+      postedOn: '12th Dec 2024',
+      jobPosted: 1, // Completed
+      applicantsApplied: 1278, // Completed
+      selectionComplete: 1, // Completed
+      aiInterviewRound: 1, // Completed
+      aiTechnicalRound: 1, // Pending
+      shortlistedCandidates: 0, // Pending
+    },
   };
-
-  const [role, setRole] = useState('uiUxDesigner');
-
-  const textRole = role
-    .replace(/([A-Z])/g, ' $1')
-    .trim()
-    .replace(/^./, str => str.toUpperCase());
-
-  const roundsList = Object.keys(rounds[role])
-    .filter(key => key !== 'postedOn')
-    .map(key => ({ label: key.replace(/([A-Z])/g, ' $1').trim().replace(/^./, str => str.toUpperCase()), key }));
-
-  const options = [
-    { value: 'aiNonTechnicalRoundAndInterview', label: 'AI Non-Technical Round & Interview' },
-    { value: 'aiTechnicalRoundAndInterview', label: 'AI Technical Round & Interview' },
-  ];
-
-  const markLastActive = (rounds) => {
-    let lastActive = null;
-
-    for (const key in rounds) {
-      if (rounds[key] !== 0 && key !== 'postedOn') {
-        lastActive = key;  // Keep updating to the latest '1' found
-      }
-    }
-    return lastActive || null;  // Return the last '1' or null if not found
-  };
-
-
-  // Dynamically update rounds with active state
-  Object.keys(rounds).forEach((role) => {
-    rounds[role].isActive = markLastActive(rounds[role]);
-  });
-
 
   const statusStyles = {
     uiUxDesigner: {
@@ -222,8 +206,41 @@ const RecruiterDashboard = () => {
       },
       pointColor: '#063678',
     },
+    marketingManager: {
+      completed: {
+        circle: 'border-[#c3c3ea] shadow-[0px_2px_12px_0px_#7F61FC]',
+        text: 'text-[#7d7da4]',
+        gradient: 'linear-gradient(319deg, #D388FF 5.96%, #4B94F6 95.49%)',
+      },
+      pending: {
+        circle: 'bg-[#d7d7fe]',
+        text: 'text-[#c3c3ea]',
+      },
+      active: {
+        circle: 'shadow-[0px_2px_12px_0px_#7F61FC]',
+        text: 'text-transparent font-bold',
+        gradient: 'linear-gradient(319deg, #D388FF 5.96%, #4B94F6 95.49%)',
+      },
+      pointColor: '#D388FF',
+    },
+    softwareDeveloper: {
+      completed: {
+        circle: 'border-[#c3c3ea] shadow-[0px_2px_12px_0px_#D767F5]',
+        text: 'text-[#7d7da4]',
+        gradient: 'linear-gradient(90deg, #B054F6 0%, #FE52B0 100%)',
+      },
+      pending: {
+        circle: 'bg-[#d7d7fe]',
+        text: 'text-[#c3c3ea]',
+      },
+      active: {
+        circle: 'shadow-[0px_2px_12px_0px_#D767F5]',
+        text: 'text-transparent font-bold',
+        gradient: 'linear-gradient(90deg, #B054F6 0%, #FE52B0 100%)',
+      },
+      pointColor: '#FE52B0',
+    },
   };
-
 
   const scores = {
     aiEngineer: {
@@ -256,7 +273,100 @@ const RecruiterDashboard = () => {
         "Rahul V.": 80,
       }
     },
+    marketingManager: {
+      aiTechnicalRoundAndInterview: {
+        postedOn: '12th Dec 2024',
+        "Ananya B.": 97,
+        "Rohit S.": 94,
+        "Sneha T.": 91,
+        "Ishaan D.": 88,
+        "Varun K.": 83,
+        "Tanya M.": 79,
+      },
+      aiNonTechnicalRoundAndInterview: {
+        postedOn: '13th Dec 2024',
+        "Simran P.": 96,
+        "Aarav G.": 88,
+        "Nikita L.": 87,
+        "Kartik N.": 85,
+        "Rishi T.": 82,
+      }
+    },
+    softwareDeveloper: {
+      aiTechnicalRoundAndInterview: {
+        postedOn: '12th Dec 2024',
+        "Divya R.": 99,
+        "Aditya K.": 97,
+        "Priya J.": 92,
+        "Soham P.": 90,
+        "Megha S.": 86,
+        "Arjun V.": 81,
+      },
+      aiNonTechnicalRoundAndInterview: {
+        postedOn: '13th Dec 2024',
+        "Harsh T.": 94,
+        "Pooja D.": 91,
+        "Naman V.": 87,
+        "Ayesha K.": 85,
+        "Dhruv M.": 83,
+      }
+    },
   };
+
+  // progress Report pagination
+
+  const handleSlideChange = (swiper) => {
+    // Change role to dataScientist when on second slide
+    if (swiper.activeIndex === 0) {
+      setRole('uiUxDesigner');
+    } else if (swiper.activeIndex === 1) {
+      setRole('salesManager');
+    } else if (swiper.activeIndex === 2) {
+      setRole('dataScientist');
+    } else if (swiper.activeIndex === 3) {
+      setRole('aiEngineer');
+    } else if (swiper.activeIndex === 4) {
+      setRole('srAccountManager');
+    } else if (swiper.activeIndex === 5) {
+      setRole('marketingManager');
+    } else if (swiper.activeIndex === 6) {
+      setRole('softwareDeveloper');
+    }
+  };
+
+  
+  const [role, setRole] = useState('uiUxDesigner');
+
+  const textRole = role
+    .replace(/([A-Z])/g, ' $1')
+    .trim()
+    .replace(/^./, str => str.toUpperCase());
+
+  const roundsList = Object.keys(rounds[role])
+    .filter(key => key !== 'postedOn')
+    .map(key => ({ label: key.replace(/([A-Z])/g, ' $1').trim().replace(/^./, str => str.toUpperCase()), key }));
+
+  const options = [
+    { value: 'aiNonTechnicalRoundAndInterview', label: 'AI Non-Technical Round & Interview' },
+    { value: 'aiTechnicalRoundAndInterview', label: 'AI Technical Round & Interview' },
+  ];
+
+  const markLastActive = (rounds) => {
+    let lastActive = null;
+
+    for (const key in rounds) {
+      if (rounds[key] !== 0 && key !== 'postedOn') {
+        lastActive = key;  // Keep updating to the latest '1' found
+      }
+    }
+    return lastActive || null;  // Return the last '1' or null if not found
+  };
+
+
+  // Dynamically update rounds with active state
+  Object.keys(rounds).forEach((role) => {
+    rounds[role].isActive = markLastActive(rounds[role]);
+  });
 
   const textToShow = {
     jobPosted: 'Your opportunity has gone live AI is spreading the word to top talent !',
@@ -337,7 +447,7 @@ const RecruiterDashboard = () => {
       ...provided,
       caretColor: "transparent",  // This removes the blinking cursor
     }),
-    dropdownIndicator: (provided,state) => ({
+    dropdownIndicator: (provided, state) => ({
       ...provided,
       width: "20px",
       height: "20px",
@@ -371,7 +481,7 @@ const RecruiterDashboard = () => {
       fontWeight: "400",
       fontSize: "18px",
     }),
-    singleValue: (provided,state) => ({
+    singleValue: (provided, state) => ({
       ...provided,
       color: state.isDisabled ? "#A0A0A0" : "#161616",
       fontSize: "14px",
@@ -434,25 +544,6 @@ const RecruiterDashboard = () => {
     );
   };
 
-
-  // progress Report pagination
-
-  const handleSlideChange = (swiper) => {
-    // Change role to dataScientist when on second slide
-    if (swiper.activeIndex === 0) {
-      setRole('uiUxDesigner');
-    } else if (swiper.activeIndex === 1) {
-      setRole('salesManager');
-    } else if (swiper.activeIndex === 2) {
-      setRole('dataScientist');
-    } else if (swiper.activeIndex === 3) {
-      setRole('aiEngineer');
-    } else if (swiper.activeIndex === 4) {
-      setRole('srAccountManager');
-    }
-  };
-
-  console.log(roundsWithGraph.includes(rounds[role].isActive));
 
   return (
     <div className='main-container min-h-[100vh] bg-[#F2F2F2] pb-8'>
@@ -564,19 +655,20 @@ const RecruiterDashboard = () => {
           {/* <---------------- Score Graph -----------------> */}
 
           <div
-            className="h-fit min-h-[540px] w-full max-w-[50vw] py-[2vw] px-[4vw] bg-white/30 rounded-[32px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex"
+            className="min-h-[540px] w-full max-w-[50vw] py-[2vw] bg-white/30 rounded-[32px] shadow-[0px_0.5vw_1.5vw_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex-col justify-start items-start gap-[3vh] inline-flex" style={{ paddingInline: "clamp(10px,3vw,40px)" }}
           >
             <div className="self-stretch justify-between items-start inline-flex">
               <div className="w-full flex-col justify-start items-start gap-[1vh] inline-flex pl-2">
                 <div className="justify-start items-center gap-[1vw] inline-flex">
                   <div
-                    className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
+                    className="text-center text-[#bf4cf9] font-bold font-['SF UI Display']"
                     style={{
                       backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
                       backgroundClip: 'text', // Clip the background to the text
                       WebkitBackgroundClip: 'text', // For webkit browsers
                       WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
                       transition: 'background-image 0.5s ease', // Smooth transition for background image
+                      fontSize: "clamp(28px,4vh,36px)"
                     }}
                   >
                     Top candidates
@@ -586,13 +678,18 @@ const RecruiterDashboard = () => {
                 <div className="self-stretch flex-col justify-start items-start gap-[0.5vh] flex">
                   <div className="self-stretch justify-start items-center inline-flex">
                     <div className="py-[0.5vh] justify-center items-center gap-[1vw] flex">
-                      <div className="text-center text-[#6f6f6f] text-[2.2vh] font-normal font-['SF UI Text'] leading-[2.8vh]">
-                        Job designation :&nbsp;
+                      <div className="text-center text-[#6f6f6f] text-2xl font-normal font-['SF UI Text'] leading-[2.8vh]">
+                        Job designation&nbsp;
+                      </div>
+                    </div>
+                    <div className="py-[0.5vh] justify-center items-center gap-[1vw] flex">
+                      <div className="text-center text-[#6f6f6f] text-2xl font-normal font-['SF UI Text'] leading-[2.8vh]">
+                        :&nbsp;
                       </div>
                     </div>
                     <div className="py-[0.5vh] justify-center items-center gap-[1vw] flex">
 
-                      <div className="text-center text-[#bf4cf9] text-[2.2vh] font-semibold font-['SF UI Text'] leading-[2.8vh]"
+                      <div className="text-center text-[#bf4cf9] text-2xl font-semibold font-['SF UI Text'] leading-[2.8vh] overflow-hidden whitespace-nowrap text-ellipsis max-w-[11vw]"
                         style={{
                           backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
                           backgroundClip: 'text', // Clip the background to the text
@@ -604,19 +701,19 @@ const RecruiterDashboard = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-center text-[#6f6f6f] text-[2.2vh] font-normal font-['SF UI Text'] leading-[2.5vh]">
+                  <div className="text-center text-[#6f6f6f] text-2xl font-normal font-['SF UI Text'] leading-[2.5vh]">
                     Posted On : {rounds[role].postedOn || "N/A"}
                   </div>
                 </div>
               </div>
-              <div className="w-[62vh] px-[1.5vh] mt-1 bg-neutral-100 rounded-[2.5vw] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-start items-center gap-[1vw] flex">
+              <div className="w-fit px-[1.5vh] mt-1 bg-neutral-100 rounded-[2.5vw] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-start items-center gap-[1vw] flex">
                 <Select
                   defaultValue={options[0]} // Set the default value to the first option
                   options={options}
                   styles={customStyles}
                   onChange={handleChangeOption}
                   value={options.find(option => option.value === option)} // Ensure value fallback to first option
-                  isDisabled={!roundsWithGraph.includes(rounds[role].isActive)} 
+                  isDisabled={!roundsWithGraph.includes(rounds[role].isActive)}
                 />
                 {/* <div className="w-[3vw] h-[3vw] flex-col justify-center items-center gap-[1vw] inline-flex" /> */}
               </div>
@@ -690,7 +787,7 @@ const RecruiterDashboard = () => {
 
 
           {/* <-------------- progress card ---------------> */}
-          <div className="w-[35vw] min-w-[360px] overflow-hidden h-[540px] relative bg-white/30 rounded-[32px] py-[24px] pl-[48px] pr-[24px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col">
+          <div className="w-[35vw] min-w-[360px] overflow-hidden min-h-[540px] h-[50vh] relative bg-white/30 rounded-[32px] py-[24px] pl-[48px] pr-[24px] shadow-[0px_2px_12px_0px_rgba(0,0,0,0.25)] border border-[#d388ff] backdrop-blur-lg flex flex-col relative">
             <style>
               {`
           .swiper-pagination-bullet {
@@ -714,389 +811,85 @@ const RecruiterDashboard = () => {
               className="h-full w-full"
             >
 
-              <SwiperSlide>
-                <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
-                  <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
-                    <div className="p-1 justify-start items-center gap-2 inline-flex">
-                      <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
-                        Progress Report for
+              {[...Array(Object.keys(rounds).length)].map((_, index) => (
+                <SwiperSlide>
+                  <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
+                    <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
+                      <div className="p-1 justify-start items-center gap-2 inline-flex">
+                        <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
+                          Progress Report for
+                        </div>
+                      </div>
+                      <div className="self-stretch px-1 justify-start items-center inline-flex">
+                        <div className="py-1 justify-center items-center gap-2 flex">
+                          <div
+                            className="text-center text-[#bf4cf9] font-bold font-['SF UI Display']"
+                            style={{
+                              backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
+                              backgroundClip: 'text', // Clip the background to the text
+                              WebkitBackgroundClip: 'text', // For webkit browsers
+                              WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
+                              transition: 'background-image 0.5s ease', // Smooth transition for background image
+                              fontSize: "clamp(28px,4vh,36px)"
+                            }}
+                          >
+                            {textRole}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="self-stretch px-1 justify-start items-center inline-flex">
                       <div className="py-1 justify-center items-center gap-2 flex">
-                        <div
-                          className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
-                          style={{
-                            backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
-                            backgroundClip: 'text', // Clip the background to the text
-                            WebkitBackgroundClip: 'text', // For webkit browsers
-                            WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
-                            transition: 'background-image 0.5s ease', // Smooth transition for background image
-                          }}
-                        >
-                          {textRole}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center inline-flex">
-                    <div className="py-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                        Posted on
-                      </div>
-                    </div>
-                    <div className="p-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
-                    </div>
-                    <div className="justify-start items-center gap-1 flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
                         <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                          {rounds[role].postedOn}
+                          Posted on
+                        </div>
+                      </div>
+                      <div className="p-1 justify-center items-center gap-2 flex">
+                        <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
+                      </div>
+                      <div className="justify-start items-center gap-1 flex">
+                        <div className="py-1 justify-center items-center gap-2 flex">
+                          <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
+                            {rounds[role].postedOn}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
-                  {roundsList.map(({ label, key }) => {
-                    const isActive = rounds[role].isActive === key;
-                    const status =
-                      rounds[role][key] !== 0 ? 'completed' : isActive ? 'active' : 'pending';
+                  <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
+                    {roundsList.map(({ label, key }) => {
+                      const isActive = rounds[role].isActive === key;
+                      const status =
+                        rounds[role][key] !== 0 ? 'completed' : isActive ? 'active' : 'pending';
 
-                    return (
-                      <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
-                        <div
-                          className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
-                          style={{
-                            background: statusStyles[role][status].gradient,
-                            // animation: 'blink 2.5s infinite'
-                          }}
-                        />
-                        <div
-                          className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-                          style={isActive ? { backgroundImage: statusStyles[role][status].gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', transition: 'background-image 0.5s ease' } : {}}
-                        >
-                          {(key === 'applicantsApplied' && rounds[role].applicantsApplied !== 0) ? `${rounds[role].applicantsApplied}` : ''}&nbsp;{label}
+                      return (
+                        <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
+                          <div
+                            className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
+                            style={{
+                              background: statusStyles[role][status].gradient,
+                              // animation: 'blink 2.5s infinite'
+                            }}
+                          />
+                          <div
+                            className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
+                            style={isActive ? { backgroundImage: statusStyles[role][status].gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', transition: 'background-image 0.5s ease' } : {}}
+                          >
+                            {(key === 'applicantsApplied' && rounds[role].applicantsApplied !== 0) ? `${rounds[role].applicantsApplied}` : ''}&nbsp;{label}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                  <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-                </div>
-                <div className='w-full flex justify-end'>
-                  <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                    <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
+                      );
+                    })}
+                    <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
                   </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
-                  <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
-                    <div className="p-1 justify-start items-center gap-2 inline-flex">
-                      <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
-                        Progress Report for
-                      </div>
-                    </div>
-                    <div className="self-stretch px-1 justify-start items-center inline-flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div
-                          className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
-                          style={{
-                            backgroundImage: statusStyles[role]['active'].gradient, // Apply gradient as a background image
-                            backgroundClip: 'text', // Clip the background to the text
-                            WebkitBackgroundClip: 'text', // For webkit browsers
-                            WebkitTextFillColor: 'transparent', // For webkit browsers to make text transparent
-                            transition: 'background-image 0.5s ease', // Smooth transition for background image
-                          }}
-                        >
-                          {textRole}
-                        </div>
-                      </div>
+                  <div className='w-full flex justify-end absolute bottom-[10px]'>
+                    <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
+                      <div className="text-center text-white text-2xl font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
                     </div>
                   </div>
-                  <div className="self-stretch px-1 justify-start items-center inline-flex">
-                    <div className="py-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                        Posted on
-                      </div>
-                    </div>
-                    <div className="p-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
-                    </div>
-                    <div className="justify-start items-center gap-1 flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                          {rounds[role].postedOn}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
-                  {roundsList.map(({ label, key }) => {
-                    const isActive = rounds[role].isActive === key;
-                    const status =
-                      rounds[role][key] !== 0 ? 'completed' : isActive ? 'active' : 'pending';
-
-                    return (
-                      <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
-                        <div
-                          className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
-                          style={{
-                            background: statusStyles[role][status].gradient,
-                            // animation: 'blink 2.5s infinite'
-                          }}
-                        />
-                        <div
-                          className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-                          style={isActive ? { backgroundImage: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', transition: 'background-image 0.5s ease' } : {}}
-                        >
-                          {(key === 'applicantsApplied' && rounds[role].applicantsApplied !== 0) ? `${rounds[role].applicantsApplied}` : ''}&nbsp;{label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-                </div>
-                <div className='w-full flex justify-end'>
-                  <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                    <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
-                  <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
-                    <div className="p-1 justify-start items-center gap-2 inline-flex">
-                      <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
-                        Progress Report for
-                      </div>
-                    </div>
-                    <div className="self-stretch px-1 justify-start items-center inline-flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div
-                          className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
-                          style={{
-                            backgroundImage: statusStyles[role]['active'].gradient,
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            transition: 'background-image 0.5s ease',
-                          }}
-                        >
-                          {textRole}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center inline-flex">
-                    <div className="py-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                        Posted on
-                      </div>
-                    </div>
-                    <div className="p-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
-                    </div>
-                    <div className="justify-start items-center gap-1 flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                          {rounds[role].postedOn}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
-                  {roundsList.map(({ label, key }) => {
-                    const isActive = rounds[role].isActive === key;
-                    const status =
-                      rounds[role][key] !== 0 ? 'completed' : isActive ? 'active' : 'pending';
-
-                    return (
-                      <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
-                        <div
-                          className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
-                          style={{
-                            background: statusStyles[role][status].gradient,
-                            // animation: 'blink 2.5s infinite'
-                          }}
-                        />
-                        <div
-                          className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-
-                          style={isActive ? { backgroundImage: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', transition: 'background-image 0.5s ease' } : {}}
-                        >
-                          {(key === 'applicantsApplied' && rounds[role].applicantsApplied !== 0) ? `${rounds[role].applicantsApplied}` : ''}&nbsp;{label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-                </div>
-                <div className='w-full flex justify-end'>
-                  <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                    <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
-                  <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
-                    <div className="p-1 justify-start items-center gap-2 inline-flex">
-                      <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
-                        Progress Report for
-                      </div>
-                    </div>
-                    <div className="self-stretch px-1 justify-start items-center inline-flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div
-                          className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
-                          style={{
-                            backgroundImage: statusStyles[role]['active'].gradient,
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            transition: 'background-image 0.5s ease',
-                          }}
-                        >
-                          {textRole}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center inline-flex">
-                    <div className="py-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                        Posted on
-                      </div>
-                    </div>
-                    <div className="p-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
-                    </div>
-                    <div className="justify-start items-center gap-1 flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                          {rounds[role].postedOn}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
-                  {roundsList.map(({ label, key }) => {
-                    const isActive = rounds[role].isActive === key;
-                    const status =
-                      rounds[role][key] !== 0 ? 'completed' : isActive ? 'active' : 'pending';
-
-                    return (
-                      <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
-                        <div
-                          className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
-                          style={{
-                            background: statusStyles[role][status].gradient,
-                            // animation: 'blink 2.5s infinite'
-                          }}
-                        />
-                        <div
-                          className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-
-                          style={isActive ? { backgroundImage: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', transition: 'background-image 0.5s ease' } : {}}
-                        >
-                          {(key === 'applicantsApplied' && rounds[role].applicantsApplied !== 0) ? `${rounds[role].applicantsApplied}` : ''}&nbsp;{label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-                </div>
-                <div className='w-full flex justify-end'>
-                  <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                    <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[102px] flex-col justify-start items-start gap-4 flex">
-                  <div className="self-stretch h-[60px] flex-col justify-start items-start flex">
-                    <div className="p-1 justify-start items-center gap-2 inline-flex">
-                      <div className="text-center text-[#6f6f6f] text-base font-normal font-['SF UI Text'] uppercase leading-none tracking-wide">
-                        Progress Report for
-                      </div>
-                    </div>
-                    <div className="self-stretch px-1 justify-start items-center inline-flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div
-                          className="text-center text-[#bf4cf9] text-[28px] font-bold font-['SF UI Display']"
-                          style={{
-                            backgroundImage: statusStyles[role]['active'].gradient,
-                            backgroundClip: 'text',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            transition: 'background-image 0.5s ease',
-                          }}
-                        >
-                          {textRole}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch px-1 justify-start items-center inline-flex">
-                    <div className="py-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                        Posted on
-                      </div>
-                    </div>
-                    <div className="p-1 justify-center items-center gap-2 flex">
-                      <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">:</div>
-                    </div>
-                    <div className="justify-start items-center gap-1 flex">
-                      <div className="py-1 justify-center items-center gap-2 flex">
-                        <div className="text-center text-[#6f6f6f] text-lg font-normal font-['SF UI Text'] leading-[18px]">
-                          {rounds[role].postedOn}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 pb-8 flex-col mb-auto justify-start items-start gap-10 inline-flex mt-14 relative">
-                  {roundsList.map(({ label, key }) => {
-                    const isActive = rounds[role].isActive === key;
-                    const status =
-                      rounds[role][key] !== 0 ? 'completed' : isActive ? 'active' : 'pending';
-
-                    return (
-                      <div key={key} className="self-stretch justify-start items-center gap-6 inline-flex">
-                        <div
-                          className={`w-[18px] h-[18px] relative rounded-[100px] ${statusStyles[role][status].circle}`} /* ${isActive ? 'blink-animation' : ''} */
-                          style={{
-                            background: statusStyles[role][status].gradient,
-                            // animation: 'blink 2.5s infinite'
-                          }}
-                        />
-                        <div
-                          className={`text-center text-xl font-['SF UI Text'] leading-tight ${statusStyles[role][status].text} ${isActive ? 'font-bold' : 'font-normal'}`}
-
-                          style={isActive ? { backgroundImage: statusStyles[role][status].gradient, backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', transition: 'background-image 0.5s ease' } : {}}
-                        >
-                          {(key === 'applicantsApplied' && rounds[role].applicantsApplied !== 0) ? `${rounds[role].applicantsApplied}` : ''}&nbsp;{label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className='z-[-1] h-[calc(100%-25px)] w-[1px] bg-[#A5A5CC] left-[20px] top-[0px] absolute flex-col justify-start items-start gap-10 inline-flex'></div>
-                </div>
-                <div className='w-full flex justify-end'>
-                  <div className="h-14 px-5 bg-[#0071db] rounded-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] justify-center items-center gap-2 inline-flex">
-                    <div className="text-center text-white text-[2.5vh] font-['SF UI  Text'] leading-[18px] cursor-pointer">Intervene</div>
-                  </div>
-                </div>
-              </SwiperSlide>
+                </SwiperSlide>
+              ))}
             </Swiper>
 
           </div>
