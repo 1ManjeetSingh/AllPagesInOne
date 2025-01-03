@@ -35,6 +35,7 @@ const customComponents = {
 
 const RecruiterDashboardElements = () => {
 
+    // <--------------- First Element Variables ---------------->
     const [searchPhrase, setSearchPhrase] = useState('');
     const [isFocused1, setisFocused1] = useState(false);
     const inputRef = useRef(null);
@@ -55,7 +56,6 @@ const RecruiterDashboardElements = () => {
         }
     }, [isFocused1]);
 
-    // DropDown Variables
     const jobOptions = [
         { value: 'senior', label: 'Senior' },
         { value: 'mid', label: 'Mid' },
@@ -187,6 +187,7 @@ const RecruiterDashboardElements = () => {
 
 
 
+
     //<----------- Second Element Variables -------------->
     const [minSalary, setMinSalary] = useState();
     const [maxSalary, setMaxSalary] = useState();
@@ -237,6 +238,7 @@ const RecruiterDashboardElements = () => {
 
     return (
         <div className='main-container min-h-[100vh] bg-[#F2F2F2] py-8 flex flex-col items-center gap-12'>
+
 
             {/*/////////////////// First Element ////////////////// */}
             <div className="mx-auto w-3/4 px-12 py-4 bg-white rounded-[9.26px] shadow-[0px_0px_8px_0px_rgba(0,0,0,0.40)] flex-col justify-center items-center gap-10 inline-flex">
@@ -533,6 +535,7 @@ const RecruiterDashboardElements = () => {
                     </div>
                 </div>
             </div>
+
 
 
 
